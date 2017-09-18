@@ -13,12 +13,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         return true
     }
+    
+    private func checkIfFirstLaunch() {
+        if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
+            //print("App has launched before")
+        } else {
+            //print("This is the first launch ever!")
+            UserDefaults.standard.set(true, forKey: Defaults.HasLaunchedBeforeKey)
+            UserDefaults.standard.set(Defaults.DefaultChartLineWidth, forKey: Defaults.ChartLineWidthKey)
+            UserDefaults.standard.set(Defaults.DefaultChartCubicSmoothing, forKey: Defaults.ChartCubicSmoothingKey)
+            UserDefaults.standard.set(Defaults.DefaultChartShowValues, forKey: Defaults.ChartShowValuesKey)
+            UserDefaults.standard.synchronize()
+        }
+    }
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Usually this is not overridden. Using the "did finish launching" method is more typical
+        
+        checkIfFirstLaunch()
+        return true
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

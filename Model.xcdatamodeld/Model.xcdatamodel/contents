@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CensusFact" representedClassName=".CensusFact" syncable="YES">
+        <attribute name="factDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="factName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sourceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="variableName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="describes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CensusValue" inverseName="hasDescription" inverseEntity="CensusValue" syncable="YES"/>
+    </entity>
+    <entity name="CensusValue" representedClassName=".CensusValue" syncable="YES">
+        <attribute name="asOfDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dateLevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="appliesToGeography" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Geography" inverseName="hasCensusValues" inverseEntity="Geography" syncable="YES"/>
+        <relationship name="hasDescription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CensusFact" inverseName="describes" inverseEntity="CensusFact" syncable="YES"/>
+    </entity>
+    <entity name="Geography" representedClassName=".Geography" syncable="YES">
+        <attribute name="fipsCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hasCensusValues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CensusValue" inverseName="appliesToGeography" inverseEntity="CensusValue" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CensusFact" positionX="-90" positionY="-396" width="128" height="148"/>
+        <element name="CensusValue" positionX="-74" positionY="-178" width="128" height="150"/>
+        <element name="Geography" positionX="-380" positionY="-162" width="128" height="118"/>
+    </elements>
+</model>
