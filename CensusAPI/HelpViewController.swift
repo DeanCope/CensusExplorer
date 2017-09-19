@@ -33,6 +33,11 @@ class HelpViewController: UIViewController {
         if let url = URL(string: "https://icons8.com/"){
            UIApplication.shared.open(url, options: [:])        }
     }
+    @IBAction func linkToChartsFramework(_ sender: Any) {
+        if let url = URL(string: "https://github.com/danielgindi/Charts"){
+            UIApplication.shared.open(url, options: [:])        }
+        
+    }
     /*
     // MARK: - Navigation
 
