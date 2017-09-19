@@ -1,0 +1,3 @@
+Allows the user to explore data visualizations based on data from the US Census Bureau
+
+This is version 1.0 of the Census Explorer. It was developed by Dean Copeland (Copeland.Dean1@gmail.com) to explore iOS SWIFT application development using APIs, Core Data and data visualizations. It only scratches the surface of the vast amount of data that is available from the US Census Bureau. From the main page, select a topic that you want to explore. Next, choose the entire country and/or one or more states. Touch Graph It! to display a line graph. While viewing the graph, you can pinch to zoom. If you touch a data point marker on the graph, a message will give you the details for that data point (geoography, value and date).

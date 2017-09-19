@@ -37,6 +37,7 @@
 		DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C01EF1917500990F97 /* CoreDataStack.swift */; };
 		DAD080C51EF19C8700990F97 /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* DisplayAlert.swift */; };
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
+		DAE94D711F7194B200E66FF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAE94D701F7194B200E66FF5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +86,7 @@
 		DAD080C01EF1917500990F97 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DAD080C41EF19C8700990F97 /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
 		DAD080C71EF4575500990F97 /* CensusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusDataSource.swift; sourceTree = "<group>"; };
+		DAE94D701F7194B200E66FF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.release.xcconfig"; sourceTree = "<group>"; };
 		FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 		DA4F343A1E1C1AED002568C6 = {
 			isa = PBXGroup;
 			children = (
+				DAE94D701F7194B200E66FF5 /* README.md */,
 				DAD0809E1EF1633500990F97 /* Model */,
 				DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */,
 				DA4F34451E1C1AED002568C6 /* CensusAPI */,
@@ -337,6 +340,7 @@
 				DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */,
 				DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */,
 				DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */,
+				DAE94D711F7194B200E66FF5 /* README.md in Sources */,
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
 				DAD080C51EF19C8700990F97 /* DisplayAlert.swift in Sources */,
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
