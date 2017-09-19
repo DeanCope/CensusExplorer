@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9465BC2090C4FE4D887F212F /* Pods_CensusAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */; };
 		DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */; };
 		DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12832D1EE76DE900FB5090 /* GeosViewController.swift */; };
 		DA33270D1E5371CF004725CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270C1E5371CF004725CB /* Constants.swift */; };
@@ -18,7 +19,6 @@
 		DA4F344C1E1C1AED002568C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344A1E1C1AED002568C6 /* Main.storyboard */; };
 		DA4F344E1E1C1AED002568C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344D1E1C1AED002568C6 /* Assets.xcassets */; };
 		DA4F34511E1C1AED002568C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */; };
-		DA4F345A1E1C1FB9002568C6 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F34581E1C1FB9002568C6 /* SWXMLHash.swift */; };
 		DA57DB211EFAF86200682886 /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB201EFAF86200682886 /* StateCell.swift */; };
 		DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB231EFDACDD00682886 /* LineChartViewController.swift */; };
 		DA9816711F6B23DA0053B39C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsViewController.swift */; };
@@ -37,34 +37,7 @@
 		DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C01EF1917500990F97 /* CoreDataStack.swift */; };
 		DAD080C51EF19C8700990F97 /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* DisplayAlert.swift */; };
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
-		DAEC65581ED7668E00B0C8B9 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAEC65551ED7667200B0C8B9 /* Charts.framework */; };
-		DAEC65591ED7668E00B0C8B9 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DAEC65551ED7667200B0C8B9 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DAEF895A1F018168006ADE87 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEF89591F018168006ADE87 /* BalloonMarker.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DAEC65541ED7667200B0C8B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F241D8110E600722320;
-			remoteInfo = Charts;
-		};
-		DAEC65561ED7667200B0C8B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F2E1D8110E600722320;
-			remoteInfo = ChartsTests;
-		};
-		DAEC655A1ED7668E00B0C8B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DAEC655C1ED7668E00B0C8B9 /* Embed Frameworks */ = {
@@ -73,7 +46,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DAEC65591ED7668E00B0C8B9 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CensusAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DA12832D1EE76DE900FB5090 /* GeosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeosViewController.swift; sourceTree = "<group>"; };
 		DA33270C1E5371CF004725CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -94,7 +67,6 @@
 		DA4F344D1E1C1AED002568C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA4F34501E1C1AED002568C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA4F34521E1C1AED002568C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA4F34581E1C1FB9002568C6 /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
 		DA57DB201EFAF86200682886 /* StateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		DA57DB231EFDACDD00682886 /* LineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
 		DA9816701F6B23DA0053B39C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +85,8 @@
 		DAD080C01EF1917500990F97 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DAD080C41EF19C8700990F97 /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
 		DAD080C71EF4575500990F97 /* CensusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusDataSource.swift; sourceTree = "<group>"; };
-		DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
-		DAEF89591F018168006ADE87 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.release.xcconfig"; sourceTree = "<group>"; };
+		FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,21 +94,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAEC65581ED7668E00B0C8B9 /* Charts.framework in Frameworks */,
+				9465BC2090C4FE4D887F212F /* Pods_CensusAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17EDFD13715BC046A9C16748 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */,
+				EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		50463262AE76C6F6790F6E00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DA4F343A1E1C1AED002568C6 = {
 			isa = PBXGroup;
 			children = (
 				DAD0809E1EF1633500990F97 /* Model */,
 				DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */,
-				DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */,
 				DA4F34451E1C1AED002568C6 /* CensusAPI */,
 				DA4F34441E1C1AED002568C6 /* Products */,
+				17EDFD13715BC046A9C16748 /* Pods */,
+				50463262AE76C6F6790F6E00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,10 +148,8 @@
 				DA33270C1E5371CF004725CB /* Constants.swift */,
 				DA33270E1E53A4CA004725CB /* DataCell.swift */,
 				DA57DB201EFAF86200682886 /* StateCell.swift */,
-				DAEF89591F018168006ADE87 /* BalloonMarker.swift */,
 				DAD080C41EF19C8700990F97 /* DisplayAlert.swift */,
 				DA4F34521E1C1AED002568C6 /* Info.plist */,
-				DA4F34581E1C1FB9002568C6 /* SWXMLHash.swift */,
 				DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */,
 				DA9816701F6B23DA0053B39C /* SettingsViewController.swift */,
 				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
@@ -209,15 +197,6 @@
 			name = Census;
 			sourceTree = "<group>";
 		};
-		DAEC65501ED7667200B0C8B9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DAEC65551ED7667200B0C8B9 /* Charts.framework */,
-				DAEC65571ED7667200B0C8B9 /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,15 +204,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA4F34551E1C1AED002568C6 /* Build configuration list for PBXNativeTarget "CensusAPI" */;
 			buildPhases = (
+				326382C63AD8DAB9CD9AA612 /* [CP] Check Pods Manifest.lock */,
 				DA4F343F1E1C1AED002568C6 /* Sources */,
 				DA4F34401E1C1AED002568C6 /* Frameworks */,
 				DA4F34411E1C1AED002568C6 /* Resources */,
 				DAEC655C1ED7668E00B0C8B9 /* Embed Frameworks */,
+				4E20F965FE80DED8ACD635A3 /* [CP] Embed Pods Frameworks */,
+				C281084C5BA5ECE0DFEAF2BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DAEC655B1ED7668E00B0C8B9 /* PBXTargetDependency */,
 			);
 			name = CensusAPI;
 			productName = CensusAPI;
@@ -268,35 +249,12 @@
 			mainGroup = DA4F343A1E1C1AED002568C6;
 			productRefGroup = DA4F34441E1C1AED002568C6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = DAEC65501ED7667200B0C8B9 /* Products */;
-					ProjectRef = DAEC654F1ED7667200B0C8B9 /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				DA4F34421E1C1AED002568C6 /* CensusAPI */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		DAEC65551ED7667200B0C8B9 /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = DAEC65541ED7667200B0C8B9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DAEC65571ED7667200B0C8B9 /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = DAEC65561ED7667200B0C8B9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DA4F34411E1C1AED002568C6 /* Resources */ = {
@@ -311,12 +269,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		326382C63AD8DAB9CD9AA612 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4E20F965FE80DED8ACD635A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C281084C5BA5ECE0DFEAF2BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DA4F343F1E1C1AED002568C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA4F345A1E1C1FB9002568C6 /* SWXMLHash.swift in Sources */,
 				DAD080B01EF18B0600990F97 /* Geography+CoreDataClass.swift in Sources */,
 				DAD080B21EF18B0600990F97 /* CensusFact+CoreDataClass.swift in Sources */,
 				DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */,
@@ -343,19 +348,10 @@
 				DA57DB211EFAF86200682886 /* StateCell.swift in Sources */,
 				DA48B6AF1F55F90A0091E4BE /* SubjectsViewController.swift in Sources */,
 				DA9816711F6B23DA0053B39C /* SettingsViewController.swift in Sources */,
-				DAEF895A1F018168006ADE87 /* BalloonMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DAEC655B1ED7668E00B0C8B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = DAEC655A1ED7668E00B0C8B9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DA4F344A1E1C1AED002568C6 /* Main.storyboard */ = {
@@ -470,6 +466,7 @@
 		};
 		DA4F34561E1C1AED002568C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -484,6 +481,7 @@
 		};
 		DA4F34571E1C1AED002568C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

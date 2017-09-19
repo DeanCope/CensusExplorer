@@ -51,14 +51,13 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } catch {
             let fetchError = error as NSError
             self.alert(message: error.localizedDescription)
-            print("Unable to fetch states")
+            print("Unable to fetch geographies from the local DB")
             print("\(fetchError), \(fetchError.localizedDescription)")
         }
         if let fact = fact {
             self.title = fact.factName
             self.instructionsLabel.text = "Choose the whole country and/or one or more states."
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

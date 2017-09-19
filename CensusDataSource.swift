@@ -49,7 +49,7 @@ class CensusDataSource: NSObject {
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "092E", name: "Foreign Born", description: "People who were not born in the USA (%)", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "099E", name: "No Health Insurance Coverage", description: "Civilian noninstitutionalized population with no health insurance coverage (%)", unit: "%"),
             (source: CensusClient.Sources.SAIPE, prefix: "SAEMHI_PT", suffix: "", name: "Median Household Income", description: "Median Household Income ($)", unit: "$"),
-            (source: CensusClient.Sources.SAIPE, prefix: "SAEPOVRTALL_PT", suffix: "", name: "Poverty Rate", description: "People living in housholds with income beow the povery threashold (%)", unit: "%"),
+            (source: CensusClient.Sources.SAIPE, prefix: "SAEPOVRTALL_PT", suffix: "", name: "Poverty Rate", description: "People living in housholds with income below the poverty threshold (%)", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "066E", name: "High school graduate or higher", description: "Population 25 years and over who graduated high school or higher (%)", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "067E", name: "Bachelor's degree or higher", description: "Population 25 years and over with bachelors degree or higher (%)", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "039E", name: "Fertility (births in past 12 months)", description: "Number of women 15 to 50 years old who had a birth in the past 12 months (per 1000)", unit: " births per 1000 women 15-50")

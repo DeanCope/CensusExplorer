@@ -21,8 +21,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     let largeNumber = 31908551587
     let numberFormatter = NumberFormatter()
     
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +48,7 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func refresh(_ sender: Any) {
         
-        var formatter = CensusValueFormatter()
+        let formatter = CensusValueFormatter()
         
         if let _ = fact {
             let colors = [UIColor.red, .green, .blue, .black, .brown, .cyan, .gray ]
