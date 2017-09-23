@@ -43,7 +43,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         
         // Save the stack and context for convenience
-        stack = CensusDataSource.sharedInstance().stack
+        stack = CensusDataSource.sharedInstance.stack
         context = stack!.context
         
         do {
@@ -61,7 +61,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if CensusDataSource.sharedInstance().gotCensusValues {
+        if CensusDataSource.sharedInstance.gotCensusValues {
             graphItButton.isEnabled = true
         } else {
             graphItButton.isEnabled = false
@@ -90,7 +90,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func deselectAllRows(_ sender: Any) {
-        CensusDataSource.sharedInstance().selectAllGeographies(false){ (success, error) in
+        CensusDataSource.sharedInstance.selectAllGeographies(false){ (success, error) in
             if success {
                 self.tableView.reloadData()
             } else {
@@ -104,7 +104,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func selectAllRows(_ sender: Any) {
-        CensusDataSource.sharedInstance().selectAllGeographies(true){ (success, error) in
+        CensusDataSource.sharedInstance.selectAllGeographies(true){ (success, error) in
             if success {
                 self.tableView.reloadData()
             } else {

@@ -42,12 +42,12 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
         if let _ = fact {
             let colors = [UIColor.red, .green, .blue, .black, .brown, .cyan, .gray ]
             numberFormatter.numberStyle = .decimal
-            CensusDataSource.sharedInstance().getSelectedGeographies() { (geographies, error) in
+            CensusDataSource.sharedInstance.getSelectedGeographies() { (geographies, error) in
                 if let _ = geographies {
                     var dataSets: [LineChartDataSet] = []
                     var dataSetNumber = 0
                     for geography in geographies! {
-                        CensusDataSource.sharedInstance().getDataFromDB(forFact: self.fact!, geography: geography) {
+                        CensusDataSource.sharedInstance.getDataFromDB(forFact: self.fact!, geography: geography) {
                             (result, error) in
                             if let _ = result {
                                 let dataSet = self.createDataSetFromCensusValues(result!, label: geography.name!)

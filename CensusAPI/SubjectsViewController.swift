@@ -35,7 +35,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var progressLabel: UILabel!
-        
+    
     @IBOutlet weak var reloadDataButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +61,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         
        refreshGeosAndValues()
         
-       facts = CensusDataSource.sharedInstance().getAllFacts()
+       facts = CensusDataSource.sharedInstance.getAllFacts()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -80,10 +80,10 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         facts = [CensusFact]()
         activityIndicator.startAnimating()
         
-        CensusDataSource.sharedInstance().retrieveGeographies() {
+        CensusDataSource.sharedInstance.retrieveGeographies() {
             (success, error) in
             if success {
-                CensusDataSource.sharedInstance().retrieveAllFactValues() { (success, error) in
+                CensusDataSource.sharedInstance.retrieveAllFactValues() { (success, error) in
                     if success {
                         
                     } else {
@@ -125,7 +125,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.alert(title: "Done", message: "Census data has been reloaded.")
                 self.userRequestedReload = false
             }
-            self.facts = CensusDataSource.sharedInstance().getAllFacts()
+            self.facts = CensusDataSource.sharedInstance.getAllFacts()
         }
         return observer
     }
@@ -135,8 +135,8 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         userRequestedReload = true
         reloadDataButton.isEnabled = false
         activityIndicator.startAnimating()
-        CensusDataSource.sharedInstance().deleteAllGeographies()
-        CensusDataSource.sharedInstance().deleteAllCensusValues()
+        CensusDataSource.sharedInstance.deleteAllGeographies()
+        CensusDataSource.sharedInstance.deleteAllCensusValues()
         refreshGeosAndValues()
     }
 
@@ -163,7 +163,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-            self.performSegue(withIdentifier: Storyboard.chooseGeoSegueId, sender: self)
+        performSegue(withIdentifier: Storyboard.chooseGeoSegueId, sender: self)
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

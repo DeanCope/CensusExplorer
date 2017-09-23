@@ -12,6 +12,9 @@ import Charts
 
 class CensusDataSource: NSObject {
     
+    // source: https://thatthinginswift.com/singletons/
+    static let sharedInstance = CensusDataSource()
+    
     var facts = [CensusFact]()
     
     let stack = CoreDataStack(modelName: "Model")!
@@ -20,15 +23,6 @@ class CensusDataSource: NSObject {
     
     var gotGeographies = false
     var gotCensusValues = false
-    /*{
-        didSet {
-            if gotCensusValues {
-                let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotCensusValues))
-                NotificationCenter.default.post(notification)
-            }
-        }
-    }
- */
     
     // MARK: Initializers
     
@@ -395,14 +389,4 @@ class CensusDataSource: NSObject {
             }
         })
     }
-    
-    // MARK: Shared Instance
-
-    class func sharedInstance() -> CensusDataSource {
-        struct Singleton {
-            static var sharedInstance = CensusDataSource()
-        }
-        return Singleton.sharedInstance
-    }
-
 }
