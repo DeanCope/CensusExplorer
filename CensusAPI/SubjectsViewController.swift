@@ -35,11 +35,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var progressLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+        
     @IBOutlet weak var reloadDataButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
