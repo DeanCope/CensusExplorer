@@ -89,9 +89,7 @@ class CensusDataSource: NSObject {
         })
         
         if let geos = fetchedGeos {
-            //  print("There are \(geos.count) geographies in the database")
             if geos.count == 0 {
-                print("Retrieving geographies")
                 CensusClient.sharedInstance().getGeography(geography: "state:*", time: "2015", context: context!) {(results, error) in
                     if let _ = results {
                         CensusClient.sharedInstance().getGeography(geography: "us:*", time: "2015", context: self.context!) {(results, error) in
@@ -148,13 +146,11 @@ class CensusDataSource: NSObject {
             let allFacts = self.getAllFacts()
             for fact in allFacts {
                 group.enter()
-                print("Entered")
                 self.retrieveData(fact: fact) { (success, error) in
                     if error != nil {
                         storedError = error
                     }
                     group.leave()
-                    print("Left")
                     if success {
                         self.sendGetCensusValuesProgressNotification(message: "Got \(fact.factName!).")
                         completionHandlerForRetrieveData(true, nil)
@@ -285,8 +281,6 @@ class CensusDataSource: NSObject {
     
     func retrieveData(fact: CensusFact, completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
         
-       print("Retrieving data for \(fact.factName!)...")
-        
         if !fact.hasData() {
             // We don't have the data in the local DB yet, so get the data from the API
             if fact.sourceId == CensusClient.Sources.SAIPE {
@@ -331,8 +325,6 @@ class CensusDataSource: NSObject {
         let sortDescriptors = [sortDescriptor1, sortDescriptor2]
         fr.sortDescriptors = sortDescriptors
         
-        //print("Getting data for variable \(forFact.variableName!) and geo \(geography.name!)")
-        
         var fetchedValues: [CensusValue]?
         context!.performAndWait ({
             do {
@@ -341,7 +333,6 @@ class CensusDataSource: NSObject {
                 completionHandlerForGetData(nil, error as? CensusClient.CensusClientError)
             }
             if let values = fetchedValues {
-               // print("There are \(values.count) values in the database")
                 completionHandlerForGetData(values, nil)
             }
         })
@@ -360,7 +351,6 @@ class CensusDataSource: NSObject {
                 completionHandlerForGetGeographies(nil, error as? CensusClient.CensusClientError)
             }
             if let geographies = fetchedGeographies {
-               // print("There are \(geographies.count) selected geographies in the database")
                 completionHandlerForGetGeographies(geographies, nil)
             }
         })

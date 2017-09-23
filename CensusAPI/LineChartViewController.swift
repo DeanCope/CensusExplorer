@@ -67,7 +67,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
                                 dataSet.valueFormatter = formatter
                                 
                                 dataSet.circleRadius = 2
-                                //dataSet.drawValuesEnabled = false
                                 
                                 dataSetNumber += 1
                                 if dataSetNumber > colors.count {

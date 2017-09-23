@@ -30,19 +30,19 @@ class HelpViewController: UIViewController {
     }
     
     @IBAction func linkToCensusBureau(_ sender: Any) {
-        if let url = URL(string: "https://www.census.gov/"){
-            UIApplication.shared.open(url, options: [:])
-        }
+        linkToURL("https://www.census.gov/")
     }
     
     @IBAction func linkToIcons8(_ sender: Any) {
-        if let url = URL(string: "https://icons8.com/"){
-           UIApplication.shared.open(url, options: [:])
-        }
+        linkToURL("https://icons8.com/")
     }
     
     @IBAction func linkToChartsFramework(_ sender: Any) {
-        if let url = URL(string: "https://github.com/danielgindi/Charts"){
+        linkToURL("https://github.com/danielgindi/Charts")
+    }
+    
+    func linkToURL(_ url: String) {
+        if let url = URL(string: url){
             UIApplication.shared.open(url, options: [:])
         }
     }
