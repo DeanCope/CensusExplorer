@@ -17,7 +17,6 @@ class HelpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getGeographiesErrorObserver = startObservingGetGeographiesErrorNotification()
         getValuesErrorObserver = startObservingGetCensusValuesErrorNotification()
         gotValuesObserver = startObservingGotCensusValuesNotification()
         

@@ -33,20 +33,7 @@ extension UIViewController {
         }
     }
  
-    func startObservingGetGeographiesErrorNotification() -> Any? {
-  
-        let observer = startObserving(notificationName: NotificationNames.GetGeographiesError) { notification in
-            var message = "Error getting geographies data"
-            if let userInfo = notification.userInfo {
-                if let error = userInfo[NotificationNames.CensusClientError] as? CensusClient.CensusClientError {
-                    message = "\(message): \(error.localizedDescription)"
-                }
-            }
-            self.alert(message: message)
-        }
-        return observer
-    }
-    
+        
     func startObservingGetCensusValuesErrorNotification() -> Any? {
         
         let observer = startObserving(notificationName: NotificationNames.GetCensusValuesError) { notification in
