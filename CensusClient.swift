@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - CensusClient: NSObject
 
@@ -21,6 +22,23 @@ class CensusClient : NSObject {
         Sources.SAIPE: "timeseries/poverty/saipe",
         Sources.ACS: "2015/acs1/cprofile"
     ]
+    
+    //  source: http://www.djbp.co.uk/swift-development-managing-the-network-activity-indicator/
+    var activityIndicatorSetVisibleCount = 0
+    func setNetworkActivityIndicatorVisible(visible: Bool) {
+        if visible {
+            activityIndicatorSetVisibleCount += 1
+        }else {
+            activityIndicatorSetVisibleCount -= 1
+        }
+        
+        // If you have more closes than opens, make sure not to enter into minus numbers
+        if activityIndicatorSetVisibleCount < 0 {
+            activityIndicatorSetVisibleCount = 0
+        }
+        print("\(activityIndicatorSetVisibleCount) network requests are in progress.")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = activityIndicatorSetVisibleCount > 0
+    }
     
     // MARK: Initializers
     
@@ -42,10 +60,10 @@ class CensusClient : NSObject {
         
         request.addValue(HeaderValues.Json, forHTTPHeaderField: HeaderKeys.Accept)
         
-     //   print(request.url!)
-        
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            self.setNetworkActivityIndicatorVisible(visible: false)
             
             func sendError(_ error: CensusClientError) {
                 completionHandlerForGET(nil, error)
@@ -80,6 +98,7 @@ class CensusClient : NSObject {
         }
         
         /* 7. Start the request */
+        setNetworkActivityIndicatorVisible(visible: true)
         task.resume()
         
         return task
@@ -87,18 +106,7 @@ class CensusClient : NSObject {
     
     
     // MARK: Helpers
-    
-    // substitute the key for the value that is contained within the method name
-    /*
-     func substituteKeyInMethod(_ method: String, key: String, value: String) -> String? {
-     if method.range(of: "{\(key)}") != nil {
-     return method.replacingOccurrences(of: "{\(key)}", with: value)
-     } else {
-     return nil
-     }
-     }
-     */
-    
+        
     // given raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [AnyObject]?, _ error: CensusClientError?) -> Void) {
         

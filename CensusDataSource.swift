@@ -20,6 +20,15 @@ class CensusDataSource: NSObject {
     
     var gotGeographies = false
     var gotCensusValues = false
+    /*{
+        didSet {
+            if gotCensusValues {
+                let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotCensusValues))
+                NotificationCenter.default.post(notification)
+            }
+        }
+    }
+ */
     
     // MARK: Initializers
     
@@ -34,8 +43,7 @@ class CensusDataSource: NSObject {
 
     
     func initializeFacts() {
-       // deleteAllFacts()
-       // deleteAllGeographies()
+
         let allFacts = getAllFacts()
         
         guard allFacts.count == 0 else {
@@ -101,11 +109,13 @@ class CensusDataSource: NSObject {
                                 let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotGeographies))
                                 NotificationCenter.default.post(notification)
                             } else {
+                                self.sendGetGeographiesErrorNotification(error: error)
                                 completionHandlerForRetrieveData(false, error)
                             }
                             completionHandlerForRetrieveData(true, nil)
                         }
                     } else {
+                        self.sendGetGeographiesErrorNotification(error: error)
                         completionHandlerForRetrieveData(false, error)
                     }
                 }
@@ -115,26 +125,70 @@ class CensusDataSource: NSObject {
             }
         }
     }
+    
+    func sendGetGeographiesErrorNotification(error: CensusClient.CensusClientError?) {
+        var userInfo: [AnyHashable : Any]? = nil
+        if let error = error {
+            userInfo = [NotificationNames.GetGeographiesError: error]
+        }
+        let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetGeographiesError), object: nil, userInfo:userInfo)
+        NotificationCenter.default.post(notification)
+    }
+    
+    func sendGetCensusValuesProgressNotification(message: String) {
+        var userInfo: [AnyHashable : Any]? = nil
+        userInfo = [NotificationNames.GetCensusValuesProgressMessage: message]
+        let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetCensusValuesProgress), object: nil, userInfo:userInfo)
+        NotificationCenter.default.post(notification)
+    }
 
     
     func retrieveAllFactValues(completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+        
+        // Source: https://www.raywenderlich.com/148515/grand-central-dispatch-tutorial-swift-3-part-2
+        
+        var storedError: CensusClient.CensusClientError?
+        let group = DispatchGroup()
     
         stack.performBackgroundBatchOperation { (workerContext) in
             let allFacts = self.getAllFacts()
             for fact in allFacts {
+                group.enter()
+                print("Entered")
                 self.retrieveData(fact: fact) { (success, error) in
+                    if error != nil {
+                        storedError = error
+                    }
+                    group.leave()
+                    print("Left")
                     if success {
+                        self.sendGetCensusValuesProgressNotification(message: "Got \(fact.factName!).")
                         completionHandlerForRetrieveData(true, nil)
-                        self.gotCensusValues = true
-                        let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotCensusValues))
-                        NotificationCenter.default.post(notification)
                     } else {
                         completionHandlerForRetrieveData(false, error)
                     }
                 }
             }
+            group.notify(queue: DispatchQueue.main) {
+                self.sendGetCensusValuesCompletionNotification(error: storedError)
+                self.gotCensusValues = true
+            }
         }
     }
+    
+    func sendGetCensusValuesCompletionNotification(error: CensusClient.CensusClientError?) {
+        var notification: Notification
+        var userInfo: [AnyHashable : Any]? = nil
+        if let error = error {
+            userInfo = [NotificationNames.GetCensusValuesError: error]
+            notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetCensusValuesError), object: nil, userInfo:userInfo)
+        } else {
+            notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotCensusValues), object: nil, userInfo:userInfo)
+        }
+        
+        NotificationCenter.default.post(notification)
+    }
+
     
     private func varString(prefix: String, years: [String], suffix: String) -> String {
         var result = ""
@@ -197,7 +251,7 @@ class CensusDataSource: NSObject {
     return fetchedValues!.count
     }
         
-    private func deleteAllGeographies() {
+    func deleteAllGeographies() {
         // Create a simple fetchrequest to get all geographies (no sorting needed)
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         
@@ -237,7 +291,7 @@ class CensusDataSource: NSObject {
     
     func retrieveData(fact: CensusFact, completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
         
-        print("Retrieving data for \(fact.factName!)...")
+       print("Retrieving data for \(fact.factName!)...")
         
         if !fact.hasData() {
             // We don't have the data in the local DB yet, so get the data from the API
@@ -261,6 +315,7 @@ class CensusDataSource: NSObject {
                             self.context!.perform {
                                 self.stack.save()
                             }
+                            completionHandlerForRetrieveData(true, nil)
                         }
                     } else {
                         completionHandlerForRetrieveData(false, error)
@@ -271,52 +326,6 @@ class CensusDataSource: NSObject {
             completionHandlerForRetrieveData(true, nil)
         }
     }
-/*
-    func getData(fact: CensusFact, geography: Geography, completionHandlerForGetData: @escaping (_ result: [CensusValue]?, _ error: CensusClient.CensusClientError?) -> Void) {
-        
-        print("Getting data for \(fact.factName!)...")
-        
-        if !fact.hasData() {
-            // We don't have the data in the local DB yet, so get the data from the API
-            if fact.sourceId == CensusClient.Sources.SAIPE {
-                CensusClient.sharedInstance().getSAIPEValues(fact: fact, geography: "state:*", time: "from+1995+to+2015", context: context!) {(results, error) in
-                    if let _ = results {
-                        //     print(results)
-                        CensusClient.sharedInstance().getSAIPEValues(fact: fact, geography: "us:*", time: "from+1995+to+2015", context: self.context!) {(results, error) in
-                            self.context!.perform {
-                                self.stack.save()
-                            }
-                        }
-                        self.getDataFromDB(forFact: fact, geography: geography) {(results, error) in
-                            completionHandlerForGetData(results, error)
-                        }
-                    }
-                }
-            } else {
-                CensusClient.sharedInstance().getACSValues(fact: fact, geography: "state:*", context: context!) {(results, error) in
-                    if let _ = results {
-                        //     print(results)
-                        CensusClient.sharedInstance().getACSValues(fact: fact, geography: "us:*", context: self.context!) {(results, error) in
-                            self.context!.perform {
-                                self.stack.save()
-                            }
-                        }
-                        self.getDataFromDB(forFact: fact, geography: geography) {(results, error) in
-                            completionHandlerForGetData(results, error)
-                        }
-                    }
-                }
-            }
-        } else {
-            // We have the data in the local DB
-            self.getDataFromDB(forFact: fact, geography: geography) {(results, error) in
-                completionHandlerForGetData(results, error)
-            }
-        }
-    }
- 
- */
-
     
     func getDataFromDB(forFact: CensusFact, geography: Geography, completionHandlerForGetData: @escaping (_ results: [CensusValue]?, _ error: CensusClient.CensusClientError?) -> Void) {
         let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
@@ -386,8 +395,6 @@ class CensusDataSource: NSObject {
             }
         })
     }
-    
-    
     
     // MARK: Shared Instance
 

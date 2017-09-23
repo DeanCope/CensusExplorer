@@ -2,9 +2,7 @@
 //  CensusValueFormatter.swift
 //  CensusAPI
 //
-//  Created by Dean Copeland on 9/18/17.
-//  Copyright © 2017 Dean Copeland. All rights reserved.
-//
+//  This code was copied from the ChartsDemo App (Not written by Dean)
 
 import Foundation
 

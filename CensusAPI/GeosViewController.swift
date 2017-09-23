@@ -71,7 +71,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.graphItButton.isEnabled = true
                 
             }
-            
         }
     }
     
@@ -103,6 +102,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+    
     @IBAction func selectAllRows(_ sender: Any) {
         CensusDataSource.sharedInstance().selectAllGeographies(true){ (success, error) in
             if success {
@@ -116,7 +116,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let fact = fact {
@@ -150,12 +149,10 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.alert(message: "Unexpected Section")
             return "Unexpected Section"
         }
-        
         guard let name = CensusClient.GeoLevels[sectionInfo.name] else {
             self.alert(message: "Unexpected geo level found: \(sectionInfo.name)")
             return "Unexpected geo level"
         }
-        
         return name
     }
 
@@ -186,8 +183,8 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             cell.accessoryType = .none
         }
-    return cell
-}
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? StateCell {
@@ -204,17 +201,4 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             stack!.save()
         }
     }
-    
-    // MARK: Fetched Results Controller Delegate Methods
-/*
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-        //tableView.reloadData()
-    }
- */
-
 }

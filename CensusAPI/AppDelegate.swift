@@ -20,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func checkIfFirstLaunch() {
         if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
-            //print("App has launched before")
         } else {
-            //print("This is the first launch ever!")
             UserDefaults.standard.set(true, forKey: Defaults.HasLaunchedBeforeKey)
             UserDefaults.standard.set(Defaults.DefaultChartLineWidth, forKey: Defaults.ChartLineWidthKey)
             UserDefaults.standard.set(Defaults.DefaultChartCubicSmoothing, forKey: Defaults.ChartCubicSmoothingKey)

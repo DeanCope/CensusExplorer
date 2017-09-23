@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9465BC2090C4FE4D887F212F /* Pods_CensusAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */; };
+		DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA036F1B1F76F3D800967436 /* SettingsViewController.swift */; };
 		DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */; };
 		DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12832D1EE76DE900FB5090 /* GeosViewController.swift */; };
 		DA33270D1E5371CF004725CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270C1E5371CF004725CB /* Constants.swift */; };
-		DA33270F1E53A4CA004725CB /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270E1E53A4CA004725CB /* DataCell.swift */; };
 		DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */; };
 		DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */; };
 		DA48B6AF1F55F90A0091E4BE /* SubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */; };
@@ -21,9 +21,8 @@
 		DA4F34511E1C1AED002568C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */; };
 		DA57DB211EFAF86200682886 /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB201EFAF86200682886 /* StateCell.swift */; };
 		DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB231EFDACDD00682886 /* LineChartViewController.swift */; };
-		DA9816711F6B23DA0053B39C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsViewController.swift */; };
+		DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */; };
 		DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */; };
-		DACCFCCB1F7038A30074CFEE /* UtilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCCA1F7038A30074CFEE /* UtilViewController.swift */; };
 		DACCFCCD1F703D330074CFEE /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCCC1F703D330074CFEE /* HelpViewController.swift */; };
 		DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A21EF163BA00990F97 /* CensusConstants.swift */; };
 		DAD080A51EF163E800990F97 /* CensusClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A41EF163E800990F97 /* CensusClient.swift */; };
@@ -35,7 +34,7 @@
 		DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080AE1EF18B0600990F97 /* CensusValue+CoreDataClass.swift */; };
 		DAD080B71EF18B0600990F97 /* CensusValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080AF1EF18B0600990F97 /* CensusValue+CoreDataProperties.swift */; };
 		DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C01EF1917500990F97 /* CoreDataStack.swift */; };
-		DAD080C51EF19C8700990F97 /* DisplayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* DisplayAlert.swift */; };
+		DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* UIVCExtension.swift */; };
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
 		DAE94D711F7194B200E66FF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAE94D701F7194B200E66FF5 /* README.md */; };
 /* End PBXBuildFile section */
@@ -55,10 +54,10 @@
 
 /* Begin PBXFileReference section */
 		95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CensusAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA036F1B1F76F3D800967436 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DA12832D1EE76DE900FB5090 /* GeosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeosViewController.swift; sourceTree = "<group>"; };
 		DA33270C1E5371CF004725CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		DA33270E1E53A4CA004725CB /* DataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
 		DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsViewController.swift; sourceTree = "<group>"; };
@@ -70,9 +69,8 @@
 		DA4F34521E1C1AED002568C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA57DB201EFAF86200682886 /* StateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		DA57DB231EFDACDD00682886 /* LineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
-		DA9816701F6B23DA0053B39C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusValueFormatter.swift; sourceTree = "<group>"; };
-		DACCFCCA1F7038A30074CFEE /* UtilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilViewController.swift; sourceTree = "<group>"; };
 		DACCFCCC1F703D330074CFEE /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		DAD080A21EF163BA00990F97 /* CensusConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusConstants.swift; sourceTree = "<group>"; };
 		DAD080A41EF163E800990F97 /* CensusClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusClient.swift; sourceTree = "<group>"; };
@@ -84,7 +82,7 @@
 		DAD080AE1EF18B0600990F97 /* CensusValue+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CensusValue+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DAD080AF1EF18B0600990F97 /* CensusValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CensusValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAD080C01EF1917500990F97 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		DAD080C41EF19C8700990F97 /* DisplayAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlert.swift; sourceTree = "<group>"; };
+		DAD080C41EF19C8700990F97 /* UIVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVCExtension.swift; sourceTree = "<group>"; };
 		DAD080C71EF4575500990F97 /* CensusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusDataSource.swift; sourceTree = "<group>"; };
 		DAE94D701F7194B200E66FF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,16 +147,15 @@
 				DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */,
 				DA4F34461E1C1AED002568C6 /* AppDelegate.swift */,
 				DA33270C1E5371CF004725CB /* Constants.swift */,
-				DA33270E1E53A4CA004725CB /* DataCell.swift */,
 				DA57DB201EFAF86200682886 /* StateCell.swift */,
-				DAD080C41EF19C8700990F97 /* DisplayAlert.swift */,
+				DAD080C41EF19C8700990F97 /* UIVCExtension.swift */,
 				DA4F34521E1C1AED002568C6 /* Info.plist */,
 				DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */,
-				DA9816701F6B23DA0053B39C /* SettingsViewController.swift */,
+				DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */,
 				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
 				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
-				DACCFCCA1F7038A30074CFEE /* UtilViewController.swift */,
 				DACCFCCC1F703D330074CFEE /* HelpViewController.swift */,
+				DA036F1B1F76F3D800967436 /* SettingsViewController.swift */,
 				DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */,
 				DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */,
 				DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */,
@@ -334,7 +331,6 @@
 				DACCFCCD1F703D330074CFEE /* HelpViewController.swift in Sources */,
 				DAD080B31EF18B0600990F97 /* CensusFact+CoreDataProperties.swift in Sources */,
 				DAD080B71EF18B0600990F97 /* CensusValue+CoreDataProperties.swift in Sources */,
-				DA33270F1E53A4CA004725CB /* DataCell.swift in Sources */,
 				DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */,
 				DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */,
 				DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */,
@@ -342,16 +338,16 @@
 				DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */,
 				DAE94D711F7194B200E66FF5 /* README.md in Sources */,
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
-				DAD080C51EF19C8700990F97 /* DisplayAlert.swift in Sources */,
+				DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */,
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
 				DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */,
 				DAD080B11EF18B0600990F97 /* Geography+CoreDataProperties.swift in Sources */,
 				DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */,
-				DACCFCCB1F7038A30074CFEE /* UtilViewController.swift in Sources */,
 				DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */,
 				DA57DB211EFAF86200682886 /* StateCell.swift in Sources */,
+				DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */,
 				DA48B6AF1F55F90A0091E4BE /* SubjectsViewController.swift in Sources */,
-				DA9816711F6B23DA0053B39C /* SettingsViewController.swift in Sources */,
+				DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

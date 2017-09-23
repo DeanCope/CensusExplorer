@@ -19,7 +19,6 @@ extension CensusClient {
         /* 1. Specify parameters */
         
         var parameters = [String:AnyObject]()
-       // parameters[ParameterKeys.Get] = "\(fact.variableName!),NAME" as AnyObject
         parameters[ParameterKeys.Get] = "NAME,\(fact.variableName!)" as AnyObject
         parameters[ParameterKeys.For] = geography as AnyObject
         
@@ -58,12 +57,11 @@ extension CensusClient {
                 completionHandlerForGet(nil, error)
                 return
             }
-
-                context.performAndWait {
-                    let values = CensusValue.valuesFromResults(results! as! [[String]], forFact: fact, context: context)
-                    completionHandlerForGet(values, nil)
-                }
-  //          }
+            
+            context.performAndWait {
+                let values = CensusValue.valuesFromResults(results! as! [[String]], forFact: fact, context: context)
+                completionHandlerForGet(values, nil)
+            }
         }
     }
     

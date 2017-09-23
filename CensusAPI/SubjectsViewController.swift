@@ -15,22 +15,74 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         static let chooseGeoSegueId = "ChooseGeos"
     }
     
-    var facts = [CensusFact]()
+    var facts = [CensusFact]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    var observer: Any?
-
+    var getGeographiesErrorObserver: Any?
+    var gotGeographiesObserver: Any?
+    
+    var getValuesProgressObserver: Any?
+    var getValuesErrorObserver: Any?
+    var gotValuesObserver: Any?
+    
+    var userRequestedReload = false
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var progressLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
+    @IBOutlet weak var reloadDataButton: UIButton!
+    
     override func viewWillAppear(_ animated: Bool) {
-        facts = CensusDataSource.sharedInstance().getAllFacts()
+        super.viewWillAppear(animated)
+        
+        getGeographiesErrorObserver = startObservingGetGeographiesErrorNotification()
+        
+        gotGeographiesObserver = startObserving(notificationName: NotificationNames.GotGeographies) {_ in
+            self.progressLabel.text = "Got geographies"
+        }
+        
+        getValuesProgressObserver = startObserving(notificationName: NotificationNames.GetCensusValuesProgress) {notification in
+            if let userInfo = notification.userInfo {
+                if let message = userInfo[NotificationNames.GetCensusValuesProgressMessage] as? String {
+                    self.progressLabel.text = message
+                }
+            }
+        }
+        
+        getValuesErrorObserver = startObservingGetCensusValuesErrorNotification()
+        
+        gotValuesObserver = startObservingGotCensusValuesNotification()
+        
+       refreshGeosAndValues()
+        
+       facts = CensusDataSource.sharedInstance().getAllFacts()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopObservingNotification(observer: getGeographiesErrorObserver)
+        stopObservingNotification(observer: gotGeographiesObserver)
+        
+        stopObservingNotification(observer: getValuesProgressObserver)
+        stopObservingNotification(observer: getValuesErrorObserver)
+        stopObservingNotification(observer: gotValuesObserver)
+    }
+    
+    private func refreshGeosAndValues() {
+        
+        facts = [CensusFact]()
+        activityIndicator.startAnimating()
         
         CensusDataSource.sharedInstance().retrieveGeographies() {
             (success, error) in
@@ -47,46 +99,37 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
                         self.alert(message: message)
                     }
                 }
-            } else {
-                // display notification
-                var message = "Error retrieving geography data"
-                if let error = error {
-                    message = message + ": \(error.localizedDescription)"
-                }
-                self.alert(message: message)
             }
-        }
-        
-        
-        
-        if CensusDataSource.sharedInstance().gotGeographies {
-            activityIndicator.stopAnimating()
-        } else {
-            activityIndicator.startAnimating()
-            let center = NotificationCenter.default
-            observer = center.addObserver(forName: NSNotification.Name(rawValue: NotificationNames.GotGeographies), object: nil, queue: OperationQueue.main) {
-                notification in
-                self.activityIndicator.stopAnimating()
-            }
-            
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        if let observer = observer {
-            let center = NotificationCenter.default
-            center.removeObserver(observer)
+    override func startObservingGotCensusValuesNotification() -> Any? {
+        
+        let observer = startObserving(notificationName: NotificationNames.GotCensusValues) { notification in
+            self.progressLabel.isHidden = true
+            self.reloadDataButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
+            if self.userRequestedReload {
+                self.alert(title: "Done", message: "Census data has been reloaded.")
+                self.userRequestedReload = false
+            }
+            self.facts = CensusDataSource.sharedInstance().getAllFacts()
         }
+        return observer
     }
 
+    
+    @IBAction func reloadDataRequested(_ sender: Any) {
+        userRequestedReload = true
+        reloadDataButton.isEnabled = false
+        activityIndicator.startAnimating()
+        CensusDataSource.sharedInstance().deleteAllGeographies()
+        CensusDataSource.sharedInstance().deleteAllCensusValues()
+        refreshGeosAndValues()
+    }
 
     // MARK: - Table view data source
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // Return the number of sections
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Touch a topic to explore"
     }

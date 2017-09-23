@@ -15,7 +15,7 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var geoLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var chartAndTitleView: UIView!
+    
     var fact: CensusFact? = nil
     
     let largeNumber = 31908551587
@@ -28,17 +28,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
         lineChartView.delegate = self
         geoLabel.isHidden = true
         geoLabel.translatesAutoresizingMaskIntoConstraints = true
-        
-        
-        
-        //numberFormatter.   //.style = .decimal  //.numberStyle = //.decimal
-        //let formattedNumber = numberFormatter.string(from: NSNumber(value:largeNumber))
-        
-        /*
-        let marker: BalloonMarker = BalloonMarker(color: UIColor.black, font: UIFont(name: "Helvetica", size: 12)!, textColor: UIColor.white, insets: UIEdgeInsets(top: 7.0, left: 7.0, bottom: 7.0, right: 7.0))
-        marker.minimumSize = CGSize(width: 75.0, height: 35.0)
-        lineChartView.marker = marker
-        */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,7 +139,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
             if yPosition < view.frame.minY + 120 {
                 yPosition = view.frame.minY + 120
             }
-            //print ("max X: \(view.frame.maxX)")
             
             var year = String(entry.x)
             let index = year.index(year.startIndex, offsetBy: 5)
@@ -192,11 +180,7 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
         }
         lineChartView.xAxis.labelPosition = .bottom
         
-        //lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:years)
         lineChartView.xAxis.granularity = 1
-        
-        //lineChartView.leftAxis.axisMinimum = 0
-        //.customAxisMin = 0
         
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         

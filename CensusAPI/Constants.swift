@@ -26,7 +26,15 @@ import Foundation
     }
 
 struct NotificationNames {
-    static let GotCensusValues = "GotCensusValues"
+    
+    static let GetGeographiesError = "GetGeographiesError"
     static let GotGeographies = "GotGeographies"
+    
+    static let GetCensusValuesProgress = "GetCensusValuesProgress"
+    static let GetCensusValuesError = "GetCensusValuesError"
+    static let GotCensusValues = "GotCensusValues"
+    static let GetCensusValuesProgressMessage = "GetCensusValuesProgressMessage"
+    
+    static let CensusClientError = "CensusClientError"
 }
 
