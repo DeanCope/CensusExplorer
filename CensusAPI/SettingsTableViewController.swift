@@ -28,6 +28,8 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the values of the controls equal to the values from UserDefaults
         chartLineWidthSlider.value = Float(UserDefaults.standard.float(forKey: Defaults.ChartLineWidthKey))
         chartLineWidthLabel.text = numberFormatter.string(for: chartLineWidthSlider.value)
         smoothingSwitch.setOn(UserDefaults.standard.bool(forKey: Defaults.ChartCubicSmoothingKey), animated: false)

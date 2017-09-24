@@ -10,7 +10,6 @@ import UIKit
 
 class HelpViewController: UIViewController {
     
-    
     var getGeographiesErrorObserver: Any?
     var getValuesErrorObserver: Any?
     var gotValuesObserver: Any?
@@ -41,7 +40,7 @@ class HelpViewController: UIViewController {
         linkToURL("https://github.com/danielgindi/Charts")
     }
     
-    func linkToURL(_ url: String) {
+    private func linkToURL(_ url: String) {
         if let url = URL(string: url){
             UIApplication.shared.open(url, options: [:])
         }

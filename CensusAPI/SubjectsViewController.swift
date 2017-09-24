@@ -21,6 +21,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    // NotificationCenter is being used in case the user switches to another view while a long-running network request is in progress.  This allows us to have the report of success or error to appear on other windows accessed from the tab bar.
     var getGeographiesErrorObserver: Any?
     var gotGeographiesObserver: Any?
     
@@ -41,15 +42,18 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Each of the folowing observers must also be removed ("stopObserving...") in viewWillDisappear
         getGeographiesErrorObserver = startObservingGetGeographiesErrorNotification()
         
         gotGeographiesObserver = startObserving(notificationName: NotificationNames.GotGeographies) {_ in
+            self.progressLabel.isHidden = false
             self.progressLabel.text = "Got geographies"
         }
         
         getValuesProgressObserver = startObserving(notificationName: NotificationNames.GetCensusValuesProgress) {notification in
             if let userInfo = notification.userInfo {
                 if let message = userInfo[NotificationNames.GetCensusValuesProgressMessage] as? String {
+                    self.progressLabel.isHidden = false
                     self.progressLabel.text = message
                 }
             }
@@ -103,6 +107,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let observer = startObserving(notificationName: NotificationNames.GetGeographiesError) { notification in
             self.activityIndicator.stopAnimating()
+            self.progressLabel.isHidden = true
             var message = "Error getting geographies data"
             if let userInfo = notification.userInfo {
                 if let error = userInfo[NotificationNames.CensusClientError] as? CensusClient.CensusClientError {
@@ -114,7 +119,6 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         return observer
     }
 
-    
     override func startObservingGotCensusValuesNotification() -> Any? {
         
         let observer = startObserving(notificationName: NotificationNames.GotCensusValues) { notification in
@@ -162,7 +166,6 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         performSegue(withIdentifier: Storyboard.chooseGeoSegueId, sender: self)
     }
     
@@ -179,7 +182,6 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
             let fact = facts[row]
             
             if segue.identifier == Storyboard.chooseGeoSegueId {
-                // Figure out which row was selected
                 let destViewController = segue.destination as! GeosViewController
                 destViewController.fact = fact
             }

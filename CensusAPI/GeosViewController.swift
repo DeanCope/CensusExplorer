@@ -18,7 +18,9 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var stack: CoreDataStack? = nil
     var context: NSManagedObjectContext? = nil
     var fact: CensusFact? = nil
-    var observer: Any?
+    
+    // Observe gotCensusValues so we can enable the GraphIt button when the values are available.
+    var gotCensusValuesObserver: Any?
     
     lazy var fetchedResultsController: NSFetchedResultsController<Geography> = {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
@@ -61,24 +63,23 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Only enable the GraphIt button if we have already received the census values from the server
         if CensusDataSource.sharedInstance.gotCensusValues {
             graphItButton.isEnabled = true
         } else {
             graphItButton.isEnabled = false
-            let center = NotificationCenter.default
-            observer = center.addObserver(forName: NSNotification.Name(rawValue: NotificationNames.GotCensusValues), object: nil, queue: OperationQueue.main) {
-                notification in
+            gotCensusValuesObserver = startObserving(notificationName: NotificationNames.GotCensusValues) {notification in
                 self.graphItButton.isEnabled = true
-                
             }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let observer = observer {
-            let center = NotificationCenter.default
-            center.removeObserver(observer)
-        }
+        super.viewWillDisappear(animated)
+        
+        stopObservingNotification(observer: gotCensusValuesObserver)
     }
     
     @IBAction func graphIt(_ sender: Any) {
@@ -86,6 +87,17 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if fact != nil {
             // Segue to the Chart controller
             self.performSegue(withIdentifier: Storyboard.showChartSegueId, sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let fact = fact {
+            
+            //If the triggered seque is the "ShowChart" segue
+            if segue.identifier == Storyboard.showChartSegueId {
+                let chartViewController = segue.destination as! LineChartViewController
+                chartViewController.fact = fact
+            }
         }
     }
     
@@ -113,17 +125,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     message = message + ": \(error.localizedDescription)"
                 }
                 self.alert(message: message)
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let fact = fact {
-            
-            //If the triggered seque is the "ShowChart" segue
-            if segue.identifier == Storyboard.showChartSegueId {
-                let chartViewController = segue.destination as! LineChartViewController
-                chartViewController.fact = fact
             }
         }
     }

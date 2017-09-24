@@ -37,7 +37,9 @@ class CensusClient : NSObject {
             activityIndicatorSetVisibleCount = 0
         }
         print("\(activityIndicatorSetVisibleCount) network requests are in progress.")
-        UIApplication.shared.isNetworkActivityIndicatorVisible = activityIndicatorSetVisibleCount > 0
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = self.activityIndicatorSetVisibleCount > 0
+        }
     }
     
     // MARK: Initializers

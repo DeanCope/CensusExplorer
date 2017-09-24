@@ -13,6 +13,7 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var lineChartView: LineChartView!
     
+    // The geoLabel is like a "callout" box.  WHen the user touches a data point on the chart, it appears, dynamically poisitioned, with info about the data point.
     @IBOutlet weak var geoLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -21,7 +22,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     let largeNumber = 31908551587
     let numberFormatter = NumberFormatter()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +31,6 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
         self.refresh(self)
     }
     
@@ -116,14 +115,11 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         if let dataSet = lineChartView.data?.dataSets[highlight.dataSetIndex] {
-            
-           //print("x: \(highlight.xPx), y: \(highlight.yPx)")
-            
-            //geoLabel.textColor = dataSet.color(atIndex: 0)
             geoLabel.layer.borderColor = dataSet.color(atIndex: 0).cgColor
             geoLabel.layer.borderWidth = 1.0
             geoLabel.layer.cornerRadius = 8
             
+            // Dynamically position the label
             var xPosition = highlight.xPx
             if xPosition > view.frame.maxX - 95 {
                 xPosition = view.frame.maxX - 95
@@ -184,7 +180,5 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         
         lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
-        
     }
-
 }
