@@ -19,7 +19,7 @@ class LineChartViewController: UIViewController, ChartViewDelegate {
     
     var fact: CensusFact? = nil
     
-    let largeNumber = 31908551587
+    //let largeNumber = 31908551587
     let numberFormatter = NumberFormatter()
     
     override func viewDidLoad() {
