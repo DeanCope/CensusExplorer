@@ -87,7 +87,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         CensusDataSource.sharedInstance.retrieveGeographies() {
             (success, error) in
             if success {
-                CensusDataSource.sharedInstance.retrieveAllFactValues() { (success, error) in
+                CensusDataSource.sharedInstance.retrieveAllCensusValues() { (success, error) in
                     if success {
                         
                     } else {
@@ -183,6 +183,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             if segue.identifier == Storyboard.chooseGeoSegueId {
                 let destViewController = segue.destination as! GeosViewController
+                // Configure the target view controller with the census fact of interest
                 destViewController.fact = fact
             }
         }

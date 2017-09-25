@@ -18,7 +18,6 @@ class HelpViewController: UIViewController {
         super.viewWillAppear(animated)
         getValuesErrorObserver = startObservingGetCensusValuesErrorNotification()
         gotValuesObserver = startObservingGotCensusValuesNotification()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

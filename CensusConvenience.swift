@@ -84,7 +84,7 @@ extension CensusClient {
                 return
             }
             
-            // Get the Geography for States
+            // Convert the json response into Core Data objects
             context.perform {
                 let values = Geography.valuesFromResults(results! as! [[String]], context: context)
                 completionHandlerForGeo(values, nil)

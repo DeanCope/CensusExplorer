@@ -15,6 +15,9 @@ class CensusClient : NSObject {
     
     // MARK: Properties
     
+    // source: https://thatthinginswift.com/singletons/
+    static let sharedInstance = CensusClient()
+    
     // shared session
     var session = URLSession.shared
     
@@ -106,14 +109,10 @@ class CensusClient : NSObject {
         return task
     }
     
-    
     // MARK: Helpers
         
     // given raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [AnyObject]?, _ error: CensusClientError?) -> Void) {
-        
-        //   print("Json Data:")
-        //   print(NSString(data: data, encoding: String.Encoding.utf8.rawValue)!)
         
         var parsedResult: [AnyObject]?
         do {
@@ -142,11 +141,12 @@ class CensusClient : NSObject {
     }
     
     // MARK: Shared Instance
-    
+    /*
     class func sharedInstance() -> CensusClient {
         struct Singleton {
             static var sharedInstance = CensusClient()
         }
         return Singleton.sharedInstance
     }
+ */
 }

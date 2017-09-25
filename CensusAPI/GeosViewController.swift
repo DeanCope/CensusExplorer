@@ -96,6 +96,7 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //If the triggered seque is the "ShowChart" segue
             if segue.identifier == Storyboard.showChartSegueId {
                 let chartViewController = segue.destination as! LineChartViewController
+                // Configure the target view controller with the census fact of interest
                 chartViewController.fact = fact
             }
         }
@@ -129,7 +130,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -157,7 +157,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return name
     }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sectionInfo = fetchedResultsController.sections?[section] else {
             self.alert(message: "Unexpected section number found: \(section)")
@@ -165,7 +164,6 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         return sectionInfo.numberOfObjects
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StateCell", for: indexPath)

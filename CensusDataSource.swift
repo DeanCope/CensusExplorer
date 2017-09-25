@@ -44,6 +44,7 @@ class CensusDataSource: NSObject {
             return
         }
         
+        // Stage the facts data into an array of tuples
         let facts: [(source: String, prefix: String, suffix: String, name: String, description: String, unit: String)] = [
             (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "009E", name: "Unemployment Rate", description: "Number unemployed as a percent of the workforce", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "025E", name: "Average Travel Time To Work", description: "Average Travel Time To Work for workers 16 and over (Minutes)", unit: " minutes"),
@@ -57,6 +58,7 @@ class CensusDataSource: NSObject {
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "039E", name: "Fertility (births in past 12 months)", description: "Number of women 15 to 50 years old who had a birth in the past 12 months (per 1000)", unit: " births per 1000 women 15-50")
         ]
         
+        // Convert the array of tuples into CoreData CensusFact objects
         context!.performAndWait ({
             for fact in facts {
                 var vars = ""
@@ -76,7 +78,10 @@ class CensusDataSource: NSObject {
     
     func retrieveGeographies(completionHandlerForRetrieveData: @escaping (_  success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
         
-        // Create a simple fetchrequest to get all geographies
+        // This method checks if the geography data is in the local Core Data DB.  If it's not there (e.g. first time app use) then it requests the data from the Census server and puts it into Core Data.
+        
+        // First, look in Core Data...
+        // Create a simple fetchrequest to get all geographies from Core Data
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         
         var fetchedGeos: [Geography]?
@@ -90,21 +95,24 @@ class CensusDataSource: NSObject {
         
         if let geos = fetchedGeos {
             if geos.count == 0 {
-                CensusClient.sharedInstance().getGeography(geography: "state:*", time: "2015", context: context!) {(results, error) in
+                // The core data request succeeded, but returned an empty list of geos.  This is the normal case for first time usage, or if the user has requested a data reload.  So, we need to get the data from the Census server...
+                
+                // Try getting the states first.
+                CensusClient.sharedInstance.getGeography(geography: "state:*", time: "2015", context: context!) {(results, error) in
                     if let _ = results {
-                        CensusClient.sharedInstance().getGeography(geography: "us:*", time: "2015", context: self.context!) {(results, error) in
+                        // States succeeded, so get eh row for the whole coutry...
+                        CensusClient.sharedInstance.getGeography(geography: "us:*", time: "2015", context: self.context!) {(results, error) in
                             if let _ = results {
                                 self.context!.perform {
                                     self.stack.save()
                                 }
                                 self.gotGeographies = true
-                                let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotGeographies))
-                                NotificationCenter.default.post(notification)
+                                self.sendGotGeographiesNotification()
+                                completionHandlerForRetrieveData(true, nil)
                             } else {
                                 self.sendGetGeographiesErrorNotification(error: error)
                                 completionHandlerForRetrieveData(false, error)
                             }
-                            completionHandlerForRetrieveData(true, nil)
                         }
                     } else {
                         self.sendGetGeographiesErrorNotification(error: error)
@@ -113,6 +121,7 @@ class CensusDataSource: NSObject {
                 }
             } else {
                 gotGeographies = true
+                // In this case, we already have the geographies locally, so we don;t need to send a Notification
                 completionHandlerForRetrieveData(true, nil)
             }
         }
@@ -133,11 +142,16 @@ class CensusDataSource: NSObject {
         let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetCensusValuesProgress), object: nil, userInfo:userInfo)
         NotificationCenter.default.post(notification)
     }
+    
+    func sendGotGeographiesNotification() {
+        let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotGeographies), object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
+    }
 
     
-    func retrieveAllFactValues(completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+    func retrieveAllCensusValues(completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
         
-        // Source: https://www.raywenderlich.com/148515/grand-central-dispatch-tutorial-swift-3-part-2
+        // Source for use of GroupDispatch: https://www.raywenderlich.com/148515/grand-central-dispatch-tutorial-swift-3-part-2
         
         var storedError: CensusClient.CensusClientError?
         let group = DispatchGroup()
@@ -179,7 +193,6 @@ class CensusDataSource: NSObject {
         NotificationCenter.default.post(notification)
     }
 
-    
     private func varString(prefix: String, years: [String], suffix: String) -> String {
         var result = ""
         for year in years {
@@ -190,7 +203,7 @@ class CensusDataSource: NSObject {
         }
         return result
     }
-    
+   /*
     private func deleteAllFacts() {
         // Create a simple fetchrequest to get all facts (no sorting needed)
         let fr: NSFetchRequest<CensusFact> = CensusFact.fetchRequest()
@@ -207,6 +220,7 @@ class CensusDataSource: NSObject {
             }
         })
     }
+ */
     
     func deleteAllCensusValues() {
         // Create a simple fetchrequest to get all census values (no sorting needed)
@@ -257,6 +271,36 @@ class CensusDataSource: NSObject {
             }
         })
     }
+
+    func getAllGeographies() -> [Geography]? {
+        // Create a simple fetchrequest to get all geographies (no sorting needed)
+        let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
+        
+        var fetchedGeographies: [Geography]?
+        context!.performAndWait ({
+            do {
+                fetchedGeographies = try self.context!.fetch(fr)
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
+        })
+        return fetchedGeographies
+    }
+    
+    func getAllCensusValues() -> [CensusValue]? {
+        // Create a simple fetchrequest to get all census values (no sorting needed)
+        let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
+        
+        var fetchedValues: [CensusValue]?
+        context!.performAndWait ({
+            do {
+                fetchedValues = try self.context!.fetch(fr)
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
+        })
+        return fetchedValues
+    }
     
     func getAllFacts() -> [CensusFact] {
         // Create a simple fetchrequest to get all facts not in groups
@@ -284,9 +328,9 @@ class CensusDataSource: NSObject {
         if !fact.hasData() {
             // We don't have the data in the local DB yet, so get the data from the API
             if fact.sourceId == CensusClient.Sources.SAIPE {
-                CensusClient.sharedInstance().getSAIPEValues(fact: fact, geography: "state:*", time: "from+1995+to+2015", context: context!) {(results, error) in
+                CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "state:*", time: "from+1995+to+2015", context: context!) {(results, error) in
                     if let _ = results {
-                        CensusClient.sharedInstance().getSAIPEValues(fact: fact, geography: "us:*", time: "from+1995+to+2015", context: self.context!) {(results, error) in
+                        CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "us:*", time: "from+1995+to+2015", context: self.context!) {(results, error) in
                             self.context!.perform {
                                 self.stack.save()
                             }
@@ -297,9 +341,9 @@ class CensusDataSource: NSObject {
                     }
                 }
             } else {
-                CensusClient.sharedInstance().getACSValues(fact: fact, geography: "state:*", context: context!) {(results, error) in
+                CensusClient.sharedInstance.getACSValues(fact: fact, geography: "state:*", context: context!) {(results, error) in
                     if let _ = results {
-                        CensusClient.sharedInstance().getACSValues(fact: fact, geography: "us:*", context: self.context!) {(results, error) in
+                        CensusClient.sharedInstance.getACSValues(fact: fact, geography: "us:*", context: self.context!) {(results, error) in
                             self.context!.perform {
                                 self.stack.save()
                             }
