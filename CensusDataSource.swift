@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import Charts
 
 class CensusDataSource: NSObject {
     
