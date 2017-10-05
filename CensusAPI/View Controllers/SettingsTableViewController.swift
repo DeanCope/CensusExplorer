@@ -30,23 +30,23 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Set the values of the controls equal to the values from UserDefaults
-        chartLineWidthSlider.value = Float(UserDefaults.standard.float(forKey: Defaults.ChartLineWidthKey))
+        chartLineWidthSlider.value = Float(UserDefaults.standard.float(forKey: UserDefaults.Keys.ChartLineWidth))
         chartLineWidthLabel.text = numberFormatter.string(for: chartLineWidthSlider.value)
-        smoothingSwitch.setOn(UserDefaults.standard.bool(forKey: Defaults.ChartCubicSmoothingKey), animated: false)
-        showValuesSwitch.setOn(UserDefaults.standard.bool(forKey: Defaults.ChartShowValuesKey), animated: false)
+        smoothingSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaults.Keys.ChartCubicSmoothing), animated: false)
+        showValuesSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaults.Keys.ChartShowValues), animated: false)
     }
 
     @IBAction func setChartLineWidth(_ sender: Any) {
-        UserDefaults.standard.set(chartLineWidthSlider.value, forKey: Defaults.ChartLineWidthKey)
+        UserDefaults.standard.set(chartLineWidthSlider.value, forKey: UserDefaults.Keys.ChartLineWidth)
         chartLineWidthLabel.text = numberFormatter.string(for: chartLineWidthSlider.value)
     }
 
     @IBAction func setSmoothing(_ sender: Any) {
-        UserDefaults.standard.set(smoothingSwitch.isOn, forKey: Defaults.ChartCubicSmoothingKey)
+        UserDefaults.standard.set(smoothingSwitch.isOn, forKey: UserDefaults.Keys.ChartCubicSmoothing)
     }
     
     @IBAction func setShowValues(_ sender: Any) {
-        UserDefaults.standard.set(showValuesSwitch.isOn, forKey: Defaults.ChartShowValuesKey)
+        UserDefaults.standard.set(showValuesSwitch.isOn, forKey: UserDefaults.Keys.ChartShowValues)
         
     }
 }

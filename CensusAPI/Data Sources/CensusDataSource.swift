@@ -44,17 +44,20 @@ class CensusDataSource: NSObject {
         }
         
         // Stage the facts data into an array of tuples
-        let facts: [(source: String, prefix: String, suffix: String, name: String, description: String, unit: String)] = [
-            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "009E", name: "Unemployment Rate", description: "Number unemployed as a percent of the workforce", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "025E", name: "Average Travel Time To Work", description: "Average Travel Time To Work for workers 16 and over (Minutes)", unit: " minutes"),
-            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "001E", name: "Total Households", description: "Total Number of Households (people who occupy a housing unit)", unit: ""),
-            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "092E", name: "Foreign Born", description: "People who were not born in the USA (%)", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "099E", name: "No Health Insurance Coverage", description: "Civilian noninstitutionalized population with no health insurance coverage (%)", unit: "%"),
-            (source: CensusClient.Sources.SAIPE, prefix: "SAEMHI_PT", suffix: "", name: "Median Household Income", description: "Median Household Income ($)", unit: "$"),
-            (source: CensusClient.Sources.SAIPE, prefix: "SAEPOVRTALL_PT", suffix: "", name: "Poverty Rate", description: "People living in housholds with income below the poverty threshold (%)", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "066E", name: "High school graduate or higher", description: "Population 25 years and over who graduated high school or higher (%)", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "067E", name: "Bachelor's degree or higher", description: "Population 25 years and over with bachelors degree or higher (%)", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "039E", name: "Fertility (births in past 12 months)", description: "Number of women 15 to 50 years old who had a birth in the past 12 months (per 1000)", unit: " births per 1000 women 15-50")
+        let facts: [(source: String, prefix: String, suffix: String, group: String, name: String, description: String, unit: String)] = [
+            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "009E", group: "Employment", name: "Unemployment Rate", description: "Number unemployed as a percent of the workforce", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "025E", group: "Employment", name: "Average Travel Time To Work", description: "Average Travel Time To Work for workers 16 and over (Minutes)", unit: " minutes"),
+            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "001E", group: "Population", name: "Total Households", description: "Total Number of Households (people who occupy a housing unit)", unit: ""),
+            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "092E", group: "Birthplace", name: "Foreign Born", description: "People who were not born in the USA (%)", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "099E", group: "Health Insurance", name: "No Health Insurance Coverage", description: "Civilian noninstitutionalized population with no health insurance coverage (%)", unit: "%"),
+            (source: CensusClient.Sources.SAIPE, prefix: "SAEMHI_PT", suffix: "", group: "Income and Poverty", name: "Median Household Income", description: "Median Household Income ($)", unit: "$"),
+            (source: CensusClient.Sources.SAIPE, prefix: "SAEPOVRTALL_PT", suffix: "", group: "Income and Poverty", name: "Poverty Rate", description: "People living in housholds with income below the poverty threshold (%)", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "066E", group: "Education", name: "High school graduate or higher", description: "Population 25 years and over who graduated high school or higher (%)", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "067E", group: "Education", name: "Bachelor's degree or higher", description: "Population 25 years and over with bachelors degree or higher (%)", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "039E", group: "Fertility", name: "Fertility (births in past 12 months)", description: "Number of women 15 to 50 years old who had a birth in the past 12 months (per 1000)", unit: " births per 1000 women 15-50"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "032E", group: "Race", name: "White", description: "Percentage one race - White", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "033E", group: "Race", name: "Black or African American", description: "Percentage one race - Black or African American", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "039E", group: "Race", name: "Asian", description: "Percentage one race - Asian", unit: "%")
         ]
         
         // Convert the array of tuples into CoreData CensusFact objects
@@ -68,14 +71,14 @@ class CensusDataSource: NSObject {
                 }
                 
                 // Create the Core Data CensusFact instance
-                let _ = CensusFact(sourceId: fact.source, variableName: vars, name: fact.name, description: fact.description, unit: fact.unit, context: self.context!)
+                let _ = CensusFact(sourceId: fact.source, variableName: vars, group: fact.group, name: fact.name, description: fact.description, unit: fact.unit, context: self.context!)
             }
             
             self.stack.save()
         })
     }
     
-    func retrieveGeographies(completionHandlerForRetrieveData: @escaping (_  success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+    func retrieveGeographies(completionHandlerForRetrieveData: @escaping (_  success: Bool, _ error: CensusError?) -> Void) {
         
         // This method checks if the geography data is in the local Core Data DB.  If it's not there (e.g. first time app use) then it requests the data from the Census server and puts it into Core Data.
         
@@ -88,7 +91,7 @@ class CensusDataSource: NSObject {
             do {
                 fetchedGeos = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForRetrieveData(false, error as? CensusClient.CensusClientError)
+                completionHandlerForRetrieveData(false, error as? CensusError)
             }
         })
         
@@ -126,7 +129,7 @@ class CensusDataSource: NSObject {
         }
     }
     
-    func sendGetGeographiesErrorNotification(error: CensusClient.CensusClientError?) {
+    func sendGetGeographiesErrorNotification(error: CensusError?) {
         var userInfo: [AnyHashable : Any]? = nil
         if let error = error {
             userInfo = [NotificationNames.GetGeographiesError: error]
@@ -148,11 +151,11 @@ class CensusDataSource: NSObject {
     }
 
     
-    func retrieveAllCensusValues(completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+    func retrieveAllCensusValues(completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusError?) -> Void) {
         
         // Source for use of GroupDispatch: https://www.raywenderlich.com/148515/grand-central-dispatch-tutorial-swift-3-part-2
         
-        var storedError: CensusClient.CensusClientError?
+        var storedError: CensusError?
         let group = DispatchGroup()
     
         stack.performBackgroundBatchOperation { (workerContext) in
@@ -179,7 +182,7 @@ class CensusDataSource: NSObject {
         }
     }
     
-    func sendGetCensusValuesCompletionNotification(error: CensusClient.CensusClientError?) {
+    func sendGetCensusValuesCompletionNotification(error: CensusError?) {
         var notification: Notification
         var userInfo: [AnyHashable : Any]? = nil
         if let error = error {
@@ -202,24 +205,6 @@ class CensusDataSource: NSObject {
         }
         return result
     }
-   /*
-    private func deleteAllFacts() {
-        // Create a simple fetchrequest to get all facts (no sorting needed)
-        let fr: NSFetchRequest<CensusFact> = CensusFact.fetchRequest()
-        
-        var fetchedFacts: [CensusFact]?
-        context!.performAndWait ({
-            do {
-                fetchedFacts = try self.context!.fetch(fr)
-                for fact in fetchedFacts! {
-                    self.context!.delete(fact)
-                }
-            } catch let error {
-                print("Error: \(error.localizedDescription)")
-            }
-        })
-    }
- */
     
     func deleteAllCensusValues() {
         // Create a simple fetchrequest to get all census values (no sorting needed)
@@ -232,10 +217,29 @@ class CensusDataSource: NSObject {
                 for value in fetchedValues! {
                     self.context!.delete(value)
                 }
+                self.stack.save()
             } catch let error {
                 print("Error: \(error.localizedDescription)")
             }
             self.gotCensusValues = false
+        })
+    }
+    
+    func deleteAllCensusFacts() {
+        // Create a simple fetchrequest to get all census facts (no sorting needed)
+        let fr: NSFetchRequest<CensusFact> = CensusFact.fetchRequest()
+        
+        var fetchedValues: [CensusFact]?
+        context!.performAndWait ({
+            do {
+                fetchedValues = try self.context!.fetch(fr)
+                for value in fetchedValues! {
+                    self.context!.delete(value)
+                }
+                self.stack.save()
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
         })
     }
     
@@ -265,6 +269,7 @@ class CensusDataSource: NSObject {
                 for geography in fetchedGeographies! {
                     self.context!.delete(geography)
                 }
+                self.stack.save()
             } catch let error {
                 print("Error: \(error.localizedDescription)")
             }
@@ -322,7 +327,7 @@ class CensusDataSource: NSObject {
     }
     
     
-    func retrieveData(fact: CensusFact, completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+    func retrieveData(fact: CensusFact, completionHandlerForRetrieveData: @escaping (_ success: Bool, _ error: CensusError?) -> Void) {
         
         if !fact.hasData() {
             // We don't have the data in the local DB yet, so get the data from the API
@@ -358,7 +363,7 @@ class CensusDataSource: NSObject {
         }
     }
     
-    func getDataFromDB(forFact: CensusFact, geography: Geography, completionHandlerForGetData: @escaping (_ results: [CensusValue]?, _ error: CensusClient.CensusClientError?) -> Void) {
+    func getDataFromDB(forFact: CensusFact, geography: Geography, completionHandlerForGetData: @escaping (_ results: [CensusValue]?, _ error: CensusError?) -> Void) {
         let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
         
         fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@", forFact.variableName!, geography.name!)
@@ -373,7 +378,7 @@ class CensusDataSource: NSObject {
             do {
                 fetchedValues = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForGetData(nil, error as? CensusClient.CensusClientError)
+                completionHandlerForGetData(nil, error as? CensusError)
             }
             if let values = fetchedValues {
                 completionHandlerForGetData(values, nil)
@@ -381,7 +386,32 @@ class CensusDataSource: NSObject {
         })
     }
     
-    func getSelectedGeographies(completionHandlerForGetGeographies: @escaping (_ results: [Geography]?, _ error: CensusClient.CensusClientError?) -> Void) {
+    func getDataFromDB(forFact: CensusFact, geography: Geography, year: Int16, completionHandlerForGetData: @escaping (_ result: CensusValue?, _ error: CensusError?) -> Void) {
+        let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
+        
+        fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@ AND year == %d", forFact.variableName!, geography.name!, year)
+        
+       // fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@", forFact.variableName!, geography.name!)
+        
+        var fetchedValues: [CensusValue]?
+        context!.performAndWait ({
+            do {
+                fetchedValues = try self.context!.fetch(fr)
+            } catch let error {
+                completionHandlerForGetData(nil, error as? CensusError)
+            }
+            if let values = fetchedValues {
+                if values.count != 1 {
+                    let error = CensusError.dataError(detail: "Expected one value, but received \(values.count) values for fact: \(forFact.factName!), geography: \(geography.name!) year: \(year).")
+                    completionHandlerForGetData(nil, error)
+                } else {
+                    completionHandlerForGetData(values.first, nil)
+                }
+            }
+        })
+    }
+    
+    func getSelectedGeographies(completionHandlerForGetGeographies: @escaping (_ results: [Geography]?, _ error: CensusError?) -> Void) {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         
         fr.predicate = NSPredicate(format: "isSelected == %@", true as CVarArg)
@@ -391,7 +421,7 @@ class CensusDataSource: NSObject {
             do {
                 fetchedGeographies = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForGetGeographies(nil, error as? CensusClient.CensusClientError)
+                completionHandlerForGetGeographies(nil, error as? CensusError)
             }
             if let geographies = fetchedGeographies {
                 completionHandlerForGetGeographies(geographies, nil)
@@ -399,7 +429,7 @@ class CensusDataSource: NSObject {
         })
     }
     
-    func selectAllGeographies(_ val: Bool, completionHandlerForGetGeographies: @escaping (_ success: Bool, _ error: CensusClient.CensusClientError?) -> Void) {
+    func selectAllGeographies(_ val: Bool, completionHandlerForGetGeographies: @escaping (_ success: Bool, _ error: CensusError?) -> Void) {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         
         fr.predicate = NSPredicate(format: "isSelected == %@", !val as CVarArg)
@@ -409,7 +439,7 @@ class CensusDataSource: NSObject {
             do {
                 fetchedGeographies = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForGetGeographies(false, error as? CensusClient.CensusClientError)
+                completionHandlerForGetGeographies(false, error as? CensusError)
             }
             if let geographies = fetchedGeographies {
                 for geo in geographies {

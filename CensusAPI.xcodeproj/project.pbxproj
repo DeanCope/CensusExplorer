@@ -14,12 +14,19 @@
 		DA33270D1E5371CF004725CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270C1E5371CF004725CB /* Constants.swift */; };
 		DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */; };
 		DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */; };
-		DA48B6AF1F55F90A0091E4BE /* SubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */; };
+		DA48B6AF1F55F90A0091E4BE /* LineSpecsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */; };
 		DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F34461E1C1AED002568C6 /* AppDelegate.swift */; };
 		DA4F344C1E1C1AED002568C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344A1E1C1AED002568C6 /* Main.storyboard */; };
 		DA4F344E1E1C1AED002568C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344D1E1C1AED002568C6 /* Assets.xcassets */; };
 		DA4F34511E1C1AED002568C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */; };
 		DA51CF201F7AF925006DB3EA /* ScatterChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */; };
+		DA51CF241F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */; };
+		DA51CF261F7E7D62006DB3EA /* YearsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */; };
+		DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF271F7E7DCA006DB3EA /* ChartSpecs.swift */; };
+		DA51CF2A1F7EC8A5006DB3EA /* ScatterTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */; };
+		DA51CF2F1F82F377006DB3EA /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */; };
+		DA51CF311F82F613006DB3EA /* FactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF301F82F613006DB3EA /* FactsDataSource.swift */; };
+		DA51CF331F83DA40006DB3EA /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */; };
 		DA57DB211EFAF86200682886 /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB201EFAF86200682886 /* StateCell.swift */; };
 		DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB231EFDACDD00682886 /* LineChartViewController.swift */; };
 		DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */; };
@@ -80,7 +87,7 @@
 		DA33270C1E5371CF004725CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
-		DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsViewController.swift; sourceTree = "<group>"; };
+		DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSpecsViewController.swift; sourceTree = "<group>"; };
 		DA4F34431E1C1AED002568C6 /* CensusAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CensusAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4F34461E1C1AED002568C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA4F344B1E1C1AED002568C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +95,14 @@
 		DA4F34501E1C1AED002568C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA4F34521E1C1AED002568C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterChartViewController.swift; sourceTree = "<group>"; };
+		DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsTableViewController.swift; sourceTree = "<group>"; };
+		DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsTableViewController.swift; sourceTree = "<group>"; };
+		DA51CF271F7E7DCA006DB3EA /* ChartSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSpecs.swift; sourceTree = "<group>"; };
+		DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterTopicsViewController.swift; sourceTree = "<group>"; };
+		DA51CF2B1F827C85006DB3EA /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
+		DA51CF301F82F613006DB3EA /* FactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsDataSource.swift; sourceTree = "<group>"; };
+		DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DA57DB201EFAF86200682886 /* StateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		DA57DB231EFDACDD00682886 /* LineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
 		DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -186,26 +201,57 @@
 		DA4F34451E1C1AED002568C6 /* CensusAPI */ = {
 			isa = PBXGroup;
 			children = (
-				DA4F344A1E1C1AED002568C6 /* Main.storyboard */,
-				DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */,
 				DA4F344D1E1C1AED002568C6 /* Assets.xcassets */,
 				DA4F34461E1C1AED002568C6 /* AppDelegate.swift */,
 				DA33270C1E5371CF004725CB /* Constants.swift */,
-				DA57DB201EFAF86200682886 /* StateCell.swift */,
-				DAD080C41EF19C8700990F97 /* UIVCExtension.swift */,
+				DA51CF2C1F82F290006DB3EA /* Views */,
 				DA4F34521E1C1AED002568C6 /* Info.plist */,
-				DA48B6AE1F55F90A0091E4BE /* SubjectsViewController.swift */,
-				DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */,
-				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
-				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
-				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
-				DACCFCCC1F703D330074CFEE /* HelpViewController.swift */,
-				DA036F1B1F76F3D800967436 /* SettingsViewController.swift */,
-				DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */,
+				DA51CF341F83EAA4006DB3EA /* Data Sources */,
+				DA51CF2D1F82F2B8006DB3EA /* View Controllers */,
 				DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */,
 				DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */,
 			);
 			path = CensusAPI;
+			sourceTree = "<group>";
+		};
+		DA51CF2C1F82F290006DB3EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA4F344A1E1C1AED002568C6 /* Main.storyboard */,
+				DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */,
+				DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */,
+				DA57DB201EFAF86200682886 /* StateCell.swift */,
+				DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */,
+				DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA51CF2D1F82F2B8006DB3EA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAD080C41EF19C8700990F97 /* UIVCExtension.swift */,
+				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
+				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
+				DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */,
+				DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */,
+				DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */,
+				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
+				DACCFCCC1F703D330074CFEE /* HelpViewController.swift */,
+				DA036F1B1F76F3D800967436 /* SettingsViewController.swift */,
+				DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */,
+				DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DA51CF341F83EAA4006DB3EA /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DAD080C71EF4575500990F97 /* CensusDataSource.swift */,
+				DA51CF301F82F613006DB3EA /* FactsDataSource.swift */,
+			);
+			path = "Data Sources";
 			sourceTree = "<group>";
 		};
 		DAA5B2D31F77F28800517ABD /* CensusAPITests */ = {
@@ -237,7 +283,7 @@
 				DAD080AB1EF18B0600990F97 /* CensusFact+CoreDataProperties.swift */,
 				DAD080AE1EF18B0600990F97 /* CensusValue+CoreDataClass.swift */,
 				DAD080AF1EF18B0600990F97 /* CensusValue+CoreDataProperties.swift */,
-				DAD080C71EF4575500990F97 /* CensusDataSource.swift */,
+				DA51CF271F7E7DCA006DB3EA /* ChartSpecs.swift */,
 				DAD080A01EF1633F00990F97 /* Clients */,
 			);
 			name = Model;
@@ -450,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA51CF261F7E7D62006DB3EA /* YearsTableViewController.swift in Sources */,
 				DAD080B01EF18B0600990F97 /* Geography+CoreDataClass.swift in Sources */,
 				DAD080B21EF18B0600990F97 /* CensusFact+CoreDataClass.swift in Sources */,
 				DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */,
@@ -460,22 +507,28 @@
 				DAD080B31EF18B0600990F97 /* CensusFact+CoreDataProperties.swift in Sources */,
 				DA51CF201F7AF925006DB3EA /* ScatterChartViewController.swift in Sources */,
 				DAD080B71EF18B0600990F97 /* CensusValue+CoreDataProperties.swift in Sources */,
+				DA51CF2A1F7EC8A5006DB3EA /* ScatterTopicsViewController.swift in Sources */,
 				DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */,
 				DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */,
+				DA51CF331F83DA40006DB3EA /* HeaderTableViewCell.swift in Sources */,
 				DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */,
 				DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */,
 				DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */,
 				DAE94D711F7194B200E66FF5 /* README.md in Sources */,
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
 				DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */,
+				DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */,
+				DA51CF2F1F82F377006DB3EA /* TopicTableViewCell.swift in Sources */,
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
 				DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */,
 				DAD080B11EF18B0600990F97 /* Geography+CoreDataProperties.swift in Sources */,
 				DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */,
 				DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */,
+				DA51CF241F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift in Sources */,
 				DA57DB211EFAF86200682886 /* StateCell.swift in Sources */,
+				DA51CF311F82F613006DB3EA /* FactsDataSource.swift in Sources */,
 				DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */,
-				DA48B6AF1F55F90A0091E4BE /* SubjectsViewController.swift in Sources */,
+				DA48B6AF1F55F90A0091E4BE /* LineSpecsViewController.swift in Sources */,
 				DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +699,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.copeland.dean.CensusAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -661,6 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.copeland.dean.CensusAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -795,9 +850,10 @@
 		DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DA51CF2B1F827C85006DB3EA /* Model 2.xcdatamodel */,
 				DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */,
 			);
-			currentVersion = DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */;
+			currentVersion = DA51CF2B1F827C85006DB3EA /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

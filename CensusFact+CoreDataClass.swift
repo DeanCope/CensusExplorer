@@ -19,7 +19,7 @@ public class CensusFact: NSManagedObject {
   //  factName: String?
   //  variableName: String?
     
-    convenience init?(sourceId: String, variableName: String, name: String, description: String, unit: String, context: NSManagedObjectContext) {
+    convenience init?(sourceId: String, variableName: String, group: String, name: String, description: String, unit: String, context: NSManagedObjectContext) {
         
         
         // An EntityDescription is an object that has access to all
@@ -29,6 +29,7 @@ public class CensusFact: NSManagedObject {
                 self.init(entity: ent, insertInto: context)
                 self.sourceId = sourceId
                 self.factDescription = description
+                self.groupName = group
                 self.factName = name
                 self.unit = unit
                 self.variableName = variableName

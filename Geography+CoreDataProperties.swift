@@ -2,8 +2,9 @@
 //  Geography+CoreDataProperties.swift
 //  CensusAPI
 //
-//  Created by Dean Copeland on 6/24/17.
+//  Created by Dean Copeland on 10/2/17.
 //  Copyright © 2017 Dean Copeland. All rights reserved.
+//
 //
 
 import Foundation
@@ -17,9 +18,9 @@ extension Geography {
     }
 
     @NSManaged public var fipsCode: String?
+    @NSManaged public var isSelected: Bool
     @NSManaged public var level: String?
     @NSManaged public var name: String?
-    @NSManaged public var isSelected: Bool
     @NSManaged public var hasCensusValues: NSSet?
 
 }

@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func checkIfFirstLaunch() {
         if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
         } else {
-            UserDefaults.standard.set(true, forKey: Defaults.HasLaunchedBeforeKey)
-            UserDefaults.standard.set(Defaults.DefaultChartLineWidth, forKey: Defaults.ChartLineWidthKey)
-            UserDefaults.standard.set(Defaults.DefaultChartCubicSmoothing, forKey: Defaults.ChartCubicSmoothingKey)
-            UserDefaults.standard.set(Defaults.DefaultChartShowValues, forKey: Defaults.ChartShowValuesKey)
+            UserDefaults.standard.set(true, forKey: UserDefaults.Keys.HasLaunchedBefore)
+            UserDefaults.standard.set(UserDefaults.DefaultValues.ChartLineWidth, forKey: UserDefaults.Keys.ChartLineWidth)
+            UserDefaults.standard.set(UserDefaults.DefaultValues.ChartCubicSmoothing, forKey: UserDefaults.Keys.ChartCubicSmoothing)
+            UserDefaults.standard.set(UserDefaults.DefaultValues.ChartShowValues, forKey: UserDefaults.Keys.ChartShowValues)
             UserDefaults.standard.synchronize()
         }
     }

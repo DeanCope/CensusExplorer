@@ -28,14 +28,14 @@ struct CoreDataStack {
         
         // Assumes the model is in the main bundle
         guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
-            print("Unable to find \(modelName)in the main bundle")
+            print("\(#function) Unable to find \(modelName)in the main bundle")
             return nil
         }
         self.modelURL = modelURL
         
         // Try to create the model from the URL
         guard let model = NSManagedObjectModel(contentsOf: modelURL) else {
-            print("unable to create a model from \(modelURL)")
+            print("\(#function) unable to create a model from \(modelURL)")
             return nil
         }
         self.model = model
@@ -59,19 +59,32 @@ struct CoreDataStack {
         let fm = FileManager.default
         
         guard let docUrl = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Unable to reach the documents folder")
+            print("\(#function) Unable to reach the documents folder")
             return nil
         }
         
         self.dbURL = docUrl.appendingPathComponent("model.sqlite")
         
         // Options for migration
-        let options = [NSInferMappingModelAutomaticallyOption: true,NSMigratePersistentStoresAutomaticallyOption: true]
+        let options = [NSInferMappingModelAutomaticallyOption: true,NSMigratePersistentStoresAutomaticallyOption: false]
+        
+        
+        // If not compatible, destroy the old datastore by calling DropAllData
+        
+        if !store(storeURL: dbURL, isCompatibleWithModel: model) {
+            print("\(#function) model is not compatible, so deleting the old DB...")
+            do {
+            try coordinator.destroyPersistentStore(at: dbURL, ofType: NSSQLiteStoreType , options: nil)
+            } catch {
+                print("\(#function) unable to delete incompatible store \(dbURL)")
+            }
+        }
+        
         
         do {
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: options as [NSObject : AnyObject]?)
         } catch {
-            print("unable to add store at \(dbURL)")
+            print("\(#function) unable to add store at \(dbURL)")
         }
     }
     
@@ -79,6 +92,42 @@ struct CoreDataStack {
     
     func addStoreCoordinator(_ storeType: String, configuration: String?, storeURL: URL, options : [NSObject:AnyObject]?) throws {
         try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
+    }
+    
+    // Source: http://www.informit.com/articles/article.aspx?p=2469048&seqNum=5
+    func storeExistsAtPath(storeURL: URL) -> Bool {
+
+            if FileManager.default.fileExists(atPath: storeURL.path) {
+                return true
+            }
+
+        return false
+    }
+    
+    // Source: http://www.informit.com/articles/article.aspx?p=2469048&seqNum=5
+    func store(storeURL: URL, isCompatibleWithModel model:NSManagedObjectModel) -> Bool {
+        
+        if self.storeExistsAtPath(storeURL: storeURL) == false {
+            return true // prevent migration of a store that does not exist
+        }
+        
+        do {
+            var _metadata:[String : Any]?
+            _metadata = try NSPersistentStoreCoordinator.metadataForPersistentStore(ofType: NSSQLiteStoreType, at: storeURL, options: nil)
+            if let metadata = _metadata {
+                if model.isConfiguration(withName: nil, compatibleWithStoreMetadata: metadata) {
+                    
+               //     print("\(#function) The store is compatible with the current version of the model")
+                    return true
+                }
+            } else {
+                print("\(#function) FAILED to get metadata")
+            }
+        } catch {
+            print("\(#function) ERROR getting metadata from \(storeURL) \(error)")
+        }
+        print("\(#function) The store is NOT compatible with the current version of the model")
+        return false
     }
 }
 
@@ -155,7 +204,7 @@ extension CoreDataStack {
                 try self.context.save()
                 //print("Autosaving")
             } catch {
-                print("Error while autosaving")
+                print("\(#function) Error while autosaving")
             }
             
             let delayInNanoSeconds = UInt64(delayInSeconds) * NSEC_PER_SEC

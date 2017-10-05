@@ -2,8 +2,9 @@
 //  CensusFact+CoreDataProperties.swift
 //  CensusAPI
 //
-//  Created by Dean Copeland on 9/14/17.
+//  Created by Dean Copeland on 10/2/17.
 //  Copyright © 2017 Dean Copeland. All rights reserved.
+//
 //
 
 import Foundation
@@ -18,10 +19,11 @@ extension CensusFact {
 
     @NSManaged public var factDescription: String?
     @NSManaged public var factName: String?
+    @NSManaged public var groupName: String?
     @NSManaged public var isSelected: Bool
     @NSManaged public var sourceId: String?
-    @NSManaged public var variableName: String?
     @NSManaged public var unit: String?
+    @NSManaged public var variableName: String?
     @NSManaged public var describes: NSSet?
 
 }

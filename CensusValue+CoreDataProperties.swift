@@ -2,8 +2,9 @@
 //  CensusValue+CoreDataProperties.swift
 //  CensusAPI
 //
-//  Created by Dean Copeland on 6/17/17.
+//  Created by Dean Copeland on 10/2/17.
 //  Copyright © 2017 Dean Copeland. All rights reserved.
+//
 //
 
 import Foundation
@@ -17,10 +18,10 @@ extension CensusValue {
     }
 
     @NSManaged public var asOfDate: NSDate?
+    @NSManaged public var dateLevel: String?
+    @NSManaged public var month: Int16
     @NSManaged public var value: Double
     @NSManaged public var year: Int16
-    @NSManaged public var month: Int16
-    @NSManaged public var dateLevel: String?
     @NSManaged public var appliesToGeography: Geography?
     @NSManaged public var hasDescription: CensusFact?
 

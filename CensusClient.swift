@@ -18,13 +18,15 @@ class CensusClient : NSObject {
     // source: https://thatthinginswift.com/singletons/
     static let sharedInstance = CensusClient()
     
-    // shared session
-    var session = URLSession.shared
-    
     var methods = [
         Sources.SAIPE: "timeseries/poverty/saipe",
-        Sources.ACS: "2015/acs1/cprofile"
+        //Sources.ACS: "2015/acs1/cprofile"
+        Sources.ACS: "2016/acs/acs1/cprofile"
+        //Sources.ACS: "2016/acs/acs1XX/cprofile"
     ]
+    
+    // shared session
+    var session = URLSession.shared
     
     //  source: http://www.djbp.co.uk/swift-development-managing-the-network-activity-indicator/
     var activityIndicatorSetVisibleCount = 0
@@ -54,7 +56,7 @@ class CensusClient : NSObject {
     
     // MARK: GET
     
-    func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: [AnyObject]?, _ error: CensusClientError?) -> Void) -> URLSessionDataTask {
+    func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: [AnyObject]?, _ error: CensusError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
         var parametersWithApiKey = parameters
@@ -70,7 +72,7 @@ class CensusClient : NSObject {
             
             self.setNetworkActivityIndicatorVisible(visible: false)
             
-            func sendError(_ error: CensusClientError) {
+            func sendError(_ error: CensusError) {
                 completionHandlerForGET(nil, error)
             }
             
@@ -112,7 +114,7 @@ class CensusClient : NSObject {
     // MARK: Helpers
         
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [AnyObject]?, _ error: CensusClientError?) -> Void) {
+    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [AnyObject]?, _ error: CensusError?) -> Void) {
         
         var parsedResult: [AnyObject]?
         do {

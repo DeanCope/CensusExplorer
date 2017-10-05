@@ -14,7 +14,7 @@ extension CensusClient {
     // MARK: GET Convenience Methods
     
     // Get ACS values for a single Fact
-    func getACSValues(fact: CensusFact, geography: String, context: NSManagedObjectContext, completionHandlerForGet: @escaping (_ result: [CensusValue]?, _ error: CensusClientError?) -> Void) {
+    func getACSValues(fact: CensusFact, geography: String, context: NSManagedObjectContext, completionHandlerForGet: @escaping (_ result: [CensusValue]?, _ error: CensusError?) -> Void) {
         
         /* 1. Specify parameters */
         
@@ -40,7 +40,7 @@ extension CensusClient {
     }
 
     // Get values from the SAIPE data set
-    func getSAIPEValues(fact: CensusFact, geography: String, time: String, context: NSManagedObjectContext, completionHandlerForGet: @escaping (_ result: [CensusValue]?, _ error: CensusClientError?) -> Void) {
+    func getSAIPEValues(fact: CensusFact, geography: String, time: String, context: NSManagedObjectContext, completionHandlerForGet: @escaping (_ result: [CensusValue]?, _ error: CensusError?) -> Void) {
         
         /* 1. Specify parameters */
         
@@ -65,7 +65,7 @@ extension CensusClient {
         }
     }
     
-    func getGeography(geography: String, time: String, context: NSManagedObjectContext, completionHandlerForGeo: @escaping (_ result: [Geography]?, _ error: CensusClientError?) -> Void) {
+    func getGeography(geography: String, time: String, context: NSManagedObjectContext, completionHandlerForGeo: @escaping (_ result: [Geography]?, _ error: CensusError?) -> Void) {
         
         /* 1. Specify parameters */
         

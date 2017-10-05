@@ -1,5 +1,5 @@
 //
-//  SubjectsViewController.swift
+//  LineSpecsViewController.swift
 //  CensusAPI
 //
 //  Created by Dean Copeland on 8/29/17.
@@ -8,20 +8,15 @@
 
 import UIKit
 
-class SubjectsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LineSpecsViewController: UIViewController {
     
-    private struct Storyboard {
-        static let cellReuseIdentifier = "SubjectTableViewCell"
+    fileprivate struct Storyboard {
         static let chooseGeoSegueId = "ChooseGeos"
     }
     
-    var facts = [CensusFact]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    fileprivate var factsDataSource = FactsDataSource()
     
-    // NotificationCenter is being used in case the user switches to another view while a long-running network request is in progress.  This allows us to have the report of success or error to appear on other windows accessed from the tab bar.
+    // NotificationCenter is being used in case the user switches to another view while a long-running network request is in progress.  This allows us to have the report of success or error to appear on other windows (accessed from the tab bar).
     var getGeographiesErrorObserver: Any?
     var gotGeographiesObserver: Any?
     
@@ -38,6 +33,16 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var progressLabel: UILabel!
     
     @IBOutlet weak var reloadDataButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.dataSource = factsDataSource
+        
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+        headerCell.sectionName = "Touch a topic to explore."
+        tableView.tableHeaderView = headerCell
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,9 +68,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         gotValuesObserver = startObservingGotCensusValuesNotification()
         
-       refreshGeosAndValues()
-        
-       facts = CensusDataSource.sharedInstance.getAllFacts()
+        refreshGeosAndValues()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +84,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private func refreshGeosAndValues() {
         
-        facts = [CensusFact]()
+        //facts = CensusDataSource.sharedInstance.getAllFacts()
         activityIndicator.startAnimating()
         
         CensusDataSource.sharedInstance.retrieveGeographies() {
@@ -89,13 +92,14 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
             if success {
                 CensusDataSource.sharedInstance.retrieveAllCensusValues() { (success, error) in
                     if success {
-                        
+                        //self.facts = CensusDataSource.sharedInstance.getAllFacts()
                     } else {
                         // display notification
                         var message = "Error retrieving data for all facts"
                         if let error = error {
                             message = message + ": \(error.localizedDescription)"
                         }
+
                         self.alert(message: message)
                     }
                 }
@@ -110,7 +114,7 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.progressLabel.isHidden = true
             var message = "Error getting geographies data"
             if let userInfo = notification.userInfo {
-                if let error = userInfo[NotificationNames.CensusClientError] as? CensusClient.CensusClientError {
+                if let error = userInfo[NotificationNames.CensusError] as? CensusError {
                     message = "\(message): \(error.localizedDescription)"
                 }
             }
@@ -129,7 +133,6 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.alert(title: "Done", message: "Census data has been reloaded.")
                 self.userRequestedReload = false
             }
-            self.facts = CensusDataSource.sharedInstance.getAllFacts()
         }
         return observer
     }
@@ -139,53 +142,54 @@ class SubjectsViewController: UIViewController, UITableViewDataSource, UITableVi
         userRequestedReload = true
         reloadDataButton.isEnabled = false
         activityIndicator.startAnimating()
+        printDBStats()
         CensusDataSource.sharedInstance.deleteAllGeographies()
-        CensusDataSource.sharedInstance.deleteAllCensusValues()
+        printDBStats()
+        CensusDataSource.sharedInstance.deleteAllCensusFacts()
         refreshGeosAndValues()
     }
+    
+    func printDBStats() {
+        print("There are \(CensusDataSource.sharedInstance.getAllCensusValues()!.count) census values")
+        }
 
-    // MARK: - Table view data source
+    // MARK: - Navigation
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Touch a topic to explore"
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Figure out which row was selected
+        if let indexPath = tableView.indexPathForSelectedRow {
+            if segue.identifier == Storyboard.chooseGeoSegueId {
+                let destViewController = segue.destination as! SettableChartSpecs
+                let fact = factsDataSource.getFact(at: indexPath)
+                // Configure the target view controller with the chart specs
+                let specs = ChartSpecs(chartType: .line, factX: nil, factY: fact, year: nil)
+                destViewController.chartSpecs = specs
+            }
+        }
     }
+}
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of rows
-        return facts.count
-    }
+// MARK: - Extension - UITableViewDelegate
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        /* Get cell type */
-        let fact = facts[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellReuseIdentifier) as UITableViewCell!
-        cell?.textLabel!.text = fact.factName
-
-        return cell!
-    }
+extension LineSpecsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: Storyboard.chooseGeoSegueId, sender: self)
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let fact = facts[indexPath.row]
+        let fact = factsDataSource.getFact(at: indexPath)
         alert(title: fact.factName!, message: fact.factDescription)
     }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Figure out which row was selected
-        if let row = tableView.indexPathForSelectedRow?.row {
-            let fact = facts[row]
-            
-            if segue.identifier == Storyboard.chooseGeoSegueId {
-                let destViewController = segue.destination as! GeosViewController
-                // Configure the target view controller with the census fact of interest
-                destViewController.fact = fact
-            }
-        }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 27
+    }
+ 
 }
+
+

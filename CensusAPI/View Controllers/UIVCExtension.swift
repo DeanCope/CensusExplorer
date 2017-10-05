@@ -39,7 +39,7 @@ extension UIViewController {
         let observer = startObserving(notificationName: NotificationNames.GetCensusValuesError) { notification in
             var message = "Error getting census values data"
             if let userInfo = notification.userInfo {
-                if let error = userInfo[NotificationNames.CensusClientError] as? CensusClient.CensusClientError {
+                if let error = userInfo[NotificationNames.CensusError] as? CensusError {
                     message = "\(message): \(error.localizedDescription)"
                 }
             }

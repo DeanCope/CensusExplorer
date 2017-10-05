@@ -9,15 +9,17 @@
 import UIKit
 import CoreData
 
-class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, SettableChartSpecs {
     
     private struct Storyboard {
-        static let showChartSegueId = "ShowChart"
+        static let showLineChartSegueId = "ShowLineChart"
+        static let showScatterChartSegueId = "ShowScatterChart"
     }
 
     var stack: CoreDataStack? = nil
     var context: NSManagedObjectContext? = nil
-    var fact: CensusFact? = nil
+    
+    var chartSpecs: ChartSpecs?
     
     // Observe gotCensusValues so we can enable the GraphIt button when the values are available.
     var gotCensusValuesObserver: Any?
@@ -56,10 +58,9 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Unable to fetch geographies from the local DB")
             print("\(fetchError), \(fetchError.localizedDescription)")
         }
-        if let fact = fact {
-            self.title = fact.factName
-            self.instructionsLabel.text = "Choose the whole country and/or one or more states."
-        }
+
+        self.title = chartSpecs?.description ?? ""
+        self.instructionsLabel.text = "Choose the whole country and/or one or more states."
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,21 +84,32 @@ class GeosViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func graphIt(_ sender: Any) {
-        
-        if fact != nil {
-            // Segue to the Chart controller
-            self.performSegue(withIdentifier: Storyboard.showChartSegueId, sender: self)
+        switch chartSpecs?.chartType {
+        case nil: break
+        case .line?:
+            // Segue to the Line Chart controller
+            self.performSegue(withIdentifier: Storyboard.showLineChartSegueId, sender: self)
+        case .scatter?:
+            // Segue to the Scatter Chart controller
+            self.performSegue(withIdentifier: Storyboard.showScatterChartSegueId, sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let fact = fact {
-            
-            //If the triggered seque is the "ShowChart" segue
-            if segue.identifier == Storyboard.showChartSegueId {
+        
+        switch chartSpecs?.chartType {
+        case nil: break
+        case .line?:
+            if segue.identifier == Storyboard.showLineChartSegueId {
                 let chartViewController = segue.destination as! LineChartViewController
+                // Configure the target view controller with the chart specs
+                chartViewController.chartSpecs = chartSpecs
+            }
+        case .scatter?:
+            if segue.identifier == Storyboard.showScatterChartSegueId {
+                let chartViewController = segue.destination as! ScatterChartViewController
                 // Configure the target view controller with the census fact of interest
-                chartViewController.fact = fact
+                chartViewController.chartSpecs = chartSpecs
             }
         }
     }

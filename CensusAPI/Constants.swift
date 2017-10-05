@@ -8,22 +8,55 @@
 
 import Foundation
 
-    struct Defaults {
+// MARK: Errors
+public enum CensusError: Error {
+    case connectionFailed(method: String, errorString: String)
+    case noStatusCode(method: String)
+    case badStatusCode(code: String, url: String)
+    case noDataReturned
+    case parseFailed(detail: String)
+    case dataError(detail: String)
+    case otherError(reason: String)
     
-        // MARK: Defaults
-    
-        static let HasLaunchedBeforeKey = "HasLaunchedBefore"
-        
-        static let ChartLineWidthKey = "ChartLineWidth"
-        static let DefaultChartLineWidth = Float(2.0)
-        
-        static let ChartShowValuesKey = "ChartShowValues"
-        static let DefaultChartShowValues = false
-        
-        static let ChartCubicSmoothingKey = "ChartCubicSmoothing"
-        static let DefaultChartCubicSmoothing = false
-        
+    var description: String {
+        switch self {
+        case .connectionFailed(let method, let errorString): return "Connection failed for \(method): \(errorString)"
+        case .noStatusCode(let method): return "No status code received for \(method)"
+        case .badStatusCode(let code): return "Bad status code received: \(code)"
+        case .noDataReturned: return "No data returned"
+        case .parseFailed(let detail): return "Parse failed: \(detail)"
+        case .dataError(let detail): return "Data Error: \(detail)"
+        case .otherError(let reason): return "Error: \(reason)"
+        }
     }
+}
+
+public enum Axis {
+    case x
+    case y
+}
+
+public enum ChartType {
+    case line
+    case scatter
+}
+
+// MARK: UserDefaults
+
+extension UserDefaults {
+    
+    struct Keys {
+        static let HasLaunchedBefore = "HasLaunchedBefore"
+        static let ChartLineWidth = "ChartLineWidth"
+        static let ChartShowValues = "ChartShowValues"
+        static let ChartCubicSmoothing = "ChartCubicSmoothing"
+    }
+    struct DefaultValues {
+        static let ChartLineWidth = Float(2.0)
+        static let ChartShowValues = false
+        static let ChartCubicSmoothing = false
+    }
+}
 
 struct NotificationNames {
     
@@ -35,6 +68,6 @@ struct NotificationNames {
     static let GotCensusValues = "GotCensusValues"
     static let GetCensusValuesProgressMessage = "GetCensusValuesProgressMessage"
     
-    static let CensusClientError = "CensusClientError"
+    static let CensusError = "CensusError"
 }
 
