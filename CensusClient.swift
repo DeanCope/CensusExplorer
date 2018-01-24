@@ -8,10 +8,13 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 // MARK: - CensusClient: NSObject
 
 class CensusClient : NSObject {
+    
+    typealias CensusGetCompletionHandler = (_ result: [AnyObject]?, _ error: CensusError?) -> Void
     
     // MARK: Properties
     
@@ -30,7 +33,7 @@ class CensusClient : NSObject {
     
     //  source: http://www.djbp.co.uk/swift-development-managing-the-network-activity-indicator/
     var activityIndicatorSetVisibleCount = 0
-    func setNetworkActivityIndicatorVisible(visible: Bool) {
+    func setNetworkActivityIndicatorVisible(_ visible: Bool) {
         if visible {
             activityIndicatorSetVisibleCount += 1
         }else {
@@ -41,7 +44,7 @@ class CensusClient : NSObject {
         if activityIndicatorSetVisibleCount < 0 {
             activityIndicatorSetVisibleCount = 0
         }
-        print("\(activityIndicatorSetVisibleCount) network requests are in progress.")
+        //print("\(activityIndicatorSetVisibleCount) network requests are in progress.")
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = self.activityIndicatorSetVisibleCount > 0
         }
@@ -56,7 +59,7 @@ class CensusClient : NSObject {
     
     // MARK: GET
     
-    func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: [AnyObject]?, _ error: CensusError?) -> Void) -> URLSessionDataTask {
+    func taskForGETMethodOLD(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: [AnyObject]?, _ error: CensusError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
         var parametersWithApiKey = parameters
@@ -67,10 +70,12 @@ class CensusClient : NSObject {
         
         request.addValue(HeaderValues.Json, forHTTPHeaderField: HeaderKeys.Accept)
         
+        //print("url: \(request.url!)")
+        
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            self.setNetworkActivityIndicatorVisible(visible: false)
+            self.setNetworkActivityIndicatorVisible(false)
             
             func sendError(_ error: CensusError) {
                 completionHandlerForGET(nil, error)
@@ -105,16 +110,54 @@ class CensusClient : NSObject {
         }
         
         /* 7. Start the request */
-        setNetworkActivityIndicatorVisible(visible: true)
+        setNetworkActivityIndicatorVisible(true)
         task.resume()
         
         return task
     }
     
+    func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping CensusGetCompletionHandler) -> DataRequest {
+        
+        /* Set the parameters */
+        var parametersWithApiKey = parameters
+        parametersWithApiKey[ParameterKeys.APIKey] = ParameterValues.APIKey as AnyObject?
+        
+        /* Build the URL, Configure the request */
+        let url = censusURLFromParameters(parametersWithApiKey, withPathExtension: method)
+        
+        let headers: HTTPHeaders = [HeaderValues.Json: HeaderKeys.Accept]
+        
+        //print("url: \(url)")
+        
+        setNetworkActivityIndicatorVisible(true)
+        
+        //let dataRequest = Alamofire.request(url, parameters: parametersWithApiKey, headers: headers)
+        let dataRequest = Alamofire.request(url, headers: headers)
+            .validate()
+            .responseJSON { response in
+                self.setNetworkActivityIndicatorVisible(false)
+                switch response.result {
+                case .success:
+                    //print("Validation successful")
+                    if let json = response.result.value as? [AnyObject] {
+                        //print("JSON: \(json)")
+                        completionHandlerForGET(json, nil)
+                    } else {
+                        completionHandlerForGET(nil, .noDataReturned)
+                    }
+                case .failure(let error):
+                    print(error)
+                    completionHandlerForGET(nil, .parseFailed(detail: error.localizedDescription))
+                }
+        }
+        return dataRequest
+    }
+    
+    
     // MARK: Helpers
         
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: [AnyObject]?, _ error: CensusError?) -> Void) {
+    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: CensusGetCompletionHandler) {
         
         var parsedResult: [AnyObject]?
         do {
@@ -141,14 +184,4 @@ class CensusClient : NSObject {
         
         return components.url!
     }
-    
-    // MARK: Shared Instance
-    /*
-    class func sharedInstance() -> CensusClient {
-        struct Singleton {
-            static var sharedInstance = CensusClient()
-        }
-        return Singleton.sharedInstance
-    }
- */
 }

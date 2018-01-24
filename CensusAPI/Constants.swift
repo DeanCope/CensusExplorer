@@ -41,33 +41,3 @@ public enum ChartType {
     case scatter
 }
 
-// MARK: UserDefaults
-
-extension UserDefaults {
-    
-    struct Keys {
-        static let HasLaunchedBefore = "HasLaunchedBefore"
-        static let ChartLineWidth = "ChartLineWidth"
-        static let ChartShowValues = "ChartShowValues"
-        static let ChartCubicSmoothing = "ChartCubicSmoothing"
-    }
-    struct DefaultValues {
-        static let ChartLineWidth = Float(2.0)
-        static let ChartShowValues = false
-        static let ChartCubicSmoothing = false
-    }
-}
-
-struct NotificationNames {
-    
-    static let GetGeographiesError = "GetGeographiesError"
-    static let GotGeographies = "GotGeographies"
-    
-    static let GetCensusValuesProgress = "GetCensusValuesProgress"
-    static let GetCensusValuesError = "GetCensusValuesError"
-    static let GotCensusValues = "GotCensusValues"
-    static let GetCensusValuesProgressMessage = "GetCensusValuesProgressMessage"
-    
-    static let CensusError = "CensusError"
-}
-

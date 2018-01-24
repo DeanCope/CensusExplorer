@@ -7,41 +7,81 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-struct ChartSpecs {
-    var chartType: ChartType
-    var factX: CensusFact?
-    var factY: CensusFact?
-    var year: Int16?
+protocol ChartSpecsType: class {
+    
+    var chartType: ChartType {get}
+    var factX: Variable<CensusFact?> {get}
+    var factY: Variable<CensusFact?> {get}
+    var year: Variable<Int16> {get}
+    var description: String {get}
+}
+
+class ChartSpecs: ChartSpecsType {
+    
+    private let disposeBag = DisposeBag()
+    
+    var chartType: ChartType = .line
+    var factX = Variable<CensusFact?>(nil)
+    var factY = Variable<CensusFact?>(nil)
+    var year = Variable<Int16>(2016)
+    
+    let yearString: Observable<String>
+    let factXString: Observable<String?>
+    let factYString: Observable<String?>
     
     var description: String {
         switch chartType {
-        case .line: return factY?.factName ?? ""
+        case .line: return factY.value?.factName ?? ""
         case .scatter:
-            switch (factX?.factName, factY?.factName) {
-            case (.some, .some): return "\(factY!.factName!) vs \(factX!.factName!)"
+            switch (factX.value?.factName, factY.value?.factName) {
+            case (.some, .some): return "\(factY.value!.factName!) vs \(factX.value!.factName!)"
             default: return ""
             }
         }
     }
     
+    init(chartType: ChartType, factX: CensusFact?, factY: CensusFact?) {
+        self.chartType = chartType
+        self.factX.value = factX
+        self.factY.value = factY
+        
+        self.yearString = year
+            .asObservable()
+            .map {
+                "\($0)"
+            }
+        
+        self.factXString = self.factX
+            .asObservable()
+            .map {
+                $0?.factName
+            }
+        
+        self.factYString = self.factY
+            .asObservable()
+            .map {
+                $0?.factName
+            }
+    }
+    
     func getFact(forAxis: Axis) -> CensusFact? {
         if forAxis == .x {
-            return factX
+            return factX.value
         } else {
-            return factY
+            return factY.value
         }
     }
     
-    mutating func setFact(_ fact: CensusFact, forAxis: Axis) {
+    func setFact(_ fact: CensusFact, forAxis: Axis) {
         if forAxis == .x {
-            factX = fact
+            factX.value = fact
         } else {
-            factY = fact
+            factY.value = fact
         }
     }
+
 }
 
-protocol SettableChartSpecs: class {
-    var chartSpecs: ChartSpecs? {get set}
-}

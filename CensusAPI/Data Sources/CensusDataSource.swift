@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import RxSwift
+import RxCocoa
 
 class CensusDataSource: NSObject {
     
@@ -22,6 +24,15 @@ class CensusDataSource: NSObject {
     
     var gotGeographies = false
     var gotCensusValues = false
+    
+    //RxSwift Private Variables
+    private let _querying = Variable<Bool>(false)
+    private let _queryProgress = Variable<Float>(0.0)
+    private let _queryCompletion = Variable<(Bool, String?)>((true, nil))
+    
+    var querying: Driver<Bool> {return _querying.asDriver()}
+    var queryProgress: Driver<Float> {return _queryProgress.asDriver()}
+    var queryCompletion: Driver<(Bool, String?)> {return _queryCompletion.asDriver()}
     
     // MARK: Initializers
     
@@ -78,6 +89,42 @@ class CensusDataSource: NSObject {
         })
     }
     
+    public func reloadData() {
+        _querying.value = true
+        _queryProgress.value = 0.0
+        deleteAllGeographies()
+        deleteAllCensusFacts()
+        initializeFacts()
+        refreshGeosAndValues()
+    }
+    
+    public func refreshGeosAndValues() {
+        
+        _queryProgress.value = 0.05
+        
+        retrieveGeographies() { [weak self]
+            (success, error) in
+            self?._queryProgress.value = 0.1
+            if success {
+                self?.retrieveAllCensusValues() { (success, error) in
+                    self?._querying.value = false
+                    if success {
+                        self?._queryCompletion.value = (true, "Success!")
+                    } else {
+                        var message = "Error retrieving data for all facts"
+                        if let error = error {
+                            message = message + ": \(error.localizedDescription)"
+                        }
+                        self?._queryCompletion.value = (false, message)
+                    }
+                }
+            } else {
+                self?._querying.value = false
+                self?._queryCompletion.value = (false, "Error retrieving geographies: \(error!.localizedDescription)")
+            }
+        }
+    }
+
     func retrieveGeographies(completionHandlerForRetrieveData: @escaping (_  success: Bool, _ error: CensusError?) -> Void) {
         
         // This method checks if the geography data is in the local Core Data DB.  If it's not there (e.g. first time app use) then it requests the data from the Census server and puts it into Core Data.
@@ -123,31 +170,29 @@ class CensusDataSource: NSObject {
                 }
             } else {
                 gotGeographies = true
-                // In this case, we already have the geographies locally, so we don;t need to send a Notification
+                // In this case, we already have the geographies locally, so we don't need to send a Notification
                 completionHandlerForRetrieveData(true, nil)
             }
         }
     }
     
     func sendGetGeographiesErrorNotification(error: CensusError?) {
+        /*
         var userInfo: [AnyHashable : Any]? = nil
         if let error = error {
             userInfo = [NotificationNames.GetGeographiesError: error]
         }
         let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetGeographiesError), object: nil, userInfo:userInfo)
         NotificationCenter.default.post(notification)
+ */
     }
-    
-    func sendGetCensusValuesProgressNotification(message: String) {
-        var userInfo: [AnyHashable : Any]? = nil
-        userInfo = [NotificationNames.GetCensusValuesProgressMessage: message]
-        let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetCensusValuesProgress), object: nil, userInfo:userInfo)
-        NotificationCenter.default.post(notification)
-    }
-    
+
+ 
     func sendGotGeographiesNotification() {
+        /*
         let notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotGeographies), object: nil, userInfo: nil)
         NotificationCenter.default.post(notification)
+ */
     }
 
     
@@ -157,42 +202,35 @@ class CensusDataSource: NSObject {
         
         var storedError: CensusError?
         let group = DispatchGroup()
+        
+        //_queryProgress.value = 0.0
     
         stack.performBackgroundBatchOperation { (workerContext) in
             let allFacts = self.getAllFacts()
+            var factsRetrieved = 0
             for fact in allFacts {
                 group.enter()
-                self.retrieveData(fact: fact) { (success, error) in
+                self.retrieveData(fact: fact) { [weak self] (success, error) in
                     if error != nil {
                         storedError = error
                     }
                     group.leave()
-                    if success {
-                        self.sendGetCensusValuesProgressNotification(message: "Got \(fact.factName!).")
-                        completionHandlerForRetrieveData(true, nil)
-                    } else {
-                        completionHandlerForRetrieveData(false, error)
-                    }
+
+                    factsRetrieved += 1
+                    let progress = 0.1 + (0.9 * Float(factsRetrieved) / Float(allFacts.count))
+                    self?._queryProgress.value = progress
+                    //print("Background progress: \(progress)")
                 }
             }
             group.notify(queue: DispatchQueue.main) {
-                self.sendGetCensusValuesCompletionNotification(error: storedError)
+                if let error = storedError {
+                    completionHandlerForRetrieveData(false, error)
+                } else {
+                    completionHandlerForRetrieveData(true, nil)
+                }
                 self.gotCensusValues = true
             }
         }
-    }
-    
-    func sendGetCensusValuesCompletionNotification(error: CensusError?) {
-        var notification: Notification
-        var userInfo: [AnyHashable : Any]? = nil
-        if let error = error {
-            userInfo = [NotificationNames.GetCensusValuesError: error]
-            notification = Notification(name: Notification.Name(rawValue: NotificationNames.GetCensusValuesError), object: nil, userInfo:userInfo)
-        } else {
-            notification = Notification(name: Notification.Name(rawValue: NotificationNames.GotCensusValues), object: nil, userInfo:userInfo)
-        }
-        
-        NotificationCenter.default.post(notification)
     }
 
     private func varString(prefix: String, years: [String], suffix: String) -> String {
@@ -363,9 +401,11 @@ class CensusDataSource: NSObject {
         }
     }
     
-    func getDataFromDB(forFact: CensusFact, geography: Geography, completionHandlerForGetData: @escaping (_ results: [CensusValue]?, _ error: CensusError?) -> Void) {
-        let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
+    func getDataFromDB(forFact: CensusFact, geography: Geography) -> [CensusValue]? {
         
+        let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
+        //print("geography: \(geography.name)")
+        //print("variable: \(forFact.variableName)")
         fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@", forFact.variableName!, geography.name!)
         
         let sortDescriptor1 = NSSortDescriptor(key: "year", ascending: true)
@@ -378,39 +418,51 @@ class CensusDataSource: NSObject {
             do {
                 fetchedValues = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForGetData(nil, error as? CensusError)
-            }
-            if let values = fetchedValues {
-                completionHandlerForGetData(values, nil)
+                print("Error: \(error)")
             }
         })
+        return fetchedValues
     }
     
-    func getDataFromDB(forFact: CensusFact, geography: Geography, year: Int16, completionHandlerForGetData: @escaping (_ result: CensusValue?, _ error: CensusError?) -> Void) {
+    func getDataFromDB(forFact: CensusFact, geography: Geography, year: Int16) -> CensusValue? {
         let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
         
         fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@ AND year == %d", forFact.variableName!, geography.name!, year)
         
-       // fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@", forFact.variableName!, geography.name!)
-        
         var fetchedValues: [CensusValue]?
+        var fetchedValue: CensusValue? = nil
         context!.performAndWait ({
             do {
                 fetchedValues = try self.context!.fetch(fr)
             } catch let error {
-                completionHandlerForGetData(nil, error as? CensusError)
+                print("Error: \(error)")
             }
             if let values = fetchedValues {
                 if values.count != 1 {
-                    let error = CensusError.dataError(detail: "Expected one value, but received \(values.count) values for fact: \(forFact.factName!), geography: \(geography.name!) year: \(year).")
-                    completionHandlerForGetData(nil, error)
+                    print("Expected one value, but received \(values.count) values for fact: \(forFact.factName!), geography: \(geography.name!) year: \(year).")
                 } else {
-                    completionHandlerForGetData(values.first, nil)
+                    fetchedValue = values.first
                 }
             }
         })
+        return fetchedValue
     }
     
+    func getSelectedGeographies() -> [Geography]? {
+        let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
+        fr.predicate = NSPredicate(format: "isSelected == %@", true as CVarArg)
+        var fetchedGeographies: [Geography]?
+        context!.performAndWait ({
+            do {
+                fetchedGeographies = try self.context!.fetch(fr)
+            } catch let error {
+                print("Error: \(error)")
+            }
+        })
+        return fetchedGeographies
+        
+    }
+    /*
     func getSelectedGeographies(completionHandlerForGetGeographies: @escaping (_ results: [Geography]?, _ error: CensusError?) -> Void) {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         
@@ -428,7 +480,7 @@ class CensusDataSource: NSObject {
             }
         })
     }
-    
+    */
     func selectAllGeographies(_ val: Bool, completionHandlerForGetGeographies: @escaping (_ success: Bool, _ error: CensusError?) -> Void) {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
         

@@ -10,10 +10,32 @@
 		9465BC2090C4FE4D887F212F /* Pods_CensusAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */; };
 		DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA036F1B1F76F3D800967436 /* SettingsViewController.swift */; };
 		DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */; };
+		DA0F99B42006820900FD9891 /* LineChartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99B32006820900FD9891 /* LineChartCoordinator.swift */; };
+		DA0F99BD2007D51A00FD9891 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99B62007D51A00FD9891 /* WindowRouter.swift */; };
+		DA0F99BE2007D51A00FD9891 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99B72007D51A00FD9891 /* Presentable.swift */; };
+		DA0F99BF2007D51A00FD9891 /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99B82007D51A00FD9891 /* WindowCoordinator.swift */; };
+		DA0F99C02007D51A00FD9891 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99B92007D51A00FD9891 /* Router.swift */; };
+		DA0F99C12007D51A00FD9891 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA0F99BB2007D51A00FD9891 /* Info.plist */; };
+		DA0F99C22007D51A00FD9891 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99BC2007D51A00FD9891 /* Coordinator.swift */; };
+		DA0F99C42007DA1300FD9891 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99C32007DA1300FD9891 /* Store.swift */; };
+		DA0F99C62007DC4300FD9891 /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99C52007DC4300FD9891 /* DeepLink.swift */; };
 		DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12832D1EE76DE900FB5090 /* GeosViewController.swift */; };
+		DA205A16200BA4C2000800A3 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */; };
+		DA205A18200BA4E4000800A3 /* HelpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */; };
+		DA205A1E200CF132000800A3 /* FactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A1D200CF132000800A3 /* FactsCoordinator.swift */; };
+		DA2AE8FB200D339E000A98AD /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AE8FA200D339E000A98AD /* FactsViewModel.swift */; };
+		DA2F3F4A1FE6ABE500395B12 /* LineSpecsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */; };
+		DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */; };
+		DA2F3F5A1FF44FB700395B12 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F591FF44FB700395B12 /* BindableType.swift */; };
+		DA2F3F631FF6D09A00395B12 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */; };
+		DA2F3F651FF6D0B600395B12 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */; };
+		DA2F3F671FF6D13B00395B12 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */; };
 		DA33270D1E5371CF004725CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270C1E5371CF004725CB /* Constants.swift */; };
 		DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */; };
 		DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */; };
+		DA398A56200A3E7C008E6F1A /* GeosDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA398A55200A3E7C008E6F1A /* GeosDataSource.swift */; };
+		DA40ED0F1FF94DFE00F5183A /* LineSpecsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA40ED0E1FF94DFE00F5183A /* LineSpecsCoordinator.swift */; };
+		DA4738092018D527001D712D /* ScatterChartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4738082018D527001D712D /* ScatterChartCoordinator.swift */; };
 		DA48B6AF1F55F90A0091E4BE /* LineSpecsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */; };
 		DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F34461E1C1AED002568C6 /* AppDelegate.swift */; };
 		DA4F344C1E1C1AED002568C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4F344A1E1C1AED002568C6 /* Main.storyboard */; };
@@ -23,15 +45,32 @@
 		DA51CF241F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */; };
 		DA51CF261F7E7D62006DB3EA /* YearsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */; };
 		DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF271F7E7DCA006DB3EA /* ChartSpecs.swift */; };
-		DA51CF2A1F7EC8A5006DB3EA /* ScatterTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */; };
-		DA51CF2F1F82F377006DB3EA /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */; };
+		DA51CF2A1F7EC8A5006DB3EA /* FactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF291F7EC8A5006DB3EA /* FactsViewController.swift */; };
+		DA51CF2F1F82F377006DB3EA /* FactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF2E1F82F377006DB3EA /* FactTableViewCell.swift */; };
 		DA51CF311F82F613006DB3EA /* FactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF301F82F613006DB3EA /* FactsDataSource.swift */; };
 		DA51CF331F83DA40006DB3EA /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */; };
 		DA57DB211EFAF86200682886 /* StateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB201EFAF86200682886 /* StateCell.swift */; };
 		DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57DB231EFDACDD00682886 /* LineChartViewController.swift */; };
+		DA5C85AC1F8A5744009290FB /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5C85AB1F8A5744009290FB /* SettingsViewModel.swift */; };
+		DA68D3141FFFEDB500C829E6 /* GeosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68D3131FFFEDB500C829E6 /* GeosCoordinator.swift */; };
+		DA6C3E201FA22391009B9A9B /* PHPhotoLibrary+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */; };
+		DA6C3E221FA2299A009B9A9B /* UIAlertViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */; };
+		DA6D68E11F9018ED00CC7A6C /* LineChartModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68E01F9018ED00CC7A6C /* LineChartModeTableViewCell.swift */; };
+		DA6D68E31F901E3F00CC7A6C /* LineChartModeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68E21F901E3F00CC7A6C /* LineChartModeCellViewModel.swift */; };
+		DA6D68F91F916BC000CC7A6C /* SettingsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */; };
+		DA7B0B791F9D40C1002CC73A /* ScatterSpecsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B0B781F9D40C1002CC73A /* ScatterSpecsViewModel.swift */; };
+		DA7D623A1F97837D0050B4F3 /* ScatterChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */; };
+		DA7D623C1F97B17A0050B4F3 /* CensusScatterChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */; };
+		DA7D623E1F97CFEE0050B4F3 /* YearTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */; };
+		DA7E48931F8A39D500A286EB /* LineChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */; };
 		DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */; };
+		DAA597DB1F94DCFC008F84B8 /* LineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */; };
+		DAA597DE1F962E66008F84B8 /* CensusLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */; };
 		DAA5B2D51F77F28800517ABD /* CensusAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5B2D41F77F28800517ABD /* CensusAPITests.swift */; };
 		DAA5B3001F7811AD00517ABD /* CensusAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA5B2FF1F7811AD00517ABD /* CensusAPIUITests.swift */; };
+		DAAF3D2B200FD349006BACD2 /* YearsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF3D2A200FD349006BACD2 /* YearsCoordinator.swift */; };
+		DAAF3D2D200FD42E006BACD2 /* YearsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF3D2C200FD42E006BACD2 /* YearsViewModel.swift */; };
+		DAAF3D2F200FD500006BACD2 /* YearsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */; };
 		DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */; };
 		DACCFCCD1F703D330074CFEE /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCCC1F703D330074CFEE /* HelpViewController.swift */; };
 		DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A21EF163BA00990F97 /* CensusConstants.swift */; };
@@ -46,7 +85,9 @@
 		DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C01EF1917500990F97 /* CoreDataStack.swift */; };
 		DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* UIVCExtension.swift */; };
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
+		DADB0401200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */; };
 		DAE94D711F7194B200E66FF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAE94D701F7194B200E66FF5 /* README.md */; };
+		DAFEA04D1F895FCC00F05434 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,27 +107,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		DAEC655C1ED7668E00B0C8B9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CensusAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA036F1B1F76F3D800967436 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DA0F99B32006820900FD9891 /* LineChartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCoordinator.swift; sourceTree = "<group>"; };
+		DA0F99B62007D51A00FD9891 /* WindowRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
+		DA0F99B72007D51A00FD9891 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		DA0F99B82007D51A00FD9891 /* WindowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowCoordinator.swift; sourceTree = "<group>"; };
+		DA0F99B92007D51A00FD9891 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DA0F99BA2007D51A00FD9891 /* CoordinatorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinatorKit.h; sourceTree = "<group>"; };
+		DA0F99BB2007D51A00FD9891 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA0F99BC2007D51A00FD9891 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DA0F99C32007DA1300FD9891 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		DA0F99C52007DC4300FD9891 /* DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		DA12832D1EE76DE900FB5090 /* GeosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeosViewController.swift; sourceTree = "<group>"; };
+		DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCoordinator.swift; sourceTree = "<group>"; };
+		DA205A1D200CF132000800A3 /* FactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCoordinator.swift; sourceTree = "<group>"; };
+		DA2AE8FA200D339E000A98AD /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
+		DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSpecsViewModel.swift; sourceTree = "<group>"; };
+		DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosViewModel.swift; sourceTree = "<group>"; };
+		DA2F3F591FF44FB700395B12 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
+		DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
+		DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DA33270C1E5371CF004725CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		DA398A55200A3E7C008E6F1A /* GeosDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosDataSource.swift; sourceTree = "<group>"; };
+		DA40ED0E1FF94DFE00F5183A /* LineSpecsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSpecsCoordinator.swift; sourceTree = "<group>"; };
+		DA43D6C51FCF557B00128E51 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA4738082018D527001D712D /* ScatterChartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterChartCoordinator.swift; sourceTree = "<group>"; };
 		DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSpecsViewController.swift; sourceTree = "<group>"; };
 		DA4F34431E1C1AED002568C6 /* CensusAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CensusAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4F34461E1C1AED002568C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,20 +150,37 @@
 		DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsTableViewController.swift; sourceTree = "<group>"; };
 		DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsTableViewController.swift; sourceTree = "<group>"; };
 		DA51CF271F7E7DCA006DB3EA /* ChartSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSpecs.swift; sourceTree = "<group>"; };
-		DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterTopicsViewController.swift; sourceTree = "<group>"; };
+		DA51CF291F7EC8A5006DB3EA /* FactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewController.swift; sourceTree = "<group>"; };
 		DA51CF2B1F827C85006DB3EA /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
-		DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
+		DA51CF2E1F82F377006DB3EA /* FactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactTableViewCell.swift; sourceTree = "<group>"; };
 		DA51CF301F82F613006DB3EA /* FactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsDataSource.swift; sourceTree = "<group>"; };
 		DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DA57DB201EFAF86200682886 /* StateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateCell.swift; sourceTree = "<group>"; };
 		DA57DB231EFDACDD00682886 /* LineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
+		DA5C85AB1F8A5744009290FB /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		DA68D3131FFFEDB500C829E6 /* GeosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosCoordinator.swift; sourceTree = "<group>"; };
+		DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary+rx.swift"; sourceTree = "<group>"; };
+		DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Rx.swift"; sourceTree = "<group>"; };
+		DA6D68E01F9018ED00CC7A6C /* LineChartModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartModeTableViewCell.swift; sourceTree = "<group>"; };
+		DA6D68E21F901E3F00CC7A6C /* LineChartModeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartModeCellViewModel.swift; sourceTree = "<group>"; };
+		DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModelTests.swift; sourceTree = "<group>"; };
+		DA7B0B781F9D40C1002CC73A /* ScatterSpecsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsViewModel.swift; sourceTree = "<group>"; };
+		DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterChartViewModel.swift; sourceTree = "<group>"; };
+		DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusScatterChartView.swift; sourceTree = "<group>"; };
+		DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTableViewCell.swift; sourceTree = "<group>"; };
+		DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartDataSet.swift; sourceTree = "<group>"; };
 		DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewModel.swift; sourceTree = "<group>"; };
+		DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusLineChartView.swift; sourceTree = "<group>"; };
 		DAA5B2D21F77F28800517ABD /* CensusAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CensusAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA5B2D41F77F28800517ABD /* CensusAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusAPITests.swift; sourceTree = "<group>"; };
 		DAA5B2D61F77F28800517ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAA5B2FD1F7811AD00517ABD /* CensusAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CensusAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA5B2FF1F7811AD00517ABD /* CensusAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusAPIUITests.swift; sourceTree = "<group>"; };
 		DAA5B3011F7811AD00517ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAAF3D2A200FD349006BACD2 /* YearsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsCoordinator.swift; sourceTree = "<group>"; };
+		DAAF3D2C200FD42E006BACD2 /* YearsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsViewModel.swift; sourceTree = "<group>"; };
+		DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsDataSource.swift; sourceTree = "<group>"; };
 		DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusValueFormatter.swift; sourceTree = "<group>"; };
 		DACCFCCC1F703D330074CFEE /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		DAD080A21EF163BA00990F97 /* CensusConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusConstants.swift; sourceTree = "<group>"; };
@@ -126,7 +195,9 @@
 		DAD080C01EF1917500990F97 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DAD080C41EF19C8700990F97 /* UIVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVCExtension.swift; sourceTree = "<group>"; };
 		DAD080C71EF4575500990F97 /* CensusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusDataSource.swift; sourceTree = "<group>"; };
+		DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsCoordinator.swift; sourceTree = "<group>"; };
 		DAE94D701F7194B200E66FF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.release.xcconfig"; sourceTree = "<group>"; };
 		FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,9 +245,59 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DA0F99B52007D51A00FD9891 /* CoordinatorKit */ = {
+			isa = PBXGroup;
+			children = (
+				DA0F99B62007D51A00FD9891 /* WindowRouter.swift */,
+				DA0F99B72007D51A00FD9891 /* Presentable.swift */,
+				DA0F99B82007D51A00FD9891 /* WindowCoordinator.swift */,
+				DA0F99B92007D51A00FD9891 /* Router.swift */,
+				DA0F99BA2007D51A00FD9891 /* CoordinatorKit.h */,
+				DA0F99BB2007D51A00FD9891 /* Info.plist */,
+				DA0F99BC2007D51A00FD9891 /* Coordinator.swift */,
+			);
+			path = CoordinatorKit;
+			sourceTree = "<group>";
+		};
+		DA205A1B200BBC5F000800A3 /* Line Chart Specs */ = {
+			isa = PBXGroup;
+			children = (
+				DA40ED0E1FF94DFE00F5183A /* LineSpecsCoordinator.swift */,
+				DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */,
+				DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */,
+			);
+			path = "Line Chart Specs";
+			sourceTree = "<group>";
+		};
+		DA205A1C200BBD0C000800A3 /* Scatter Chart */ = {
+			isa = PBXGroup;
+			children = (
+				DA4738082018D527001D712D /* ScatterChartCoordinator.swift */,
+				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
+				DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */,
+			);
+			path = "Scatter Chart";
+			sourceTree = "<group>";
+		};
+		DA2F3F611FF6D07000395B12 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				DA0F99C32007DA1300FD9891 /* Store.swift */,
+				DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */,
+				DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */,
+				DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */,
+				DA0F99C52007DC4300FD9891 /* DeepLink.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		DA4F343A1E1C1AED002568C6 = {
 			isa = PBXGroup;
 			children = (
+				DA43D6C51FCF557B00128E51 /* Alamofire.framework */,
+				DA4F344A1E1C1AED002568C6 /* Main.storyboard */,
+				DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */,
+				DA7E48941F8A408400A286EB /* US Census Explorer */,
 				DAE94D701F7194B200E66FF5 /* README.md */,
 				DAD0809E1EF1633500990F97 /* Model */,
 				DA4F34451E1C1AED002568C6 /* CensusAPI */,
@@ -201,13 +322,10 @@
 		DA4F34451E1C1AED002568C6 /* CensusAPI */ = {
 			isa = PBXGroup;
 			children = (
-				DA4F344D1E1C1AED002568C6 /* Assets.xcassets */,
-				DA4F34461E1C1AED002568C6 /* AppDelegate.swift */,
+				DA4F34521E1C1AED002568C6 /* Info.plist */,
 				DA33270C1E5371CF004725CB /* Constants.swift */,
 				DA51CF2C1F82F290006DB3EA /* Views */,
-				DA4F34521E1C1AED002568C6 /* Info.plist */,
 				DA51CF341F83EAA4006DB3EA /* Data Sources */,
-				DA51CF2D1F82F2B8006DB3EA /* View Controllers */,
 				DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */,
 				DA3693811F6DEF9C0026F8E5 /* GCDBlackBox.swift */,
 			);
@@ -217,12 +335,7 @@
 		DA51CF2C1F82F290006DB3EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DA4F344A1E1C1AED002568C6 /* Main.storyboard */,
-				DA4F344F1E1C1AED002568C6 /* LaunchScreen.storyboard */,
 				DA3693841F6EFF8D0026F8E5 /* InsetLabel.swift */,
-				DA57DB201EFAF86200682886 /* StateCell.swift */,
-				DA51CF2E1F82F377006DB3EA /* TopicTableViewCell.swift */,
-				DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,17 +343,14 @@
 		DA51CF2D1F82F2B8006DB3EA /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DAD080C41EF19C8700990F97 /* UIVCExtension.swift */,
-				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
-				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
-				DA48B6AE1F55F90A0091E4BE /* LineSpecsViewController.swift */,
-				DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */,
-				DA51CF291F7EC8A5006DB3EA /* ScatterTopicsViewController.swift */,
-				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
-				DACCFCCC1F703D330074CFEE /* HelpViewController.swift */,
-				DA036F1B1F76F3D800967436 /* SettingsViewController.swift */,
-				DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */,
-				DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */,
+				DA51CF301F82F613006DB3EA /* FactsDataSource.swift */,
+				DA51CF2E1F82F377006DB3EA /* FactTableViewCell.swift */,
+				DA205A1B200BBC5F000800A3 /* Line Chart Specs */,
+				DA7D623F1F98C56D0050B4F3 /* Geographies */,
+				DA7E489A1F8A426D00A286EB /* Line Chart */,
+				DA7E489B1F8A427E00A286EB /* Scatter Chart Specs */,
+				DA7E489C1F8A429300A286EB /* Settings */,
+				DA7E489D1F8A42A400A286EB /* Help */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -249,9 +359,103 @@
 			isa = PBXGroup;
 			children = (
 				DAD080C71EF4575500990F97 /* CensusDataSource.swift */,
-				DA51CF301F82F613006DB3EA /* FactsDataSource.swift */,
 			);
 			path = "Data Sources";
+			sourceTree = "<group>";
+		};
+		DA7D623F1F98C56D0050B4F3 /* Geographies */ = {
+			isa = PBXGroup;
+			children = (
+				DA68D3131FFFEDB500C829E6 /* GeosCoordinator.swift */,
+				DA12832D1EE76DE900FB5090 /* GeosViewController.swift */,
+				DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */,
+				DA57DB201EFAF86200682886 /* StateCell.swift */,
+				DA398A55200A3E7C008E6F1A /* GeosDataSource.swift */,
+			);
+			path = Geographies;
+			sourceTree = "<group>";
+		};
+		DA7E48941F8A408400A286EB /* US Census Explorer */ = {
+			isa = PBXGroup;
+			children = (
+				DA0F99B52007D51A00FD9891 /* CoordinatorKit */,
+				DA2F3F611FF6D07000395B12 /* Coordinators */,
+				DA7E48951F8A409C00A286EB /* App Delegate */,
+				DA51CF2D1F82F2B8006DB3EA /* View Controllers */,
+				DAFEA04B1F895FA900F05434 /* Extensions */,
+				DA7E48971F8A414600A286EB /* Resources */,
+			);
+			path = "US Census Explorer";
+			sourceTree = "<group>";
+		};
+		DA7E48951F8A409C00A286EB /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				DA4F34461E1C1AED002568C6 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		DA7E48971F8A414600A286EB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA4F344D1E1C1AED002568C6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DA7E489A1F8A426D00A286EB /* Line Chart */ = {
+			isa = PBXGroup;
+			children = (
+				DA0F99B32006820900FD9891 /* LineChartCoordinator.swift */,
+				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
+				DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */,
+				DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */,
+			);
+			path = "Line Chart";
+			sourceTree = "<group>";
+		};
+		DA7E489B1F8A427E00A286EB /* Scatter Chart Specs */ = {
+			isa = PBXGroup;
+			children = (
+				DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */,
+				DA51CF231F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift */,
+				DA7B0B781F9D40C1002CC73A /* ScatterSpecsViewModel.swift */,
+				DA205A1D200CF132000800A3 /* FactsCoordinator.swift */,
+				DA51CF291F7EC8A5006DB3EA /* FactsViewController.swift */,
+				DA2AE8FA200D339E000A98AD /* FactsViewModel.swift */,
+				DAAF3D2A200FD349006BACD2 /* YearsCoordinator.swift */,
+				DAAF3D2C200FD42E006BACD2 /* YearsViewModel.swift */,
+				DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */,
+				DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */,
+				DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */,
+				DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */,
+				DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */,
+				DA205A1C200BBD0C000800A3 /* Scatter Chart */,
+			);
+			path = "Scatter Chart Specs";
+			sourceTree = "<group>";
+		};
+		DA7E489C1F8A429300A286EB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */,
+				DA036F1B1F76F3D800967436 /* SettingsViewController.swift */,
+				DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */,
+				DA5C85AB1F8A5744009290FB /* SettingsViewModel.swift */,
+				DA6D68E01F9018ED00CC7A6C /* LineChartModeTableViewCell.swift */,
+				DA6D68E21F901E3F00CC7A6C /* LineChartModeCellViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DA7E489D1F8A42A400A286EB /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */,
+				DACCFCCC1F703D330074CFEE /* HelpViewController.swift */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 		DAA5B2D31F77F28800517ABD /* CensusAPITests */ = {
@@ -259,6 +463,7 @@
 			children = (
 				DAA5B2D41F77F28800517ABD /* CensusAPITests.swift */,
 				DAA5B2D61F77F28800517ABD /* Info.plist */,
+				DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */,
 			);
 			path = CensusAPITests;
 			sourceTree = "<group>";
@@ -275,6 +480,7 @@
 		DAD0809E1EF1633500990F97 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DA2F3F591FF44FB700395B12 /* BindableType.swift */,
 				DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */,
 				DAD080C01EF1917500990F97 /* CoreDataStack.swift */,
 				DAD080A81EF18B0600990F97 /* Geography+CoreDataClass.swift */,
@@ -307,6 +513,18 @@
 			name = Census;
 			sourceTree = "<group>";
 		};
+		DAFEA04B1F895FA900F05434 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAD080C41EF19C8700990F97 /* UIVCExtension.swift */,
+				DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */,
+				DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */,
+				DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */,
+				DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,7 +536,6 @@
 				DA4F343F1E1C1AED002568C6 /* Sources */,
 				DA4F34401E1C1AED002568C6 /* Frameworks */,
 				DA4F34411E1C1AED002568C6 /* Resources */,
-				DAEC655C1ED7668E00B0C8B9 /* Embed Frameworks */,
 				4E20F965FE80DED8ACD635A3 /* [CP] Embed Pods Frameworks */,
 				C281084C5BA5ECE0DFEAF2BF /* [CP] Copy Pods Resources */,
 			);
@@ -380,6 +597,7 @@
 					DA4F34421E1C1AED002568C6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Z6574P25A8;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					DAA5B2D11F77F28800517ABD = {
@@ -421,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0F99C12007D51A00FD9891 /* Info.plist in Resources */,
 				DA4F34511E1C1AED002568C6 /* LaunchScreen.storyboard in Resources */,
 				DA4F344E1E1C1AED002568C6 /* Assets.xcassets in Resources */,
 				DA4F344C1E1C1AED002568C6 /* Main.storyboard in Resources */,
@@ -450,13 +669,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CensusAPI-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4E20F965FE80DED8ACD635A3 /* [CP] Embed Pods Frameworks */ = {
@@ -465,9 +687,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,35 +732,74 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA51CF261F7E7D62006DB3EA /* YearsTableViewController.swift in Sources */,
+				DA7E48931F8A39D500A286EB /* LineChartDataSet.swift in Sources */,
+				DA0F99BF2007D51A00FD9891 /* WindowCoordinator.swift in Sources */,
 				DAD080B01EF18B0600990F97 /* Geography+CoreDataClass.swift in Sources */,
 				DAD080B21EF18B0600990F97 /* CensusFact+CoreDataClass.swift in Sources */,
 				DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */,
 				DAD080A51EF163E800990F97 /* CensusClient.swift in Sources */,
+				DA2F3F671FF6D13B00395B12 /* AppCoordinator.swift in Sources */,
+				DA6C3E201FA22391009B9A9B /* PHPhotoLibrary+rx.swift in Sources */,
+				DA7D623E1F97CFEE0050B4F3 /* YearTableViewCell.swift in Sources */,
+				DA6D68E11F9018ED00CC7A6C /* LineChartModeTableViewCell.swift in Sources */,
 				DAD080A71EF163FD00990F97 /* CensusConvenience.swift in Sources */,
+				DA398A56200A3E7C008E6F1A /* GeosDataSource.swift in Sources */,
 				DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */,
 				DACCFCCD1F703D330074CFEE /* HelpViewController.swift in Sources */,
+				DAAF3D2B200FD349006BACD2 /* YearsCoordinator.swift in Sources */,
+				DA2AE8FB200D339E000A98AD /* FactsViewModel.swift in Sources */,
 				DAD080B31EF18B0600990F97 /* CensusFact+CoreDataProperties.swift in Sources */,
+				DA205A1E200CF132000800A3 /* FactsCoordinator.swift in Sources */,
 				DA51CF201F7AF925006DB3EA /* ScatterChartViewController.swift in Sources */,
 				DAD080B71EF18B0600990F97 /* CensusValue+CoreDataProperties.swift in Sources */,
-				DA51CF2A1F7EC8A5006DB3EA /* ScatterTopicsViewController.swift in Sources */,
+				DA51CF2A1F7EC8A5006DB3EA /* FactsViewController.swift in Sources */,
+				DA2F3F4A1FE6ABE500395B12 /* LineSpecsViewModel.swift in Sources */,
 				DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */,
+				DA0F99C42007DA1300FD9891 /* Store.swift in Sources */,
 				DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */,
+				DA0F99B42006820900FD9891 /* LineChartCoordinator.swift in Sources */,
 				DA51CF331F83DA40006DB3EA /* HeaderTableViewCell.swift in Sources */,
+				DA205A16200BA4C2000800A3 /* SettingsCoordinator.swift in Sources */,
+				DA0F99C22007D51A00FD9891 /* Coordinator.swift in Sources */,
 				DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */,
+				DA0F99C02007D51A00FD9891 /* Router.swift in Sources */,
+				DA7B0B791F9D40C1002CC73A /* ScatterSpecsViewModel.swift in Sources */,
 				DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */,
+				DA0F99BE2007D51A00FD9891 /* Presentable.swift in Sources */,
+				DAAF3D2D200FD42E006BACD2 /* YearsViewModel.swift in Sources */,
+				DADB0401200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift in Sources */,
 				DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */,
+				DA5C85AC1F8A5744009290FB /* SettingsViewModel.swift in Sources */,
 				DAE94D711F7194B200E66FF5 /* README.md in Sources */,
+				DA68D3141FFFEDB500C829E6 /* GeosCoordinator.swift in Sources */,
+				DA6C3E221FA2299A009B9A9B /* UIAlertViewController+Rx.swift in Sources */,
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
 				DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */,
+				DA205A18200BA4E4000800A3 /* HelpCoordinator.swift in Sources */,
+				DAA597DB1F94DCFC008F84B8 /* LineChartViewModel.swift in Sources */,
 				DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */,
-				DA51CF2F1F82F377006DB3EA /* TopicTableViewCell.swift in Sources */,
+				DA51CF2F1F82F377006DB3EA /* FactTableViewCell.swift in Sources */,
+				DA40ED0F1FF94DFE00F5183A /* LineSpecsCoordinator.swift in Sources */,
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
 				DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */,
+				DA4738092018D527001D712D /* ScatterChartCoordinator.swift in Sources */,
+				DA2F3F631FF6D09A00395B12 /* BaseCoordinator.swift in Sources */,
+				DA6D68E31F901E3F00CC7A6C /* LineChartModeCellViewModel.swift in Sources */,
 				DAD080B11EF18B0600990F97 /* Geography+CoreDataProperties.swift in Sources */,
+				DAFEA04D1F895FCC00F05434 /* UserDefaults.swift in Sources */,
+				DAAF3D2F200FD500006BACD2 /* YearsDataSource.swift in Sources */,
+				DA7D623C1F97B17A0050B4F3 /* CensusScatterChartView.swift in Sources */,
 				DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */,
 				DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */,
+				DA0F99BD2007D51A00FD9891 /* WindowRouter.swift in Sources */,
+				DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */,
+				DA0F99C62007DC4300FD9891 /* DeepLink.swift in Sources */,
+				DA2F3F651FF6D0B600395B12 /* StoryboardInitializable.swift in Sources */,
+				DAA597DE1F962E66008F84B8 /* CensusLineChartView.swift in Sources */,
+				DA2F3F5A1FF44FB700395B12 /* BindableType.swift in Sources */,
 				DA51CF241F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift in Sources */,
 				DA57DB211EFAF86200682886 /* StateCell.swift in Sources */,
+				DA7D623A1F97837D0050B4F3 /* ScatterChartViewModel.swift in Sources */,
 				DA51CF311F82F613006DB3EA /* FactsDataSource.swift in Sources */,
 				DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */,
 				DA48B6AF1F55F90A0091E4BE /* LineSpecsViewController.swift in Sources */,
@@ -537,6 +811,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6D68F91F916BC000CC7A6C /* SettingsViewViewModelTests.swift in Sources */,
 				DAA5B2D51F77F28800517ABD /* CensusAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,14 +966,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z6574P25A8;
 				INFOPLIST_FILE = CensusAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.copeland.dean.CensusAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -707,14 +982,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z6574P25A8;
 				INFOPLIST_FILE = CensusAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.copeland.dean.CensusAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

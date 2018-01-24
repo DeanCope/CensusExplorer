@@ -6,6 +6,8 @@
 	<dict>
 		<key>CensusAPI.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
@@ -13,6 +15,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>DA4F34421E1C1AED002568C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAA5B2D11F77F28800517ABD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAA5B2FC1F7811AD00517ABD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

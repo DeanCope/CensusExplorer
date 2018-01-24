@@ -100,8 +100,8 @@ public class CensusValue: NSManagedObject {
         
         for result in results {
             if firstResult {
-                // The first result (row) contains metadata that identifies each of the columns
-                // We use this first row to populate the yearMapping dictionary
+                // The first result (row) contains metadata that identifies each of the columns.
+                // We use this first row to populate the yearMapping dictionary.
                 firstResult = false
                 var index = 0
                 for element in result {
@@ -143,12 +143,6 @@ public class CensusValue: NSManagedObject {
                         //}
                         index += 1
                     }
-                    /*
-                    for i in 0...4 {
-                        if let value = CensusValue(value: result[i], geo: geography, year: i+2011, fact: forFact, context: context) {
-                            values.append(value)
-                        }
-                    }*/
                 }
             }
         }

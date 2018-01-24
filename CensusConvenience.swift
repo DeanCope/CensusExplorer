@@ -79,14 +79,14 @@ extension CensusClient {
         let _ = taskForGETMethod(methods[Sources.SAIPE]!, parameters: parameters) { (results, error) in
 
             /* 3. Send the desired value(s) to completion handler */
-            guard (error == nil) else {
+            guard let results = results, (error == nil) else {
                 completionHandlerForGeo(nil, error)
                 return
             }
             
             // Convert the json response into Core Data objects
             context.perform {
-                let values = Geography.valuesFromResults(results! as! [[String]], context: context)
+                let values = Geography.valuesFromResults(results as! [[String]], context: context)
                 completionHandlerForGeo(values, nil)
             }
         }
