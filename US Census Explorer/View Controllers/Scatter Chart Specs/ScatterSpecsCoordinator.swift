@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class ScatterSpecsCoordinator: Coordinator<DeepLink> {
+class ScatterSpecsCoordinator: Coordinator {
     
     let disposeBag = DisposeBag()
     
@@ -47,17 +47,7 @@ class ScatterSpecsCoordinator: Coordinator<DeepLink> {
     }
     
     private func didChooseContinue() {
-        let coordinator = GeosCoordinator(router: router, store: store, chartType: .scatter)
-
-        // Maintain a strong reference to avoid deallocation
-        addChild(coordinator)
-        coordinator.start()
-        
-        // Avoid retain cycles and don't forget to remove the child when popped
-        router.push(coordinator, animated: true) { [weak self, weak coordinator] in
-            self?.removeChild(coordinator)
-        }
-        
+        pushChild(coordinator: GeosCoordinator(router: router, store: store, chartType: .scatter))
     }
     
     private func didSelectItem(_ item: ScatterSpecItem) {
@@ -67,35 +57,19 @@ class ScatterSpecsCoordinator: Coordinator<DeepLink> {
             coordinator.onDone = { [weak self] in
                 self?.router.popModule(animated: true)
             }
-            // Maintain a strong reference to avoid deallocation
-            addChild(coordinator)
-            coordinator.start()
-            router.push(coordinator, animated: true) { [weak self, weak coordinator] in
-                self?.removeChild(coordinator)
-            }
+            pushChild(coordinator: coordinator)
         case .topicY:
             let coordinator = FactsCoordinator(router: router, store: store, axis: Axis.y)
             coordinator.onDone = { [weak self] in
                 self?.router.popModule(animated: true)
             }
-            // Maintain a strong reference to avoid deallocation
-            addChild(coordinator)
-            coordinator.start()
-            router.push(coordinator, animated: true) { [weak self, weak coordinator] in
-                self?.removeChild(coordinator)
-            }
+            pushChild(coordinator: coordinator)
         case .year:
             let coordinator = YearsCoordinator(router: router, store: store)
             coordinator.onDone = { [weak self] in
                 self?.router.popModule(animated: true)
             }
-            // Maintain a strong reference to avoid deallocation
-            addChild(coordinator)
-            coordinator.start()
-            // Avoid retain cycles and don't forget to remove the child when dismissed
-            router.push(coordinator, animated: true) { [weak self, weak coordinator] in
-                self?.removeChild(coordinator)
-            }
+            pushChild(coordinator: coordinator)
         }
     }
 }

@@ -13,29 +13,18 @@ import RxSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    //private var appCoordinator: AppCoordinator!
-    //private let disposeBag = DisposeBag()
     
      // CoordinatorKit: https://hackernoon.com/coordinators-routers-and-back-buttons-c58b021b32a
-   // private let config: ConfigType = Config(bundle: .main, locale: .current)
-    
-    lazy var appStore: StoreType = Store()//config: self.config)
+    lazy var appStore: StoreType = Store()
     lazy var appNavigationController: UINavigationController = UINavigationController()
     lazy var appRouter: RouterType = Router(navigationController: self.appNavigationController)
     lazy var appCoordinator: AppCoordinator = AppCoordinator(router: self.appRouter, store: self.appStore)
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = appCoordinator.toPresentable()
         appCoordinator.start()
-        /*
-        appCoordinator = AppCoordinator(window: window!)
-        appCoordinator.start()
-            .subscribe()
-            .disposed(by: disposeBag)
-        */
         return true
     }
 

@@ -89,22 +89,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CensusAPITests/CensusAPITests.swift"
-            timestampString = "528753253.277094"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "testDeleteAndReloadCensusValues()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CensusDataSource.swift"
             timestampString = "528738843.696648"
             startingColumnNumber = "9223372036854775807"
@@ -665,7 +649,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CensusAPI/Data Sources/CensusDataSource.swift"
-            timestampString = "537541509.882603"
+            timestampString = "543596345.401724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -681,11 +665,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CensusAPI/Data Sources/CensusDataSource.swift"
-            timestampString = "537541509.882719"
+            timestampString = "543596345.40211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "initializeFacts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -696,28 +680,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "US Census Explorer/View Controllers/FactsDataSource.swift"
-            timestampString = "537571238.673488"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "US Census Explorer/App Delegate/AppDelegate.swift"
-            timestampString = "537454621.695119"
+            timestampString = "543438108.978438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -825,7 +793,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/YearsCoordinator.swift"
-            timestampString = "538504875.980522"
+            timestampString = "538673684.328487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -873,12 +841,140 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/ScatterSpecsCoordinator.swift"
-            timestampString = "538504875.980971"
+            timestampString = "538673684.3286279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
             landmarkName = "didChooseContinue()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CensusAPI/Data Sources/CensusDataSource.swift"
+            timestampString = "543596345.402741"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "refreshGeosAndValues(reload:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "US Census Explorer/View Controllers/FactsDataSource.swift"
+            timestampString = "543596345.403007"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "fetchedResultsController"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CensusValue+CoreDataClass.swift"
+            timestampString = "543596345.403376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "acsValuesFromResults(_:forFact:context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CensusAPI.CensusValue.acsValuesFromResults(Swift.Array&lt;Swift.Array&lt;Swift.Optional&lt;Swift.String&gt;&gt;&gt;, forFact: CensusAPI.CensusFact, context: __ObjC.NSManagedObjectContext) -&gt; Swift.Array&lt;CensusAPI.CensusValue&gt;"
+                  moduleName = "CensusAPI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deancope/Developer/CensusAPI/CensusValue+CoreDataClass.swift"
+                  timestampString = "543438718.240908"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "1834">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CensusAPI.CensusValue.acsValuesFromResults(Swift.Array&lt;Swift.Array&lt;Swift.Optional&lt;Swift.String&gt;&gt;&gt;, forFact: CensusAPI.CensusFact, context: __ObjC.NSManagedObjectContext) -&gt; Swift.Array&lt;CensusAPI.CensusValue&gt;"
+                  moduleName = "CensusAPI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deancope/Developer/CensusAPI/CensusValue+CoreDataClass.swift"
+                  timestampString = "543438718.244621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "7586">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/ScatterSpecsTableViewController.swift"
+            timestampString = "543596345.4034359"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "bindViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "US Census Explorer/View Controllers/Geographies/GeosViewController.swift"
+            timestampString = "543596345.4034981"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "bindViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CensusAPI/Data Sources/CensusDataSource.swift"
+            timestampString = "543596345.403556"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
+            landmarkName = "getDataFromDB(forFact:geography:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

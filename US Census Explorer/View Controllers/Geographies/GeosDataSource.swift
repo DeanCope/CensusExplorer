@@ -11,8 +11,10 @@ import CoreData
 
 class GeosDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
-    var stack: CoreDataStack? = nil
-    var context: NSManagedObjectContext? = nil
+    private let censusDataSource: CensusDataSource!
+    
+    private var stack: CoreDataStack? = nil
+    private var context: NSManagedObjectContext? = nil
     
     lazy var fetchedResultsController: NSFetchedResultsController<Geography> = {
         let fr: NSFetchRequest<Geography> = Geography.fetchRequest()
@@ -34,10 +36,11 @@ class GeosDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControlle
         return fetchedResultsController
     }()
     
-    override init() {
+    init(dataSource: CensusDataSource) {
         
+        self.censusDataSource = dataSource
         // Save the stack and context for convenience
-        stack = CensusDataSource.sharedInstance.stack
+        stack = censusDataSource.stack
         context = stack!.context
     }
     

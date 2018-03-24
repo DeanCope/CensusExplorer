@@ -10,9 +10,9 @@ public protocol WindowCoordinatorType: BaseCoordinatorType {
 	var router: WindowRouterType { get }
 }
 
-open class WindowCoordinator<DeepLinkType>: NSObject, WindowCoordinatorType {
+open class WindowCoordinator: NSObject, WindowCoordinatorType {
 	
-	public var childCoordinators: [PresentableCoordinator<DeepLinkType>] = []
+	public var childCoordinators: [PresentableCoordinator] = []
 	
 	open var router: WindowRouterType
 	
@@ -21,14 +21,13 @@ open class WindowCoordinator<DeepLinkType>: NSObject, WindowCoordinatorType {
 		super.init()
 	}
 	
-	open func start() { start(with: nil) }
-	open func start(with link: DeepLinkType?) {}
+	open func start() {  }
 	
-	public func addChild(_ coordinator: Coordinator<DeepLinkType>) {
+	public func addChild(_ coordinator: Coordinator) {
 		childCoordinators.append(coordinator)
 	}
 	
-	public func removeChild(_ coordinator: Coordinator<DeepLinkType>?) {
+	public func removeChild(_ coordinator: Coordinator?) {
 		
 		if let coordinator = coordinator, let index = childCoordinators.index(of: coordinator) {
 			childCoordinators.remove(at: index)

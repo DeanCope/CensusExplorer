@@ -22,13 +22,13 @@ class SettingsViewViewModelTests: XCTestCase {
     }
     
     func testLineWidthFloat() {
-        let viewModel = SettingsViewViewModel()
+        let viewModel = SettingsViewModel()
         UserDefaults.setChartLineWidth(3.14)
         XCTAssertEqual(viewModel.chartLineWidthFloat, 3.14)
     }
     
     func testLineWidthString() {
-        let viewModel = SettingsViewViewModel()
+        let viewModel = SettingsViewModel()
         UserDefaults.setChartLineWidth(3.13)
         XCTAssertEqual(viewModel.chartLineWidthString, "3.1")
     }

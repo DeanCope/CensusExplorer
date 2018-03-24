@@ -56,7 +56,7 @@ class FactsViewController: UIViewController, StoryboardInitializable {
     
     private func bindViewModel() {
         viewModel.alertMessage
-            .subscribe(onNext: { [weak self] in self?.alert(message: $0) })
+            .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected

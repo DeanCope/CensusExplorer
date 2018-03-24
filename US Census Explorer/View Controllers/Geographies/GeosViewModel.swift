@@ -12,11 +12,8 @@ import RxCocoa
 class GeosViewModel {
     private let disposeBag = DisposeBag()
     
-    var geosDataSource = GeosDataSource()
-    
-    private let _dataChanged = PublishSubject<Void>()
-    private let _alertMessage = PublishSubject<String>()
-    private let _title: Variable<String>
+    private let censusDataSource: CensusDataSource!
+    public let geosDataSource: GeosDataSource!
     
     // MARK: - Inputs
     let graphIt: AnyObserver<Void>
@@ -27,7 +24,7 @@ class GeosViewModel {
     let deselectAll: AnyObserver<Void>
     
     // MARK: - Outputs
-    let alertMessage: Observable<String>
+    let alertMessage: Observable<(String, String)>
     let dataChanged: Observable<Void>
     let didChooseGraphIt: Observable<Void>
     let didCancel: Observable<Void>
@@ -36,10 +33,23 @@ class GeosViewModel {
     let didSelectAll: Observable<Void>
     let didDeselectAll: Observable<Void>
     
-    init(chartSpecs: ChartSpecs) {
-        self._title = Variable<String>(chartSpecs.description)
+    // RXSwift drivers - Output to UI
+    var querying: Driver<Bool> { return censusDataSource.querying }
+    var title: Driver<String> { return _title.asDriver() }
+    
+    // MARK: -
+    //RxSwift Private Variables
+    private let _dataChanged = PublishSubject<Void>()
+    private let _alertMessage = PublishSubject<(String, String)>()
+    private let _title: Variable<String>
+    
+    init(dataSource: CensusDataSource, chartSpecs: ChartSpecs) {
+        self.censusDataSource = dataSource
+        self.geosDataSource = GeosDataSource(dataSource: dataSource)
         
         self.alertMessage = _alertMessage.asObservable()
+        
+        self._title = Variable<String>(chartSpecs.description)
         
         self.dataChanged = _dataChanged.asObservable()
         
@@ -81,7 +91,7 @@ class GeosViewModel {
         
         didSelectAll
             .subscribe(onNext: { [weak self] in
-                CensusDataSource.sharedInstance.selectAllGeographies(true){ (success, error) in
+                self?.censusDataSource.selectAllGeographies(true){ (success, error) in
                     if success {
                         self?._dataChanged.onNext(())
                     } else {
@@ -89,7 +99,7 @@ class GeosViewModel {
                         if let error = error {
                             message = message + ": \(error.localizedDescription)"
                         }
-                        self?._alertMessage.onNext(message)
+                        self?._alertMessage.onNext(("Error",message))
                     }
                 }
             })
@@ -97,7 +107,7 @@ class GeosViewModel {
         
         didDeselectAll
             .subscribe(onNext: { [weak self] in
-                CensusDataSource.sharedInstance.selectAllGeographies(false){ (success, error) in
+                self?.censusDataSource.selectAllGeographies(false){ (success, error) in
                     if success {
                         self?._dataChanged.onNext(())
                     } else {
@@ -105,17 +115,12 @@ class GeosViewModel {
                         if let error = error {
                             message = message + ": \(error.localizedDescription)"
                         }
-                        self?._alertMessage.onNext(message)
+                        self?._alertMessage.onNext(("Error",message))
                     }
                 }
             })
             .disposed(by: disposeBag)
     }
-
-    
-    
-    // RXSwift drivers
-    var title: Driver<String> { return _title.asDriver() }
     
     public func geoAtIndexPath(_ indexPath: IndexPath) -> Geography {
         return geosDataSource.getGeography(at: indexPath)

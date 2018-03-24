@@ -29,6 +29,9 @@ Temporary Items
 .apdisk
 
 ### Swift ###
+# Secrets
+CensusSecrets.swift
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore

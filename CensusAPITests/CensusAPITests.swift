@@ -22,13 +22,13 @@ class CensusAPITests: XCTestCase {
     }
     
     func testGetAllFacts() {
-        let ds = CensusDataSource.sharedInstance
+        let ds = CensusDataSource()
         let allFacts = ds.getAllFacts()
         XCTAssertEqual(allFacts.count, 10, "10 facts were not returned")
     }
  
     func testDeleteAndReloadGeographies() {
-        let ds = CensusDataSource.sharedInstance
+        let ds = CensusDataSource()
         ds.deleteAllGeographies()
         let geographies = ds.getAllGeographies()
         XCTAssertEqual(geographies!.count, 0, "Geographies were not deleted")
@@ -48,7 +48,7 @@ class CensusAPITests: XCTestCase {
     }
     
     func testDeleteAndReloadCensusValues() {
-        let ds = CensusDataSource.sharedInstance
+        let ds = CensusDataSource()
         ds.deleteAllCensusValues()
         let values = ds.getAllCensusValues()
         XCTAssertEqual(values!.count, 0, "Census values were not deleted")

@@ -6,11 +6,26 @@
 //  Copyright © 2017 Dean Copeland. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 import Charts
-// This struct is responsible for retrieving line chart data from the model (CensusDataSource) and
-// formatting it for easy consuption by the census line chart view.
+// This struct is responsible for retrieving scatter chart data from the model (CensusDataSource) and
+// formatting it for easy consuption by the census scatter chart view.
 struct ScatterChartViewModel {
+    
+    let disposeBag = DisposeBag()
+    
+    private let censusDataSource: CensusDataSource!
+    private let _titleText: Variable<String>
+    
+    // MARK: - Inputs
+    let save: AnyObserver<Void>
+    
+    // MARK: - Outputs
+    let didChooseSave: Observable<Void>
+    
+    //RXSwift Drivers
+    var titleText: Driver<String> { return _titleText.asDriver() }
     
     var chartSpecs: ChartSpecs
     var chartData: ScatterChartData?
@@ -18,8 +33,15 @@ struct ScatterChartViewModel {
     let numberFormatter = NumberFormatter()
     let colors = [UIColor.red, .green, .blue, .black, .brown, .cyan, .gray ]
     
-    init(chartSpecs: ChartSpecs) {
+    init(dataSource: CensusDataSource, chartSpecs: ChartSpecs) {
+        self.censusDataSource = dataSource
         self.chartSpecs = chartSpecs
+        
+        self._titleText = Variable<String>(chartSpecs.factY.value?.factDescription ?? "")
+        
+        let _save = PublishSubject<Void>()
+        self.save = _save.asObserver()
+        self.didChooseSave = _save.asObservable()
         
         guard let factX = chartSpecs.factX.value  else { return }
         guard let factY = chartSpecs.factY.value  else { return }
@@ -27,12 +49,12 @@ struct ScatterChartViewModel {
         let formatter = CensusValueFormatter()
         numberFormatter.numberStyle = .decimal
         
-        guard let geographies = CensusDataSource.sharedInstance.getSelectedGeographies()  else { return }
+        guard let geographies = censusDataSource.getSelectedGeographies()  else { return }
         var dataSets: [ScatterChartDataSet] = []
         var dataSetNumber = 0
         for geography in geographies {
-            if let resultX = CensusDataSource.sharedInstance.getDataFromDB(forFact: factX, geography: geography, year: chartSpecs.year.value) {
-                if let resultY = CensusDataSource.sharedInstance.getDataFromDB(forFact: factY, geography: geography, year: chartSpecs.year.value) {
+            if let resultX = censusDataSource.getDataFromDB(forFact: factX, geography: geography, year: chartSpecs.year.value) {
+                if let resultY = censusDataSource.getDataFromDB(forFact: factY, geography: geography, year: chartSpecs.year.value) {
                     let dataSet = self.createDataSetFromCensusValues(valX: resultX, valY: resultY, label: geography.name!)
                     dataSet.colors = ChartColorTemplates.colorful()
                     if dataSetNumber < colors.count {
@@ -77,12 +99,13 @@ struct ScatterChartViewModel {
         }
     }
     
+    /*
     var titleText: String {
         get {
             return chartSpecs.factY.value?.factDescription ?? ""
         }
     }
-    
+    */
     var shouldDisplayLegend: Bool {
         get {
             if let count = chartData?.dataSetCount {

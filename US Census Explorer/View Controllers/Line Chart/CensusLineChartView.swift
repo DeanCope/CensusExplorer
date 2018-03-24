@@ -20,6 +20,7 @@ class CensusLineChartView: LineChartView {
     var viewModel: LineChartViewModel?
     
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var xAxisLabel: UILabel!
     @IBOutlet private weak var yAxisLabelFrame: UIView!
     
     func configure(withViewModel viewModel: LineChartViewModel?) {
@@ -32,7 +33,7 @@ class CensusLineChartView: LineChartView {
             self.data = chartData
         }
         noDataText = "You need to provide data for the chart."
-       // titleLabel.text = viewModel.titleText
+        //titleLabel.text = viewModel.titleText
         viewModel.titleText
             .drive(titleLabel.rx.text)
             .disposed(by: disposeBag)
@@ -50,6 +51,7 @@ class CensusLineChartView: LineChartView {
         xAxis.granularity = 1
         backgroundColor = viewModel.chartBackgroundColor
         animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
+        addXAxisLabel(viewModel.xAxisText)
         addYAxisLabel(viewModel.yAxisText)
     }
     
@@ -67,6 +69,10 @@ class CensusLineChartView: LineChartView {
         yAxisLabel.translatesAutoresizingMaskIntoConstraints = false
         yAxisLabel.centerXAnchor.constraint(equalTo: yAxisLabelFrame.centerXAnchor).isActive = true
         yAxisLabel.centerYAnchor.constraint(equalTo: yAxisLabelFrame.centerYAnchor).isActive = true
+    }
+    
+    func addXAxisLabel(_ text: String) {
+        xAxisLabel.text = text
     }
 }
 
@@ -106,7 +112,7 @@ extension CensusLineChartView: ChartViewDelegate {
         
         var year = String(entry.x)
         let index = year.index(year.startIndex, offsetBy: 5)
-        year = year.substring(to: index)
+        year = String(year[..<index])
         if let fact = viewModel?.chartSpecs.factY.value {
             if fact.unit! == "$" {
                 popupLabel.text = "\(dataSet.label!) had \(fact.unit!)\(entry.y) \(fact.factName!) in \(year)"

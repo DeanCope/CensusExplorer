@@ -13,7 +13,6 @@ import Photos
 // This class is responsible for coordinating the display of the line chart view.
 // It also handles the ability to save an image of the chart to the users photos
 
-
 class LineChartViewController: UIViewController, StoryboardInitializable {
     
     let disposeBag = DisposeBag()
@@ -30,6 +29,10 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        chartView.configure(withViewModel: viewModel)
+    }
+    
     private func errorMessage() {
         alert(title: "No access to Camera Roll",
               text: "You can grant access from the Settings app")
@@ -40,11 +43,6 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
             })
             .disposed(by: disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        chartView.configure(withViewModel: viewModel)
-    }
-    
     
     @IBAction func saveToCameraRoll(_ sender: Any) {
         

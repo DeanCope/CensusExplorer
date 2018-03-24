@@ -15,14 +15,18 @@ class ScatterSpecsViewModel {
     
     private var store: StoreType
     
-    // MARK: - Inputs
+    // MARK: - Inputs (From the UI)
     let selectItem: AnyObserver<ScatterSpecsCoordinator.ScatterSpecItem>
+    let requestFactDetails: AnyObserver<CensusFact?>
     let chooseContinue: AnyObserver<Void>
     
-    // MARK: - Outputs
+    // MARK: - Outputs (To UI and Coordinator)
+    let alertMessage: Observable<(String,String)>
     let didSelectItem: Observable<ScatterSpecsCoordinator.ScatterSpecItem>
+    let didRequestFactDetails: Observable<CensusFact?>
     let didChooseContinue: Observable<Void>
     
+    // RXSwift drivers - Output to UI
     var factXString: Driver<String> {
         return store.getChartSpecs(chartType: .scatter).factXString
             .map {
@@ -43,10 +47,26 @@ class ScatterSpecsViewModel {
         return store.getChartSpecs(chartType: .scatter).yearString.asDriver(onErrorJustReturn: "TBD")
     }
     
-    //factXNameLabel.text = chartSpecs?.factX?.factName ?? "Select a topic..."
+    // MARK: - RxSwift Private Variables
+    private let _alertMessage = ReplaySubject<(String,String)>.create(bufferSize: 1)
+    
+    public func factAtIndexPath(_ indexPath: IndexPath) -> CensusFact? {
+        
+        if indexPath.section == 1 {
+            // X Axis
+            return store.getChartSpecs(chartType: .scatter).factX.value
+        } else {
+            // Y Axis
+            return store.getChartSpecs(chartType: .scatter).factY.value
+        }
+        
+        //return factsDataSource.getFact(at: indexPath)
+    }
     
     init(store: StoreType) {
         self.store = store
+        
+        self.alertMessage = _alertMessage.asObservable()
         
         let _selectItem = PublishSubject<ScatterSpecsCoordinator.ScatterSpecItem>()
         self.selectItem = _selectItem.asObserver()
@@ -56,12 +76,21 @@ class ScatterSpecsViewModel {
         self.chooseContinue = _chooseContinue.asObserver()
         self.didChooseContinue = _chooseContinue.asObservable()
         
+        let _requestFactDetails = PublishSubject<CensusFact?>()
+        self.requestFactDetails = _requestFactDetails.asObserver()
+        self.didRequestFactDetails = _requestFactDetails.asObservable()
+        
+        didRequestFactDetails
+            .subscribe(onNext: { [weak self] fact in
+                guard let fact = fact else {
+                    return
+                }
+                self?._alertMessage.onNext((fact.factName ?? "Unknown", fact.factDescription ?? "Unknown"))
+            })
+            .disposed(by: disposeBag)
+        
         //chartSpecs = ChartSpecs(chartType: .scatter, factX: nil, factY: nil, year: UserDefaults.defaultYear)
     }
-    
-
-    
-
     
 }
 

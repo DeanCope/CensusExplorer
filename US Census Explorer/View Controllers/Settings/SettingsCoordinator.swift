@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class SettingsCoordinator: Coordinator<DeepLink> {
+class SettingsCoordinator: Coordinator {
     
     let disposeBag = DisposeBag()
     

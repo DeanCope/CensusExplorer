@@ -8,9 +8,7 @@
 
 import RxSwift
 
-// This is a vertical flow
-
-class FactsCoordinator: Coordinator<DeepLink> {
+class FactsCoordinator: Coordinator {
     
     let disposeBag = DisposeBag()
     
@@ -26,10 +24,10 @@ class FactsCoordinator: Coordinator<DeepLink> {
     init(router: RouterType, store: StoreType, axis: Axis) {
         self.store = store
         super.init(router: router)
-        let vm = FactsViewModel(axis: axis)
+        let vm = FactsViewModel(axis: axis, dataSource: store.getDataSource())
         viewController.viewModel = vm
         vm.didChooseFact.subscribe(onNext: { [weak self] fact in
-            var chartSpecs = self?.store.getChartSpecs(chartType: .scatter)
+            let chartSpecs = self?.store.getChartSpecs(chartType: .scatter)
             chartSpecs?.setFact(fact, forAxis: axis)
             self?.onDone?()
         })

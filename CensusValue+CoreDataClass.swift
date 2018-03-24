@@ -55,7 +55,7 @@ public class CensusValue: NSManagedObject {
         guard value != nil else {
             return nil
         }
-
+        
         guard let valueDouble = Double(value!) else {
             return nil
         }
@@ -78,7 +78,7 @@ public class CensusValue: NSManagedObject {
     static func valuesFromResults(_ results: [[String?]], forFact: CensusFact, context: NSManagedObjectContext) -> [CensusValue] {
         
         var values = [CensusValue]()
-    
+        
         for result in results {
             if let value = CensusValue(array: result, fact: forFact, context: context) {
                 values.append(value)
@@ -112,11 +112,12 @@ public class CensusValue: NSManagedObject {
                         nameIndex = index
                     } else {
                         // Extract the year
+                        // element = e.g. "CP03_2012_025E"
                         let start = element?.index((element?.startIndex)!, offsetBy: 5)
                         let end = element?.index((element?.startIndex)!, offsetBy: 9)
                         let range = start!..<end!
                         
-                        if let yearString = element?.substring(with: range) {
+                        if let yearString = element?[range] {
                             yearMapping[index] = Int(yearString)
                         } else {
                             fatalError("Could not parse year from element: \(element!)")
@@ -134,13 +135,11 @@ public class CensusValue: NSManagedObject {
                 if let geography = geography {
                     var index = 0
                     for element in result {
-                       // if yearMapping[index] != nil { //index > 0 {
-                            if let year = yearMapping[index] {
-                                if let value = CensusValue(value: element, geo: geography, year: year, fact: forFact, context: context) {
-                                    values.append(value)
-                                }
+                        if let year = yearMapping[index] {
+                            if let value = CensusValue(value: element, geo: geography, year: year, fact: forFact, context: context) {
+                                values.append(value)
                             }
-                        //}
+                        }
                         index += 1
                     }
                 }

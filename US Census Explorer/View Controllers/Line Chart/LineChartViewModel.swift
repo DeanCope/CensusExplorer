@@ -15,6 +15,7 @@ struct LineChartViewModel {
     
     let disposeBag = DisposeBag()
     
+    private let censusDataSource: CensusDataSource!
     private let _titleText: Variable<String>
     
     // MARK: - Inputs
@@ -32,7 +33,8 @@ struct LineChartViewModel {
     let numberFormatter = NumberFormatter()
     let colors = [UIColor.red, .green, .blue, .black, .brown, .cyan, .gray ]
     
-    init(chartSpecs: ChartSpecs) {
+    init(dataSource: CensusDataSource, chartSpecs: ChartSpecs) {
+        self.censusDataSource = dataSource
         self.chartSpecs = chartSpecs
         
         self._titleText = Variable<String>(chartSpecs.factY.value?.factDescription ?? "")
@@ -42,15 +44,16 @@ struct LineChartViewModel {
         self.didChooseSave = _save.asObservable()
         
         guard let fact = chartSpecs.factY.value  else { return }
+        guard fact.variableName != nil else { return }
         
         let formatter = CensusValueFormatter()
         numberFormatter.numberStyle = .decimal
         
-        guard let geographies = CensusDataSource.sharedInstance.getSelectedGeographies()  else { return }
+        guard let geographies = censusDataSource.getSelectedGeographies()  else { return }
         var dataSets: [LineChartDataSet] = []
         var dataSetNumber = 0
         for geography in geographies {
-            if let result = CensusDataSource.sharedInstance.getDataFromDB(forFact: fact, geography: geography) {
+            if let result = censusDataSource.getDataFromDB(forFact: fact, geography: geography) {
                 let dataSet = self.createDataSetFromCensusValues(result, label: geography.name!)
                 dataSet.colors = ChartColorTemplates.colorful()
                 if dataSetNumber < colors.count {
@@ -87,13 +90,17 @@ struct LineChartViewModel {
         dataSet.circleRadius = 2
     }
     
+    var xAxisText: String {
+        get {
+            return "Years"
+        }
+    }
+    
     var yAxisText: String {
         get {
             return chartSpecs.factY.value?.factName ?? "Unknown Y axis name"
         }
     }
-    
-    
     
  
     /*

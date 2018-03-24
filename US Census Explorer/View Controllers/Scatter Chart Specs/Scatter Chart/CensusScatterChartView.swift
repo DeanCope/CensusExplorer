@@ -7,11 +7,14 @@
 //
 
 import Charts
+import RxSwift
 // This class builds upon the base Scatter Chart View, adding some additional features:
 // 1. The ability to configure the chart view from a provided view model
 // 2. The ability to add a (rotated text) Y axis label
 // 3. Handling of a dynamically positioned popup label that provides details about a data point that the user taps
 class CensusScatterChartView: ScatterChartView {
+    
+    let disposeBag = DisposeBag()
     
     var popupLabel = InsetLabel()
     var viewModel: ScatterChartViewModel?
@@ -30,7 +33,11 @@ class CensusScatterChartView: ScatterChartView {
             self.data = chartData
         }
         noDataText = "You need to provide data for the chart."
-        titleLabel.text = viewModel.titleText
+        //titleLabel.text = viewModel.titleText
+        viewModel.titleText
+            .drive(titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         chartDescription?.enabled = true
         chartDescription?.text = "Source: US Census Bureau"
         if viewModel.shouldDisplayLegend {

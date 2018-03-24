@@ -21,14 +21,10 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
     let disposeBag = DisposeBag()
     
     var viewModel: LineSpecsViewModel!
-
-    private var userRequestedReload = false
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var reloadDataButton: UIButton!
+    @IBOutlet weak var progressView: ProgressView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +45,51 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
     
     private func bindViewModel() {
         
-        reloadDataButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.userRequestedReload = true
-                self?.viewModel.reloadData()
+        // Inputs
+        viewModel.alertMessage
+            .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
+            .disposed(by: disposeBag)
+        
+        viewModel.querying
+            .drive(onNext: { [weak self] querying in
+                self?.progressView.isHidden = !querying
+                self?.reloadDataButton.isEnabled = !querying
+                self?.tableView.allowsSelection = !querying
+                }
+            )
+            .disposed(by: disposeBag)
+        
+        viewModel.querying
+            .drive(progressView.rx.animate)
+            .disposed(by: disposeBag)
+
+         viewModel.queryProgress
+            .drive(progressView.rx.progress)
+            .disposed(by: disposeBag)
+        
+        viewModel.progressMessage
+            .drive(progressView.rx.labelText)
+            .disposed(by: disposeBag)
+
+        viewModel.queryCompletion
+            .drive (onNext: {[weak self] success, message, reload in
+                guard !success || reload else { return }
+                guard let message = message else { return }
+                let title = success ? "Success" : "Error"
+                self?.alert(title: title, message: message)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.dataUpdated
+            .drive(onNext: { [weak self] updated in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        // Outputs
+        reloadDataButton.rx.tap
+            .bind(to: viewModel.requestReloadData)
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
@@ -64,60 +100,10 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
             .disposed(by: disposeBag)
         
         tableView.rx.itemAccessoryButtonTapped
-            .subscribe(onNext: { [unowned self] indexPath in
-                let fact = self.viewModel.factAtIndexPath(indexPath)
-                self.alert(title: fact.factName!, message: fact.factDescription)
-            })
-            .disposed(by: disposeBag)
-        
-        // Activity Indicator "spinner"
-        viewModel.querying
-            .drive(activityIndicator.rx.isAnimating)
-            .disposed(by: disposeBag)
-        
-        // Show/Hide progress Bar and label
-        viewModel.querying
-            .drive(onNext: { [weak self] querying in
-                    self?.progressView.isHidden = !querying
-                    self?.progressLabel.isHidden = !querying
-                }
-            )
-            .disposed(by: disposeBag)
-        
-        viewModel.dataUpdated
-            .drive(onNext: { [weak self] updated in
-            self?.tableView.reloadData()
-        })
-        .disposed(by: disposeBag)
-        
-        // Progress view
-        viewModel.queryProgress
-            .drive(onNext: { [weak self] progress in
-                // Do not animate resetting back to 0 progress
-                let animated = progress > 0.0
-                self?.progressView.setProgress(progress, animated: animated)
-            })
-            .disposed(by: disposeBag)
-        
-        // Progress label
-        viewModel.progressMessage
-            .drive(progressLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        // Query completion message
-        viewModel.queryCompletion
-            .drive (onNext: {[weak self] success, message in
-                guard let reload = self?.userRequestedReload else { return }
-                guard reload else { return }
-                self?.userRequestedReload = false
-                var title = "Success"
-                if !success {
-                    title = "Error"
-                }
-                if message != nil {
-                    self?.alert(title: title, message: message)
-                }
-            })
+            .map { [unowned self] indexPath in
+                return self.viewModel.factAtIndexPath(indexPath)
+            }
+            .bind(to: viewModel.requestFactDetails)
             .disposed(by: disposeBag)
     }
     
@@ -125,7 +111,6 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
         super.viewWillAppear(animated)
         viewModel.refreshGeosAndValues()
     }
-
 }
 
 // MARK: - Extension - UITableViewDelegate

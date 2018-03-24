@@ -13,27 +13,32 @@ class FactsViewModel {
     
     private let disposeBag = DisposeBag()
     
-    var factsDataSource = FactsDataSource()
+    //var factsDataSource = FactsDataSource()
+    public let factsDataSource: FactsDataSource!
+    public var axis: Axis!
     
-    var axis: Axis!
-    
-    private let _alertMessage = PublishSubject<String>()
+    private let _alertMessage = PublishSubject<(String,String)>()
 
     // MARK: - Inputs
     let chooseFact: AnyObserver<CensusFact>
     
     // MARK: - Outputs
-    let alertMessage: Observable<String>
+    let alertMessage: Observable<(String,String)>
     let didChooseFact: Observable<CensusFact>
     
-    init(axis: Axis) {
+    init(axis: Axis, dataSource: CensusDataSource) {
         
         self.axis = axis
+        self.factsDataSource = FactsDataSource(dataSource: dataSource)
         self.alertMessage = _alertMessage.asObservable()
         
         let _chooseFact = PublishSubject<CensusFact>()
         self.chooseFact = _chooseFact.asObserver()
         self.didChooseFact = _chooseFact.asObservable()
+        
+        self.factsDataSource.alertMessage
+            .bind(to: _alertMessage)
+            .disposed(by: disposeBag)
         
     }
     

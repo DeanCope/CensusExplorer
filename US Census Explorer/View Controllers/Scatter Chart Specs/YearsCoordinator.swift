@@ -10,7 +10,7 @@ import RxSwift
 
 // This is a vertical flow
 
-class YearsCoordinator: Coordinator<DeepLink> {
+class YearsCoordinator: Coordinator {
     
     let disposeBag = DisposeBag()
     

@@ -18,7 +18,6 @@
 		DA0F99C12007D51A00FD9891 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA0F99BB2007D51A00FD9891 /* Info.plist */; };
 		DA0F99C22007D51A00FD9891 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99BC2007D51A00FD9891 /* Coordinator.swift */; };
 		DA0F99C42007DA1300FD9891 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99C32007DA1300FD9891 /* Store.swift */; };
-		DA0F99C62007DC4300FD9891 /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F99C52007DC4300FD9891 /* DeepLink.swift */; };
 		DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12832D1EE76DE900FB5090 /* GeosViewController.swift */; };
 		DA205A16200BA4C2000800A3 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */; };
 		DA205A18200BA4E4000800A3 /* HelpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */; };
@@ -27,7 +26,6 @@
 		DA2F3F4A1FE6ABE500395B12 /* LineSpecsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */; };
 		DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */; };
 		DA2F3F5A1FF44FB700395B12 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F591FF44FB700395B12 /* BindableType.swift */; };
-		DA2F3F631FF6D09A00395B12 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */; };
 		DA2F3F651FF6D0B600395B12 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */; };
 		DA2F3F671FF6D13B00395B12 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */; };
 		DA33270D1E5371CF004725CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33270C1E5371CF004725CB /* Constants.swift */; };
@@ -73,6 +71,8 @@
 		DAAF3D2F200FD500006BACD2 /* YearsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */; };
 		DACCFCC81F6FF3560074CFEE /* CensusValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */; };
 		DACCFCCD1F703D330074CFEE /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACCFCCC1F703D330074CFEE /* HelpViewController.swift */; };
+		DACFED20202386CA00661B3F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFED1F202386CA00661B3F /* ProgressView.swift */; };
+		DACFED222023B53100661B3F /* ProgressView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFED212023B53100661B3F /* ProgressView+Rx.swift */; };
 		DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A21EF163BA00990F97 /* CensusConstants.swift */; };
 		DAD080A51EF163E800990F97 /* CensusClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A41EF163E800990F97 /* CensusClient.swift */; };
 		DAD080A71EF163FD00990F97 /* CensusConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080A61EF163FD00990F97 /* CensusConvenience.swift */; };
@@ -86,6 +86,7 @@
 		DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C41EF19C8700990F97 /* UIVCExtension.swift */; };
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
 		DADB0401200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */; };
+		DAE008722066B7B3004714F3 /* CensusSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE008712066B7B3004714F3 /* CensusSecrets.swift */; };
 		DAE94D711F7194B200E66FF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAE94D701F7194B200E66FF5 /* README.md */; };
 		DAFEA04D1F895FCC00F05434 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
@@ -120,7 +121,6 @@
 		DA0F99BB2007D51A00FD9891 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0F99BC2007D51A00FD9891 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DA0F99C32007DA1300FD9891 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		DA0F99C52007DC4300FD9891 /* DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		DA12832D1EE76DE900FB5090 /* GeosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeosViewController.swift; sourceTree = "<group>"; };
 		DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCoordinator.swift; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 		DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSpecsViewModel.swift; sourceTree = "<group>"; };
 		DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosViewModel.swift; sourceTree = "<group>"; };
 		DA2F3F591FF44FB700395B12 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
-		DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
 		DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DA33270C1E5371CF004725CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -183,6 +182,8 @@
 		DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsDataSource.swift; sourceTree = "<group>"; };
 		DACCFCC71F6FF3560074CFEE /* CensusValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusValueFormatter.swift; sourceTree = "<group>"; };
 		DACCFCCC1F703D330074CFEE /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		DACFED1F202386CA00661B3F /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		DACFED212023B53100661B3F /* ProgressView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressView+Rx.swift"; sourceTree = "<group>"; };
 		DAD080A21EF163BA00990F97 /* CensusConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusConstants.swift; sourceTree = "<group>"; };
 		DAD080A41EF163E800990F97 /* CensusClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusClient.swift; sourceTree = "<group>"; };
 		DAD080A61EF163FD00990F97 /* CensusConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusConvenience.swift; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		DAD080C41EF19C8700990F97 /* UIVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVCExtension.swift; sourceTree = "<group>"; };
 		DAD080C71EF4575500990F97 /* CensusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CensusDataSource.swift; sourceTree = "<group>"; };
 		DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsCoordinator.swift; sourceTree = "<group>"; };
+		DAE008712066B7B3004714F3 /* CensusSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusSecrets.swift; sourceTree = "<group>"; };
 		DAE94D701F7194B200E66FF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI.release.xcconfig"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				DA4738082018D527001D712D /* ScatterChartCoordinator.swift */,
 				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
 				DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */,
+				DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */,
 			);
 			path = "Scatter Chart";
 			sourceTree = "<group>";
@@ -283,10 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				DA0F99C32007DA1300FD9891 /* Store.swift */,
-				DA2F3F621FF6D09A00395B12 /* BaseCoordinator.swift */,
 				DA2F3F661FF6D13B00395B12 /* AppCoordinator.swift */,
 				DA2F3F641FF6D0B600395B12 /* StoryboardInitializable.swift */,
-				DA0F99C52007DC4300FD9891 /* DeepLink.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -378,6 +379,7 @@
 		DA7E48941F8A408400A286EB /* US Census Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				DACFED1E2023866100661B3F /* Views */,
 				DA0F99B52007D51A00FD9891 /* CoordinatorKit */,
 				DA2F3F611FF6D07000395B12 /* Coordinators */,
 				DA7E48951F8A409C00A286EB /* App Delegate */,
@@ -429,7 +431,6 @@
 				DA51CF251F7E7D62006DB3EA /* YearsTableViewController.swift */,
 				DAAF3D2E200FD500006BACD2 /* YearsDataSource.swift */,
 				DA51CF321F83DA40006DB3EA /* HeaderTableViewCell.swift */,
-				DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */,
 				DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */,
 				DA205A1C200BBD0C000800A3 /* Scatter Chart */,
 			);
@@ -477,6 +478,15 @@
 			path = CensusAPIUITests;
 			sourceTree = "<group>";
 		};
+		DACFED1E2023866100661B3F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DACFED1F202386CA00661B3F /* ProgressView.swift */,
+				DACFED212023B53100661B3F /* ProgressView+Rx.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DAD0809E1EF1633500990F97 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +519,7 @@
 				DAD080A21EF163BA00990F97 /* CensusConstants.swift */,
 				DAD080A41EF163E800990F97 /* CensusClient.swift */,
 				DAD080A61EF163FD00990F97 /* CensusConvenience.swift */,
+				DAE008712066B7B3004714F3 /* CensusSecrets.swift */,
 			);
 			name = Census;
 			sourceTree = "<group>";
@@ -763,6 +774,7 @@
 				DA0F99C22007D51A00FD9891 /* Coordinator.swift in Sources */,
 				DAD080B61EF18B0600990F97 /* CensusValue+CoreDataClass.swift in Sources */,
 				DA0F99C02007D51A00FD9891 /* Router.swift in Sources */,
+				DACFED222023B53100661B3F /* ProgressView+Rx.swift in Sources */,
 				DA7B0B791F9D40C1002CC73A /* ScatterSpecsViewModel.swift in Sources */,
 				DAD080A31EF163BA00990F97 /* CensusConstants.swift in Sources */,
 				DA0F99BE2007D51A00FD9891 /* Presentable.swift in Sources */,
@@ -783,8 +795,8 @@
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
 				DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */,
 				DA4738092018D527001D712D /* ScatterChartCoordinator.swift in Sources */,
-				DA2F3F631FF6D09A00395B12 /* BaseCoordinator.swift in Sources */,
 				DA6D68E31F901E3F00CC7A6C /* LineChartModeCellViewModel.swift in Sources */,
+				DACFED20202386CA00661B3F /* ProgressView.swift in Sources */,
 				DAD080B11EF18B0600990F97 /* Geography+CoreDataProperties.swift in Sources */,
 				DAFEA04D1F895FCC00F05434 /* UserDefaults.swift in Sources */,
 				DAAF3D2F200FD500006BACD2 /* YearsDataSource.swift in Sources */,
@@ -793,12 +805,12 @@
 				DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */,
 				DA0F99BD2007D51A00FD9891 /* WindowRouter.swift in Sources */,
 				DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */,
-				DA0F99C62007DC4300FD9891 /* DeepLink.swift in Sources */,
 				DA2F3F651FF6D0B600395B12 /* StoryboardInitializable.swift in Sources */,
 				DAA597DE1F962E66008F84B8 /* CensusLineChartView.swift in Sources */,
 				DA2F3F5A1FF44FB700395B12 /* BindableType.swift in Sources */,
 				DA51CF241F7E7CFB006DB3EA /* ScatterSpecsTableViewController.swift in Sources */,
 				DA57DB211EFAF86200682886 /* StateCell.swift in Sources */,
+				DAE008722066B7B3004714F3 /* CensusSecrets.swift in Sources */,
 				DA7D623A1F97837D0050B4F3 /* ScatterChartViewModel.swift in Sources */,
 				DA51CF311F82F613006DB3EA /* FactsDataSource.swift in Sources */,
 				DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */,

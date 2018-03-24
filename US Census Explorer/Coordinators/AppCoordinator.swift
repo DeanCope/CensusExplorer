@@ -5,13 +5,18 @@
 //
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
-
-class AppCoordinator: Coordinator<DeepLink>, UITabBarControllerDelegate {
+class AppCoordinator: Coordinator, UITabBarControllerDelegate {
+    
+    //var description: String
+    
+    let disposeBag = DisposeBag()
     
     let tabBarController = UITabBarController()
     
-    var tabs: [UIViewController: Coordinator<DeepLink>] = [:]
+    var tabs: [UIViewController: Coordinator] = [:]
     
     lazy var lineCoordinator: LineSpecsCoordinator = {
         let navigationController = UINavigationController()
@@ -58,6 +63,7 @@ class AppCoordinator: Coordinator<DeepLink>, UITabBarControllerDelegate {
     }()
 
     private let store: StoreType
+    private var preventNavigation = Variable<Bool>(false)
     
     init(router: RouterType, store: StoreType) {
         self.store = store
@@ -65,33 +71,13 @@ class AppCoordinator: Coordinator<DeepLink>, UITabBarControllerDelegate {
         router.setRootModule(tabBarController, hideBar: true)
         tabBarController.delegate = self
         setTabs([lineCoordinator, scatterCoordinator, settingsCoordinator, helpCoordinator])
-    }
-    
-    override func start(with link: DeepLink?) {
-        guard let link = link else {
-            return
-        }
         
-        // Forward link or intercept it
-        switch link {
-        case .line:
-            break //presentAuthFlow()
-        case .scatter:
-            break
-            // Switch to the home tab because our link says so
-            //guard let index = tabBarController.viewControllers?.index(of: homeCoordinator.toPresentable()) else {
-            //    return
-           // }
-          //  tabBarController.selectedIndex = index
-        case .settings:
-            break
-            
-        case .help:
-            break
-        }
+        store.getDataSource().querying.drive(preventNavigation)
+        .disposed(by: disposeBag)
+        
     }
     
-    func setTabs(_ coordinators: [Coordinator<DeepLink>], animated: Bool = false) {
+    func setTabs(_ coordinators: [Coordinator], animated: Bool = false) {
         
         tabs = [:]
         
@@ -105,48 +91,17 @@ class AppCoordinator: Coordinator<DeepLink>, UITabBarControllerDelegate {
         tabBarController.setViewControllers(vcs, animated: animated)
     }
     
-    
-    // Present a vertical flow
-    func presentAuthFlow() {
-        /*
-        let navigationController = UINavigationController()
-        let navRouter = Router(navigationController: navigationController)
-        let coordinator = AuthCoordinator(router: navRouter)
-        
-        coordinator.onCancel = { [weak self, weak coordinator] in
-            self?.router.dismissModule(animated: true, completion: nil)
-            self?.removeChild(coordinator)
-        }
-        
-        coordinator.onAuthenticated = { [weak self, weak coordinator] token in
-            self?.store.token = token
-            self?.router.dismissModule(animated: true, completion: nil)
-            self?.removeChild(coordinator)
-        }
-        
-        addChild(coordinator)
-        coordinator.start()
-        router.present(coordinator, animated: true)
- */
-    }
-    
-    
     // MARK: UITabBarControllerDelegate
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        //guard let coordinator = tabs[viewController] else { return true }
-        
-        // Let's protect this tab because we can
-       // if coordinator is AccountCoordinator && !store.isLoggedIn {
-       //     presentAuthFlow()
-       //     return false
-       // } else {
+        if preventNavigation.value {
+            return false
+        } else {
             return true
-        //}
+        }
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
         
     }
 }

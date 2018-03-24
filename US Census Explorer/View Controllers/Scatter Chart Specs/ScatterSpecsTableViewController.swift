@@ -43,6 +43,11 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
     
     private func bindViewModel() {
         
+        // Inputs
+        viewModel.alertMessage
+            .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
+            .disposed(by: disposeBag)
+        
         viewModel.factXString
             .drive(factXNameLabel.rx.text)
             .disposed(by: disposeBag)
@@ -55,6 +60,7 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
             .drive(yearLabel.rx.text)
             .disposed(by: disposeBag)
         
+        // Outputs
         tableView.rx.itemSelected
             .map { [unowned self] indexPath in
                 let cell = self.tableView.cellForRow(at: indexPath)
@@ -76,21 +82,14 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
             .bind(to: viewModel.chooseContinue)
             .disposed(by: disposeBag)
         
-        /*
         tableView.rx.itemAccessoryButtonTapped
-            .subscribe(onNext: { [unowned self] indexPath in
-                let fact = self.viewModel.factAtIndexPath(indexPath)
-                self.alert(title: fact.factName!, message: fact.factDescription)
-            })
+            .map { [unowned self] indexPath in
+                return self.viewModel.factAtIndexPath(indexPath)
+            }
+            .bind(to: viewModel.requestFactDetails)
             .disposed(by: disposeBag)
- */
-        
     }
-    /*
-    private func openYearsList() {
-        performSegue(withIdentifier: Storyboard.chooseYearSegueId, sender: self)
-    }
- */
+    
     
     /*
     override func viewWillAppear(_ animated: Bool) {

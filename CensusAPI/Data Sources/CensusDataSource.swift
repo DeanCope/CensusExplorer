@@ -14,7 +14,7 @@ import RxCocoa
 class CensusDataSource: NSObject {
     
     // source: https://thatthinginswift.com/singletons/
-    static let sharedInstance = CensusDataSource()
+    //static let sharedInstance = CensusDataSource()
     
     var facts = [CensusFact]()
     
@@ -23,16 +23,16 @@ class CensusDataSource: NSObject {
     var context: NSManagedObjectContext? = nil
     
     var gotGeographies = false
-    var gotCensusValues = false
+    private var gotCensusValues = false
     
     //RxSwift Private Variables
     private let _querying = Variable<Bool>(false)
     private let _queryProgress = Variable<Float>(0.0)
-    private let _queryCompletion = Variable<(Bool, String?)>((true, nil))
+    private let _queryCompletion = Variable<(Bool, String?, Bool)>((true, nil, false))
     
     var querying: Driver<Bool> {return _querying.asDriver()}
     var queryProgress: Driver<Float> {return _queryProgress.asDriver()}
-    var queryCompletion: Driver<(Bool, String?)> {return _queryCompletion.asDriver()}
+    var queryCompletion: Driver<(Bool, String?, Bool)> {return _queryCompletion.asDriver()}
     
     // MARK: Initializers
     
@@ -57,7 +57,7 @@ class CensusDataSource: NSObject {
         // Stage the facts data into an array of tuples
         let facts: [(source: String, prefix: String, suffix: String, group: String, name: String, description: String, unit: String)] = [
             (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "009E", group: "Employment", name: "Unemployment Rate", description: "Number unemployed as a percent of the workforce", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "025E", group: "Employment", name: "Average Travel Time To Work", description: "Average Travel Time To Work for workers 16 and over (Minutes)", unit: " minutes"),
+            (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "025E", group: "Employment", name: "Mean Travel Time To Work", description: "Mean Travel Time To Work for workers 16 and over (Minutes)", unit: " minutes"),
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "001E", group: "Population", name: "Total Households", description: "Total Number of Households (people who occupy a housing unit)", unit: ""),
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "092E", group: "Birthplace", name: "Foreign Born", description: "People who were not born in the USA (%)", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP03", suffix: "099E", group: "Health Insurance", name: "No Health Insurance Coverage", description: "Civilian noninstitutionalized population with no health insurance coverage (%)", unit: "%"),
@@ -68,7 +68,15 @@ class CensusDataSource: NSObject {
             (source: CensusClient.Sources.ACS, prefix: "CP02", suffix: "039E", group: "Fertility", name: "Fertility (births in past 12 months)", description: "Number of women 15 to 50 years old who had a birth in the past 12 months (per 1000)", unit: " births per 1000 women 15-50"),
             (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "032E", group: "Race", name: "White", description: "Percentage one race - White", unit: "%"),
             (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "033E", group: "Race", name: "Black or African American", description: "Percentage one race - Black or African American", unit: "%"),
-            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "039E", group: "Race", name: "Asian", description: "Percentage one race - Asian", unit: "%")
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "034E", group: "Race", name: "American Indian and Alaska Native", description: "Percentage one race - American Indian and Alaska Native", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "039E", group: "Race", name: "Asian", description: "Percentage one race - Asian", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "047E", group: "Race", name: "Native Hawaiian and Other Pacific Islander", description: "Percentage one race - Native Hawaiian and Other Pacific Islander", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "052E", group: "Race", name: "Some Other Race", description: "Percentage one race - Some Other Race", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP04", suffix: "004E", group: "Housing Occupancy", name: "Homeowner vacancy rate", description: "Homeowner vacancy rate", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP04", suffix: "005E", group: "Housing Occupancy", name: "Rental vacancy rate", description: "Rental vacancy rate", unit: "%"),
+            (source: CensusClient.Sources.ACS, prefix: "CP05", suffix: "017E", group: "Age", name: "Median age", description: "Median age", unit: "years")
+
+
         ]
         
         // Convert the array of tuples into CoreData CensusFact objects
@@ -95,10 +103,10 @@ class CensusDataSource: NSObject {
         deleteAllGeographies()
         deleteAllCensusFacts()
         initializeFacts()
-        refreshGeosAndValues()
+        refreshGeosAndValues(reload: true)
     }
     
-    public func refreshGeosAndValues() {
+    public func refreshGeosAndValues(reload: Bool) {
         
         _queryProgress.value = 0.05
         
@@ -109,18 +117,18 @@ class CensusDataSource: NSObject {
                 self?.retrieveAllCensusValues() { (success, error) in
                     self?._querying.value = false
                     if success {
-                        self?._queryCompletion.value = (true, "Success!")
+                        self?._queryCompletion.value = (true, "Successfully retrieved census data.", reload)
                     } else {
-                        var message = "Error retrieving data for all facts"
+                        var message = "Error retrieving census data"
                         if let error = error {
                             message = message + ": \(error.localizedDescription)"
                         }
-                        self?._queryCompletion.value = (false, message)
+                        self?._queryCompletion.value = (false, message, reload)
                     }
                 }
             } else {
                 self?._querying.value = false
-                self?._queryCompletion.value = (false, "Error retrieving geographies: \(error!.localizedDescription)")
+                self?._queryCompletion.value = (false, "Error retrieving geographies: \(error!.localizedDescription)", reload)
             }
         }
     }
@@ -370,9 +378,9 @@ class CensusDataSource: NSObject {
         if !fact.hasData() {
             // We don't have the data in the local DB yet, so get the data from the API
             if fact.sourceId == CensusClient.Sources.SAIPE {
-                CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "state:*", time: "from+1995+to+2015", context: context!) {(results, error) in
+                CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "state:*", time: "from+1995+to+2016", context: context!) {(results, error) in
                     if let _ = results {
-                        CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "us:*", time: "from+1995+to+2015", context: self.context!) {(results, error) in
+                        CensusClient.sharedInstance.getSAIPEValues(fact: fact, geography: "us:*", time: "from+1995+to+2016", context: self.context!) {(results, error) in
                             self.context!.perform {
                                 self.stack.save()
                             }
@@ -404,8 +412,8 @@ class CensusDataSource: NSObject {
     func getDataFromDB(forFact: CensusFact, geography: Geography) -> [CensusValue]? {
         
         let fr: NSFetchRequest<CensusValue> = CensusValue.fetchRequest()
-        //print("geography: \(geography.name)")
-        //print("variable: \(forFact.variableName)")
+      //  print("geography: \(geography.name)")
+      //  print("variable: \(forFact.variableName)")
         fr.predicate = NSPredicate(format: "hasDescription.variableName == %@ AND appliesToGeography.name == %@", forFact.variableName!, geography.name!)
         
         let sortDescriptor1 = NSSortDescriptor(key: "year", ascending: true)

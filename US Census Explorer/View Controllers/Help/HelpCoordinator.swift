@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class HelpCoordinator: Coordinator<DeepLink> {
+class HelpCoordinator: Coordinator {
     
     let disposeBag = DisposeBag()
     

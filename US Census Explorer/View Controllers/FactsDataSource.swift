@@ -8,18 +8,26 @@
 
 import UIKit
 import CoreData
+import RxSwift
 
 // This class is the table view data source used by both the LineSpecsViewController and the
-// ScatterFactsViewController to display the list of Grouped Census Facts to the user.
+// ScatterFactsViewController to display the list of grouped Census Facts to the user.
 // This class is used display facts for either the X or Y axis.
-// It uses a FetchedResultsController to get the data from Core Data
+// It uses a FetchedResultsController to get the data from Core Data.
 class FactsDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
+    private let censusDataSource: CensusDataSource!
     public var chartSpecs: ChartSpecs?
     public var axis: Axis?
     
     var stack: CoreDataStack? = nil
     var context: NSManagedObjectContext? = nil
+    
+    // MARK: - Outputs
+    let alertMessage: Observable<(String,String)>
+    
+    // MARK: - RxSwift Private Variables
+    private let _alertMessage = ReplaySubject<(String,String)>.create(bufferSize: 1)
     
     lazy var fetchedResultsController: NSFetchedResultsController<CensusFact> = {
         let fr: NSFetchRequest<CensusFact> = CensusFact.fetchRequest()
@@ -36,15 +44,18 @@ class FactsDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControll
             let fetchError = error as NSError
             print("Unable to fetch census facts from the local DB")
             print("\(fetchError), \(fetchError.localizedDescription)")
+            _alertMessage.onNext(("Error", "Unable to fetch census facts from the local DB"))
         }
         
         return fetchedResultsController
     }()
     
-    override init() {
+    init(dataSource: CensusDataSource) {
+        self.alertMessage = _alertMessage.asObservable()
         
+        self.censusDataSource = dataSource
         // Save the stack and context for convenience
-        stack = CensusDataSource.sharedInstance.stack
+        stack = censusDataSource.stack
         context = stack!.context
     }
     
@@ -55,10 +66,9 @@ class FactsDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControll
             let fetchError = error as NSError
             print("Unable to fetch census facts from the local DB")
             print("\(fetchError), \(fetchError.localizedDescription)")
+            _alertMessage.onNext(("Error", "Unable to fetch census facts from the local DB"))
         }
     }
-    
-    
     
     public func getFact(at: IndexPath ) -> CensusFact {
         return fetchedResultsController.object(at: at)
@@ -93,7 +103,6 @@ class FactsDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControll
         
         // Fetch fact
         let fact = fetchedResultsController.object(at: indexPath)
-        //print("index: \(indexPath.section) \(indexPath.row) fact: \(fact.factName)")
         // Configure Cell
         cell.factName = fact.factName
         

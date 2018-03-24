@@ -7,7 +7,7 @@ target 'CensusAPI' do
 
   # Pods for CensusAPI
 
- pod 'Charts', '~> 3.0.4'
+ pod 'Charts', '~> 3.1'
  pod 'RxSwift', '~> 4.0'
  pod 'RxCocoa', '~> 4.0'
  pod 'Action', '~> 3.4'
