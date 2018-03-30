@@ -69,29 +69,20 @@ import UIKit
         activityView.removeFromSuperview()
         activityView.color = UIColor.black
         activityView.startAnimating()
-     //   activityView.translatesAutoresizingMaskIntoConstraints = false
-     //   activityView.heightAnchor.constraint(equalToConstant: activityViewSize.height).isActive = true
-      //  activityView.widthAnchor.constraint(equalToConstant: activityViewSize.width).isActive = true
+
         stack.addArrangedSubview(activityView)
         updateActivityView()
         
         stack.removeArrangedSubview(labelView)
         labelView.removeFromSuperview()
-        //labelView.backgroundColor = UIColor.red
-        labelView.text = labelText
-     //   labelView.translatesAutoresizingMaskIntoConstraints = false
-     //   labelView.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-    //    labelView.widthAnchor.constraint(equalToConstant: 84.0).isActive = true
-        //constraint(equalToConstant: 10).isActive = true
+
         stack.addArrangedSubview(labelView)
         updateLabelView()
         
         // Progress bar
         stack.removeArrangedSubview(barView)
         barView.removeFromSuperview()
-        //barView.backgroundColor = UIColor.red
-     //   barView.translatesAutoresizingMaskIntoConstraints = false
-     //   barView.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+
         barView.layer.borderWidth = 2
         barView.layer.borderColor = UIColor.blue.cgColor
         barView.widthAnchor.constraint(equalToConstant: 120.0).isActive = true

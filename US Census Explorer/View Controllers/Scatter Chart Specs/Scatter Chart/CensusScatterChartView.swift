@@ -50,7 +50,7 @@ class CensusScatterChartView: ScatterChartView {
         xAxis.labelPosition = .bottom
         xAxis.granularity = 1
         backgroundColor = viewModel.chartBackgroundColor
-        animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
+        animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
         addXAxisLabel(viewModel.xAxisText)
         addYAxisLabel(viewModel.yAxisText)
     }

@@ -38,7 +38,6 @@ class LineSpecsViewModel {
     // MARK: - RxSwift Private Variables
     private let _alertMessage = ReplaySubject<(String,String)>.create(bufferSize: 1)
     private let _progressMessage = Variable<String?>(nil)
-    //private let _progressMessage = BehaviorRelay<String?>(value: nil)
     
     private let _dataUpdated = Variable<Bool>(false)
         

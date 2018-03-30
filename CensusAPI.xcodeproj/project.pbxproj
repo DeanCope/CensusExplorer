@@ -61,6 +61,7 @@
 		DA7D623C1F97B17A0050B4F3 /* CensusScatterChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */; };
 		DA7D623E1F97CFEE0050B4F3 /* YearTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */; };
 		DA7E48931F8A39D500A286EB /* LineChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */; };
+		DA857302206BC3D30077A7B1 /* CensusLineChartView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA857301206BC3D30077A7B1 /* CensusLineChartView+Rx.swift */; };
 		DA9816711F6B23DA0053B39C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */; };
 		DAA597DB1F94DCFC008F84B8 /* LineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */; };
 		DAA597DE1F962E66008F84B8 /* CensusLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */; };
@@ -168,6 +169,7 @@
 		DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusScatterChartView.swift; sourceTree = "<group>"; };
 		DA7D623D1F97CFEE0050B4F3 /* YearTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTableViewCell.swift; sourceTree = "<group>"; };
 		DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartDataSet.swift; sourceTree = "<group>"; };
+		DA857301206BC3D30077A7B1 /* CensusLineChartView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CensusLineChartView+Rx.swift"; sourceTree = "<group>"; };
 		DA9816701F6B23DA0053B39C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewModel.swift; sourceTree = "<group>"; };
 		DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusLineChartView.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				DA57DB231EFDACDD00682886 /* LineChartViewController.swift */,
 				DAA597DA1F94DCFC008F84B8 /* LineChartViewModel.swift */,
 				DAA597DD1F962E66008F84B8 /* CensusLineChartView.swift */,
+				DA857301206BC3D30077A7B1 /* CensusLineChartView+Rx.swift */,
 			);
 			path = "Line Chart";
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
 				DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */,
 				DA205A18200BA4E4000800A3 /* HelpCoordinator.swift in Sources */,
+				DA857302206BC3D30077A7B1 /* CensusLineChartView+Rx.swift in Sources */,
 				DAA597DB1F94DCFC008F84B8 /* LineChartViewModel.swift in Sources */,
 				DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */,
 				DA51CF2F1F82F377006DB3EA /* FactTableViewCell.swift in Sources */,

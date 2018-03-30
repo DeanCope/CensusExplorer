@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol SettingsViewControllerDelegate {
     func controllerDidChangeLineChartMode(controller: SettingsViewController)
 }
 
 class SettingsViewController: UIViewController, StoryboardInitializable {
+    
+    let disposeBag = DisposeBag()
 
+    @IBOutlet weak var closeButton: UIButton!
     var getGeographiesErrorObserver: Any?
     var getValuesErrorObserver: Any?
     var gotValuesObserver: Any?
@@ -34,18 +38,20 @@ class SettingsViewController: UIViewController, StoryboardInitializable {
         if let settingsTableViewController = settingsTableViewController {
             settingsTableViewController.viewModel = viewModel
         }
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        closeButton.rx.tap
+            .bind(to: viewModel.requestClose)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-   //     getValuesErrorObserver = startObservingGetCensusValuesErrorNotification()
-   //     gotValuesObserver = startObservingGotCensusValuesNotification()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-   //     stopObservingNotification(observer: getGeographiesErrorObserver)
-   //     stopObservingNotification(observer: getValuesErrorObserver)
-   //     stopObservingNotification(observer: gotValuesObserver)
     }
 }

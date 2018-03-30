@@ -8,8 +8,11 @@
 
 import UIKit
 import Charts
+import RxSwift
 
 class SettingsTableViewController: UITableViewController {
+    
+    let disposeBag = DisposeBag()
 
     @IBOutlet private weak var chartLineWidthSlider: UISlider!
     @IBOutlet private weak var chartLineWidthLabel: UILabel!
@@ -23,6 +26,7 @@ class SettingsTableViewController: UITableViewController {
     var viewModel: SettingsViewModel? {
         didSet {
             updateView()
+            bindViewModel()
         }
     }
     
@@ -30,24 +34,37 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    private func updateView() {
-        if let viewModel = viewModel {
-            updateSettingsView(withViewModel: viewModel)
-            
-        } else {
-         //   messageLabel.isHidden = false
-         //   messageLabel.text = "Unable to fetch settings data."
-        }
+    private func bindViewModel() {
+        
+        guard let viewModel = viewModel else {return}
+        // Inputs from ViewModel to UI
+        viewModel.alertMessage
+            .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
+            .disposed(by: disposeBag)
+        
+        viewModel.chartLineWidthStringDriver
+            .drive(chartLineWidthLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        // Outputs from UI to ViewModel
+        chartLineWidthSlider.rx.value
+            .bind(to: viewModel.setChartLineWidth)
+            .disposed(by: disposeBag)
+        
+        showValuesSwitch.rx.isOn
+            .bind(to: viewModel.setChartShowValues)
+            .disposed(by: disposeBag)
     }
     
-    private func updateSettingsView(withViewModel viewModel: SettingsViewModel) {
-        // Set the values of the controls equal to the values from UserDefaults
+    private func updateView() {
+        guard let viewModel = viewModel else {return}
+        
+        // Set the values of the controls equal to the values from the ViewModel
         chartLineWidthSlider.value = viewModel.chartLineWidthFloat
-        chartLineWidthLabel.text = viewModel.chartLineWidthString
         showValuesSwitch.setOn(viewModel.chartShowValues, animated: false)
         configureModeCells()
-        
     }
+ 
     func configureModeCells() {
         if let viewModel = viewModel {
         linearModeCell.configure(withViewModel: LineChartModeCellViewModel(mode: .linear, viewModel: viewModel))
@@ -56,20 +73,12 @@ class SettingsTableViewController: UITableViewController {
         steppedModeCell.configure(withViewModel: LineChartModeCellViewModel(mode: .stepped, viewModel: viewModel))
         }
     }
-
-    @IBAction func setChartLineWidth(_ sender: Any) {
-        UserDefaults.setChartLineWidth(chartLineWidthSlider.value)
-        chartLineWidthLabel.text = viewModel?.chartLineWidthString
-    }
-    
-    @IBAction func setShowValues(_ sender: Any) {
-        UserDefaults.setChartShowValues(showValuesSwitch.isOn)
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? LineChartModeTableViewCell {
             if let mode = cell.viewModel?.mode {
-                UserDefaults.setLineChartMode(mode)
+                viewModel?.setLineChartMode
+                    .onNext(mode)
                 configureModeCells()
             }
         }

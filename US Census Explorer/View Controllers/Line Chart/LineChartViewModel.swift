@@ -11,12 +11,15 @@ import RxCocoa
 import Charts
 // This struct is responsible for retrieving line chart data from the model (CensusDataSource) and
 // formatting it for easy consumption by the census line chart view.
-struct LineChartViewModel {
+class LineChartViewModel {
     
     let disposeBag = DisposeBag()
     
     private let censusDataSource: CensusDataSource!
+    private let _noDataText: Variable<String>
     private let _titleText: Variable<String>
+    private let _xAxisText: Variable<String>
+    private let _needsDisplay: Variable<Bool>
     
     // MARK: - Inputs
     let save: AnyObserver<Void>
@@ -25,7 +28,10 @@ struct LineChartViewModel {
     let didChooseSave: Observable<Void>
     
     //RXSwift Drivers
+    var noDataText: Driver<String> { return _noDataText.asDriver() }
     var titleText: Driver<String> { return _titleText.asDriver() }
+    var xAxisText: Driver<String> { return _xAxisText.asDriver() }
+    var needsDisplay: Driver<Bool> { return _needsDisplay.asDriver() }
 
     var chartSpecs: ChartSpecs
     var chartData: LineChartData?
@@ -37,11 +43,30 @@ struct LineChartViewModel {
         self.censusDataSource = dataSource
         self.chartSpecs = chartSpecs
         
+        self._noDataText = Variable<String>("You need to provide data for the chart.")
         self._titleText = Variable<String>(chartSpecs.factY.value?.factDescription ?? "")
+        self._xAxisText = Variable<String>("Years")
+        self._needsDisplay = Variable<Bool>(false)
         
         let _save = PublishSubject<Void>()
         self.save = _save.asObserver()
         self.didChooseSave = _save.asObservable()
+        
+        UserDefaults.standard.chartLineWidthObservable
+            .subscribe(onNext: { [weak self] event in
+                self?.refreshSettings()
+            })
+            .disposed(by: disposeBag)
+        UserDefaults.standard.chartShowValuesObservable
+            .subscribe(onNext: { [weak self] event in
+                self?.refreshSettings()
+            })
+            .disposed(by: disposeBag)
+        UserDefaults.standard.lineChartModeObservable
+            .subscribe(onNext: { [weak self] event in
+                self?.refreshSettings()
+            })
+            .disposed(by: disposeBag)
         
         guard let fact = chartSpecs.factY.value  else { return }
         guard fact.variableName != nil else { return }
@@ -70,6 +95,15 @@ struct LineChartViewModel {
             }
         }
         self.chartData = LineChartData(dataSets: dataSets)
+        
+    }
+    
+    public func refreshSettings() {
+        guard let dataSets = chartData?.dataSets as? [LineChartDataSet] else {return}
+        for dataSet in dataSets {
+            setDataSetProperties(dataSet)
+        }
+        self._needsDisplay.value = true
     }
     
     private func createDataSetFromCensusValues(_ values: [CensusValue], label: String) -> LineChartDataSet {
@@ -90,26 +124,11 @@ struct LineChartViewModel {
         dataSet.circleRadius = 2
     }
     
-    var xAxisText: String {
-        get {
-            return "Years"
-        }
-    }
-    
     var yAxisText: String {
         get {
             return chartSpecs.factY.value?.factName ?? "Unknown Y axis name"
         }
     }
-    
- 
-    /*
-    var titleText: String {
-        get {
-            return chartSpecs.factY?.factDescription ?? ""
-        }
-    }
- */
     
     var shouldDisplayLegend: Bool {
         get {

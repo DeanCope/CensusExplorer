@@ -45,7 +45,7 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
     
     private func bindViewModel() {
         
-        // Inputs
+        // Inputs from ViewModel to UI
         viewModel.alertMessage
             .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
             .disposed(by: disposeBag)
@@ -87,7 +87,7 @@ class LineSpecsViewController: UIViewController, StoryboardInitializable {
             .disposed(by: disposeBag)
         
         
-        // Outputs
+        // Outputs from UI to ViewModel
         reloadDataButton.rx.tap
             .bind(to: viewModel.requestReloadData)
             .disposed(by: disposeBag)

@@ -24,13 +24,84 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
     
     var viewModel: LineChartViewModel!
     
+    var settingsExpanded = false
+    var settingsViewController: SettingsViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpUI()
+        
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        viewModel.refreshSettings()
         chartView.configure(withViewModel: viewModel)
+        
+    }
+    private func setUpUI() {
+        view.addSubview(settingsViewController.view)
+        settingsViewController.view.layer.shadowOpacity = 0.8
+        addChildViewController(settingsViewController)
+        settingsViewController.view.frame = CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: view.frame.height / 2)
+        settingsViewController.didMove(toParentViewController: self)
+    }
+    
+    
+    private func bindViewModel() {
+        
+        // Inputs from ViewModel to UI
+        viewModel.noDataText
+            .drive(chartView.rx.noDataText)
+            .disposed(by: disposeBag)
+        
+        viewModel.titleText
+            .drive(chartView.titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.xAxisText
+            .drive(chartView.rx.xAxisLabel)
+            .disposed(by: disposeBag)
+        
+        viewModel.needsDisplay
+            .drive(chartView.rx.needsDisplay)
+            .disposed(by: disposeBag)
+        
+        settingsViewController.viewModel.didRequestClose
+            .subscribe(onNext: { [weak self] in
+                self?.toggleSettings(self as Any)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    @IBAction func toggleSettings(_ sender: Any) {
+        animateSettingsPanel(shouldExpand: !settingsExpanded)
+    }
+    
+    func animateSettingsPanel(shouldExpand: Bool) {
+        if shouldExpand {
+            settingsExpanded = true
+            animateSettingsPanelYPosition(
+                targetPosition: view.frame.height - view.frame.height / 2)
+        } else {
+            animateSettingsPanelYPosition(targetPosition: view.frame.height) { finished in
+                self.settingsExpanded = false
+                //self.settingsViewController.view.removeFromSuperview()
+                //self.leftViewCOntroller = nil
+            }
+        }
+    }
+    
+    func animateSettingsPanelYPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)? = nil) {
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut, animations: {
+                        self.settingsViewController.view.frame.origin.y = targetPosition
+        }, completion: completion)
     }
     
     private func errorMessage() {

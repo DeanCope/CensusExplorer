@@ -32,6 +32,10 @@ class LineChartCoordinator: Coordinator {
             self?.save()
         })
         .disposed(by: disposeBag)
+        
+        let settingsVC =  SettingsViewController.initFromStoryboard()
+        settingsVC.viewModel = SettingsViewModel()
+        viewController.settingsViewController = settingsVC
     }
     
     // We must override toPresentable() so it doesn't

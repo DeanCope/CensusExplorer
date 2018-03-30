@@ -17,8 +17,6 @@ class LineChartModeTableViewCell: UITableViewCell {
     
     var viewModel: LineChartModeCellViewModel?
     
-    // MARK: - Properties
-    
     // MARK: - Configuration
     
     func configure(withViewModel viewModel: LineChartModeCellViewModel) {

@@ -19,9 +19,15 @@ class CensusLineChartView: LineChartView {
     var popupLabel = InsetLabel()
     var viewModel: LineChartViewModel?
     
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var xAxisLabel: UILabel!
     @IBOutlet private weak var yAxisLabelFrame: UIView!
+    
+    public var xAxisLabelText = "" {
+        didSet {
+            xAxisLabel.text = xAxisLabelText
+        }
+    }
     
     func configure(withViewModel viewModel: LineChartViewModel?) {
         guard let viewModel = viewModel else { return }
@@ -32,14 +38,10 @@ class CensusLineChartView: LineChartView {
         if let chartData = viewModel.chartData {
             self.data = chartData
         }
-        noDataText = "You need to provide data for the chart."
-        //titleLabel.text = viewModel.titleText
-        viewModel.titleText
-            .drive(titleLabel.rx.text)
-            .disposed(by: disposeBag)
         
         chartDescription?.enabled = true
         chartDescription?.text = "Source: US Census Bureau"
+        
         if viewModel.shouldDisplayLegend {
             legend.enabled = true
             legend.drawInside = true
@@ -50,8 +52,8 @@ class CensusLineChartView: LineChartView {
         xAxis.labelPosition = .bottom
         xAxis.granularity = 1
         backgroundColor = viewModel.chartBackgroundColor
-        animate(xAxisDuration: 1.0, yAxisDuration: 0.0)
-        addXAxisLabel(viewModel.xAxisText)
+        animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
+        
         addYAxisLabel(viewModel.yAxisText)
     }
     
@@ -71,9 +73,6 @@ class CensusLineChartView: LineChartView {
         yAxisLabel.centerYAnchor.constraint(equalTo: yAxisLabelFrame.centerYAnchor).isActive = true
     }
     
-    func addXAxisLabel(_ text: String) {
-        xAxisLabel.text = text
-    }
 }
 
 // MARK: - Chart View Delegate

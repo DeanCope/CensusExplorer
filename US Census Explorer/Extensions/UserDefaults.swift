@@ -8,17 +8,26 @@
 
 import Foundation
 import Charts
+import RxSwift
 
 // MARK: UserDefaults
 
 extension UserDefaults {
     
     private struct Keys {
-       // static let HasLaunchedBefore = "HasLaunchedBefore"
         static let ChartLineWidth = "ChartLineWidth"
         static let ChartShowValues = "ChartShowValues"
-        //static let ChartCubicSmoothing = "ChartCubicSmoothing"
         static let LineChartMode = "LineChartMode"  // based on LineChartDataSet.Mode
+    }
+    
+    var chartLineWidthObservable: Observable<Float?> {
+        return self.rx.observe(Float.self, Keys.ChartLineWidth)
+    }
+    var chartShowValuesObservable: Observable<Bool?> {
+        return self.rx.observe(Bool.self, Keys.ChartShowValues)
+    }
+    var lineChartModeObservable: Observable<LineChartDataSet.Mode?> {
+        return self.rx.observe(LineChartDataSet.Mode.self, Keys.LineChartMode)
     }
     
     static func removeCensusObjects() {
