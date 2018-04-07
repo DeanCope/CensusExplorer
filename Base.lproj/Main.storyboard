@@ -558,6 +558,40 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Other Settings" id="W5G-mh-XHV" userLabel="Other Settings">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hCD-LS-a3k">
+                                        <rect key="frame" x="0.0" y="363" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCD-LS-a3k" id="rpc-It-Oyy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="vQh-YW-gsR">
+                                                    <rect key="frame" x="16" y="11" width="343" height="32.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Instructions (One Time)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-wD-ndz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="291" height="32.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MRQ-o7-irL">
+                                                            <rect key="frame" x="294" y="0.0" width="51" height="32.5"/>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vQh-YW-gsR" firstAttribute="top" secondItem="rpc-It-Oyy" secondAttribute="topMargin" id="0P5-Z0-8Uf"/>
+                                                <constraint firstItem="vQh-YW-gsR" firstAttribute="bottomMargin" secondItem="rpc-It-Oyy" secondAttribute="bottom" id="dj8-vT-TYa"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vQh-YW-gsR" secondAttribute="trailing" id="n0Y-ut-d5y"/>
+                                                <constraint firstItem="vQh-YW-gsR" firstAttribute="leading" secondItem="rpc-It-Oyy" secondAttribute="leadingMargin" id="vDM-PL-IGC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="p3p-Xu-I2h" id="NuM-hW-EG4"/>
@@ -570,6 +604,7 @@
                         <outlet property="cubicModeCell" destination="9yW-2p-Vgw" id="2Cq-1I-Zc0"/>
                         <outlet property="horizontalModeCell" destination="Gk6-zA-06U" id="QBC-LT-PeM"/>
                         <outlet property="linearModeCell" destination="F3h-lQ-ry1" id="bCj-eJ-ULU"/>
+                        <outlet property="showInstructionsSwitch" destination="MRQ-o7-irL" id="kJP-hz-04X"/>
                         <outlet property="showValuesSwitch" destination="GIz-Pq-thr" id="I7w-MR-JBB"/>
                         <outlet property="steppedModeCell" destination="lfT-vC-QXi" id="jSr-O6-X8j"/>
                     </connections>
@@ -813,9 +848,6 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                                     <state key="normal" title="Continue"/>
-                                                    <connections>
-                                                        <action selector="continueTouched:" destination="4Iw-Sw-aKu" eventType="touchUpInside" id="Ydn-rR-gtq"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>

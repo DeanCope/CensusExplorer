@@ -16,29 +16,28 @@ struct SettingsViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: - Inputs (From the UI)
-    let setChartLineWidth: AnyObserver<Float>
-    let setChartShowValues: AnyObserver<Bool>
-    let setLineChartMode: AnyObserver<LineChartDataSet.Mode>
-    let requestClose: AnyObserver<Void>
+    let chartLineWidthObserver: AnyObserver<Float>
+    let chartShowValuesObserver: AnyObserver<Bool>
+    let lineChartModeObserver: AnyObserver<LineChartDataSet.Mode>
+    let showInstructionsObserver: AnyObserver<Bool>
+    let requestCloseObserver: AnyObserver<Void>
     
     // MARK: - Outputs (To UI and Coordinator)
-    let alertMessage: Observable<(String,String)>
-    let didRequestClose: Observable<Void>
+    let alertMessageObservable: Observable<(String,String)>
+    let didRequestCloseObservable: Observable<Void>
     
     // RXSwift drivers - Output to UI
     var chartLineWidthStringDriver: Driver<String> {
         return UserDefaults.standard.chartLineWidthObservable
             .map { token in
-                return self.numberFormatter.string(for: token ?? "")!
+                guard let token = token else {return ""}
+                return self.numberFormatter.string(for: token)!
             }
             .asDriver(onErrorJustReturn: "")
     }
     
     // MARK: - RxSwift Private Variables
-    private let _alertMessage = ReplaySubject<(String,String)>.create(bufferSize: 1)
-    
-    //private let _chartLineWidthString = Variable<String>("")
-
+    private let _alertMessageSubject = ReplaySubject<(String,String)>.create(bufferSize: 1)
     
     // MARK: - Properties
     
@@ -62,23 +61,30 @@ struct SettingsViewModel {
         return UserDefaults.lineChartMode()
     }
     
+    var showInstructions: Bool {
+        return UserDefaults.showLineChartInstructions()
+    }
+    
     init() {
-        self.alertMessage = _alertMessage.asObservable()
+        self.alertMessageObservable = _alertMessageSubject.asObservable()
         
-        let _setChartLineWidth = PublishSubject<Float>()
-        self.setChartLineWidth = _setChartLineWidth.asObserver()
+        let _chartLineWidthSubject = PublishSubject<Float>()
+        self.chartLineWidthObserver = _chartLineWidthSubject.asObserver()
         
-        let _setChartShowValues = PublishSubject<Bool>()
-        self.setChartShowValues = _setChartShowValues.asObserver()
+        let _chartShowValuesSubject = PublishSubject<Bool>()
+        self.chartShowValuesObserver = _chartShowValuesSubject.asObserver()
         
-        let _setLineChartMode = PublishSubject<LineChartDataSet.Mode>()
-        self.setLineChartMode = _setLineChartMode.asObserver()
+        let _lineChartModeSubject = PublishSubject<LineChartDataSet.Mode>()
+        self.lineChartModeObserver = _lineChartModeSubject.asObserver()
         
-        let _requestClose = PublishSubject<Void>()
-        self.requestClose = _requestClose.asObserver()
-        self.didRequestClose = _requestClose.asObservable()
+        let _showInstructionsSubject = PublishSubject<Bool>()
+        self.showInstructionsObserver = _showInstructionsSubject.asObserver()
         
-        _setChartLineWidth
+        let _requestCloseSubject = PublishSubject<Void>()
+        self.requestCloseObserver = _requestCloseSubject.asObserver()
+        self.didRequestCloseObservable = _requestCloseSubject.asObservable()
+        
+        _chartLineWidthSubject
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { width in
                 //print("Changing Chart Line Width to: \(width)")
@@ -86,17 +92,22 @@ struct SettingsViewModel {
             })
         .disposed(by: disposeBag)
         
-        _setChartShowValues
+        _chartShowValuesSubject
             .subscribe(onNext: { show in
-                //print("Changing Chart Show Values to: \(show)")
                 UserDefaults.setChartShowValues(show)
             })
             .disposed(by: disposeBag)
         
-        _setLineChartMode
+        _lineChartModeSubject
             .subscribe(onNext: { mode in
-                //print("Changing Line Chart Mode to: \(mode.name)")
                 UserDefaults.setLineChartMode(mode)
+            })
+            .disposed(by: disposeBag)
+        
+        _showInstructionsSubject
+            .subscribe(onNext: { show in
+                UserDefaults.setShowLineChartInstruction(show)
+                UserDefaults.setShowGeoInstructions(show)
             })
             .disposed(by: disposeBag)
     }

@@ -21,8 +21,6 @@ protocol ChartSpecsType: class {
 
 class ChartSpecs: ChartSpecsType {
     
-    private let disposeBag = DisposeBag()
-    
     var chartType: ChartType = .line
     var factX = Variable<CensusFact?>(nil)
     var factY = Variable<CensusFact?>(nil)

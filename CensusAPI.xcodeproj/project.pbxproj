@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FA3A084059EA4C9F66A4B19 /* Pods_CensusAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5137A716241331EA72D99917 /* Pods_CensusAPITests.framework */; };
 		9465BC2090C4FE4D887F212F /* Pods_CensusAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */; };
 		DA036F1C1F76F3D800967436 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA036F1B1F76F3D800967436 /* SettingsViewController.swift */; };
 		DA0A64701EEEFA9900216167 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA0A646E1EEEFA9900216167 /* Model.xcdatamodeld */; };
@@ -22,6 +23,9 @@
 		DA205A16200BA4C2000800A3 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */; };
 		DA205A18200BA4E4000800A3 /* HelpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */; };
 		DA205A1E200CF132000800A3 /* FactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA205A1D200CF132000800A3 /* FactsCoordinator.swift */; };
+		DA25FBA32072A9D0008AD7BC /* CustomCoachMarkArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA25FBA22072A9D0008AD7BC /* CustomCoachMarkArrowView.swift */; };
+		DA25FBA52072A9EB008AD7BC /* CustomCoachMarkBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA25FBA42072A9EA008AD7BC /* CustomCoachMarkBodyView.swift */; };
+		DA25FBA72072ABB8008AD7BC /* TransparentCoachMarkArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA25FBA62072ABB7008AD7BC /* TransparentCoachMarkArrowView.swift */; };
 		DA2AE8FB200D339E000A98AD /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AE8FA200D339E000A98AD /* FactsViewModel.swift */; };
 		DA2F3F4A1FE6ABE500395B12 /* LineSpecsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */; };
 		DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */; };
@@ -53,9 +57,11 @@
 		DA68D3141FFFEDB500C829E6 /* GeosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA68D3131FFFEDB500C829E6 /* GeosCoordinator.swift */; };
 		DA6C3E201FA22391009B9A9B /* PHPhotoLibrary+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */; };
 		DA6C3E221FA2299A009B9A9B /* UIAlertViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */; };
+		DA6CBCA4206FEF2700E01338 /* ChartViewBase+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CBCA3206FEF2700E01338 /* ChartViewBase+Rx.swift */; };
+		DA6CBCA6206FF70600E01338 /* CensusScatterChartView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CBCA5206FF70600E01338 /* CensusScatterChartView+Rx.swift */; };
 		DA6D68E11F9018ED00CC7A6C /* LineChartModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68E01F9018ED00CC7A6C /* LineChartModeTableViewCell.swift */; };
 		DA6D68E31F901E3F00CC7A6C /* LineChartModeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68E21F901E3F00CC7A6C /* LineChartModeCellViewModel.swift */; };
-		DA6D68F91F916BC000CC7A6C /* SettingsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */; };
+		DA6D68F91F916BC000CC7A6C /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D68F81F916BC000CC7A6C /* SettingsViewModelTests.swift */; };
 		DA7B0B791F9D40C1002CC73A /* ScatterSpecsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B0B781F9D40C1002CC73A /* ScatterSpecsViewModel.swift */; };
 		DA7D623A1F97837D0050B4F3 /* ScatterChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */; };
 		DA7D623C1F97B17A0050B4F3 /* CensusScatterChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */; };
@@ -88,7 +94,6 @@
 		DAD080C81EF4575500990F97 /* CensusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD080C71EF4575500990F97 /* CensusDataSource.swift */; };
 		DADB0401200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADB0400200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift */; };
 		DAE008722066B7B3004714F3 /* CensusSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE008712066B7B3004714F3 /* CensusSecrets.swift */; };
-		DAE94D711F7194B200E66FF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAE94D701F7194B200E66FF5 /* README.md */; };
 		DAFEA04D1F895FCC00F05434 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFEA04C1F895FCC00F05434 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,7 +115,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260D5C022BD4E5164900DD4D /* Pods-CensusAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPITests/Pods-CensusAPITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5137A716241331EA72D99917 /* Pods_CensusAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CensusAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CensusAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D4A450F24A9A4C4103A84BD /* Pods-CensusAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CensusAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CensusAPITests/Pods-CensusAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		DA036F1B1F76F3D800967436 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DA0A646F1EEEFA9900216167 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DA0F99B32006820900FD9891 /* LineChartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCoordinator.swift; sourceTree = "<group>"; };
@@ -126,6 +134,9 @@
 		DA205A15200BA4C2000800A3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		DA205A17200BA4E4000800A3 /* HelpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCoordinator.swift; sourceTree = "<group>"; };
 		DA205A1D200CF132000800A3 /* FactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCoordinator.swift; sourceTree = "<group>"; };
+		DA25FBA22072A9D0008AD7BC /* CustomCoachMarkArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCoachMarkArrowView.swift; sourceTree = "<group>"; };
+		DA25FBA42072A9EA008AD7BC /* CustomCoachMarkBodyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCoachMarkBodyView.swift; sourceTree = "<group>"; };
+		DA25FBA62072ABB7008AD7BC /* TransparentCoachMarkArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentCoachMarkArrowView.swift; sourceTree = "<group>"; };
 		DA2AE8FA200D339E000A98AD /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
 		DA2F3F491FE6ABE500395B12 /* LineSpecsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSpecsViewModel.swift; sourceTree = "<group>"; };
 		DA2F3F4D1FE85CC400395B12 /* GeosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosViewModel.swift; sourceTree = "<group>"; };
@@ -161,9 +172,11 @@
 		DA68D3131FFFEDB500C829E6 /* GeosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeosCoordinator.swift; sourceTree = "<group>"; };
 		DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary+rx.swift"; sourceTree = "<group>"; };
 		DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Rx.swift"; sourceTree = "<group>"; };
+		DA6CBCA3206FEF2700E01338 /* ChartViewBase+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChartViewBase+Rx.swift"; sourceTree = "<group>"; };
+		DA6CBCA5206FF70600E01338 /* CensusScatterChartView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CensusScatterChartView+Rx.swift"; sourceTree = "<group>"; };
 		DA6D68E01F9018ED00CC7A6C /* LineChartModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartModeTableViewCell.swift; sourceTree = "<group>"; };
 		DA6D68E21F901E3F00CC7A6C /* LineChartModeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartModeCellViewModel.swift; sourceTree = "<group>"; };
-		DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModelTests.swift; sourceTree = "<group>"; };
+		DA6D68F81F916BC000CC7A6C /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		DA7B0B781F9D40C1002CC73A /* ScatterSpecsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterSpecsViewModel.swift; sourceTree = "<group>"; };
 		DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScatterChartViewModel.swift; sourceTree = "<group>"; };
 		DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CensusScatterChartView.swift; sourceTree = "<group>"; };
@@ -219,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA3A084059EA4C9F66A4B19 /* Pods_CensusAPITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +251,8 @@
 			children = (
 				FE202448942EAAAE3A3F4878 /* Pods-CensusAPI.debug.xcconfig */,
 				EA16F6DEF3F96E5D955B096B /* Pods-CensusAPI.release.xcconfig */,
+				260D5C022BD4E5164900DD4D /* Pods-CensusAPITests.debug.xcconfig */,
+				9D4A450F24A9A4C4103A84BD /* Pods-CensusAPITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -245,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				95BBEE11E6781980D71B048F /* Pods_CensusAPI.framework */,
+				5137A716241331EA72D99917 /* Pods_CensusAPITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -280,8 +297,19 @@
 				DA51CF1F1F7AF925006DB3EA /* ScatterChartViewController.swift */,
 				DA7D62391F97837D0050B4F3 /* ScatterChartViewModel.swift */,
 				DA7D623B1F97B17A0050B4F3 /* CensusScatterChartView.swift */,
+				DA6CBCA5206FF70600E01338 /* CensusScatterChartView+Rx.swift */,
 			);
 			path = "Scatter Chart";
+			sourceTree = "<group>";
+		};
+		DA25FBA12072A9B9008AD7BC /* CoachMarks */ = {
+			isa = PBXGroup;
+			children = (
+				DA25FBA22072A9D0008AD7BC /* CustomCoachMarkArrowView.swift */,
+				DA25FBA42072A9EA008AD7BC /* CustomCoachMarkBodyView.swift */,
+				DA25FBA62072ABB7008AD7BC /* TransparentCoachMarkArrowView.swift */,
+			);
+			path = CoachMarks;
 			sourceTree = "<group>";
 		};
 		DA2F3F611FF6D07000395B12 /* Coordinators */ = {
@@ -381,6 +409,7 @@
 		DA7E48941F8A408400A286EB /* US Census Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				DA25FBA12072A9B9008AD7BC /* CoachMarks */,
 				DACFED1E2023866100661B3F /* Views */,
 				DA0F99B52007D51A00FD9891 /* CoordinatorKit */,
 				DA2F3F611FF6D07000395B12 /* Coordinators */,
@@ -467,7 +496,7 @@
 			children = (
 				DAA5B2D41F77F28800517ABD /* CensusAPITests.swift */,
 				DAA5B2D61F77F28800517ABD /* Info.plist */,
-				DA6D68F81F916BC000CC7A6C /* SettingsViewViewModelTests.swift */,
+				DA6D68F81F916BC000CC7A6C /* SettingsViewModelTests.swift */,
 			);
 			path = CensusAPITests;
 			sourceTree = "<group>";
@@ -535,6 +564,7 @@
 				DA7E48921F8A39D500A286EB /* LineChartDataSet.swift */,
 				DA6C3E1F1FA22391009B9A9B /* PHPhotoLibrary+rx.swift */,
 				DA6C3E211FA2299A009B9A9B /* UIAlertViewController+Rx.swift */,
+				DA6CBCA3206FEF2700E01338 /* ChartViewBase+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -566,9 +596,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAA5B2D91F77F28800517ABD /* Build configuration list for PBXNativeTarget "CensusAPITests" */;
 			buildPhases = (
+				52997D70F20362A62F6384E1 /* [CP] Check Pods Manifest.lock */,
 				DAA5B2CE1F77F28800517ABD /* Sources */,
 				DAA5B2CF1F77F28800517ABD /* Frameworks */,
 				DAA5B2D01F77F28800517ABD /* Resources */,
+				7481A75BF7CACE14756742BE /* [CP] Embed Pods Frameworks */,
+				027C862A41240D5DA8B9391E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -677,6 +710,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		027C862A41240D5DA8B9391E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPITests/Pods-CensusAPITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		326382C63AD8DAB9CD9AA612 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -705,6 +753,7 @@
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework",
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -714,6 +763,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instructions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -721,6 +771,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPI/Pods-CensusAPI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52997D70F20362A62F6384E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CensusAPITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7481A75BF7CACE14756742BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPITests/Pods-CensusAPITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CensusAPITests/Pods-CensusAPITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C281084C5BA5ECE0DFEAF2BF /* [CP] Copy Pods Resources */ = {
@@ -768,7 +858,9 @@
 				DAD080B71EF18B0600990F97 /* CensusValue+CoreDataProperties.swift in Sources */,
 				DA51CF2A1F7EC8A5006DB3EA /* FactsViewController.swift in Sources */,
 				DA2F3F4A1FE6ABE500395B12 /* LineSpecsViewModel.swift in Sources */,
+				DA6CBCA6206FF70600E01338 /* CensusScatterChartView+Rx.swift in Sources */,
 				DA12832E1EE76DE900FB5090 /* GeosViewController.swift in Sources */,
+				DA25FBA52072A9EB008AD7BC /* CustomCoachMarkBodyView.swift in Sources */,
 				DA0F99C42007DA1300FD9891 /* Store.swift in Sources */,
 				DA4F34471E1C1AED002568C6 /* AppDelegate.swift in Sources */,
 				DA0F99B42006820900FD9891 /* LineChartCoordinator.swift in Sources */,
@@ -785,8 +877,8 @@
 				DADB0401200ABAB500C1DDDA /* ScatterSpecsCoordinator.swift in Sources */,
 				DA3693851F6EFF8D0026F8E5 /* InsetLabel.swift in Sources */,
 				DA5C85AC1F8A5744009290FB /* SettingsViewModel.swift in Sources */,
-				DAE94D711F7194B200E66FF5 /* README.md in Sources */,
 				DA68D3141FFFEDB500C829E6 /* GeosCoordinator.swift in Sources */,
+				DA6CBCA4206FEF2700E01338 /* ChartViewBase+Rx.swift in Sources */,
 				DA6C3E221FA2299A009B9A9B /* UIAlertViewController+Rx.swift in Sources */,
 				DAD080C11EF1917500990F97 /* CoreDataStack.swift in Sources */,
 				DAD080C51EF19C8700990F97 /* UIVCExtension.swift in Sources */,
@@ -795,6 +887,7 @@
 				DAA597DB1F94DCFC008F84B8 /* LineChartViewModel.swift in Sources */,
 				DA51CF281F7E7DCA006DB3EA /* ChartSpecs.swift in Sources */,
 				DA51CF2F1F82F377006DB3EA /* FactTableViewCell.swift in Sources */,
+				DA25FBA72072ABB8008AD7BC /* TransparentCoachMarkArrowView.swift in Sources */,
 				DA40ED0F1FF94DFE00F5183A /* LineSpecsCoordinator.swift in Sources */,
 				DA33270D1E5371CF004725CB /* Constants.swift in Sources */,
 				DA3693821F6DEF9C0026F8E5 /* GCDBlackBox.swift in Sources */,
@@ -809,6 +902,7 @@
 				DA57DB241EFDACDD00682886 /* LineChartViewController.swift in Sources */,
 				DA0F99BD2007D51A00FD9891 /* WindowRouter.swift in Sources */,
 				DA2F3F4E1FE85CC400395B12 /* GeosViewModel.swift in Sources */,
+				DA25FBA32072A9D0008AD7BC /* CustomCoachMarkArrowView.swift in Sources */,
 				DA2F3F651FF6D0B600395B12 /* StoryboardInitializable.swift in Sources */,
 				DAA597DE1F962E66008F84B8 /* CensusLineChartView.swift in Sources */,
 				DA2F3F5A1FF44FB700395B12 /* BindableType.swift in Sources */,
@@ -827,7 +921,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA6D68F91F916BC000CC7A6C /* SettingsViewViewModelTests.swift in Sources */,
+				DA6D68F91F916BC000CC7A6C /* SettingsViewModelTests.swift in Sources */,
 				DAA5B2D51F77F28800517ABD /* CensusAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1012,6 +1106,7 @@
 		};
 		DAA5B2DA1F77F28800517ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 260D5C022BD4E5164900DD4D /* Pods-CensusAPITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1034,6 +1129,7 @@
 		};
 		DAA5B2DB1F77F28800517ABD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D4A450F24A9A4C4103A84BD /* Pods-CensusAPITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

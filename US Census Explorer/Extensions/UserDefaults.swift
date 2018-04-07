@@ -18,6 +18,8 @@ extension UserDefaults {
         static let ChartLineWidth = "ChartLineWidth"
         static let ChartShowValues = "ChartShowValues"
         static let LineChartMode = "LineChartMode"  // based on LineChartDataSet.Mode
+        static let ShowLineChartInstructions = "ShowLineChartInstructions"
+        static let ShowGeoInstructions = "ShowGeoInstructions"
     }
     
     var chartLineWidthObservable: Observable<Float?> {
@@ -34,6 +36,8 @@ extension UserDefaults {
         UserDefaults.standard.removeObject(forKey: Keys.ChartLineWidth)
         UserDefaults.standard.removeObject(forKey: Keys.ChartShowValues)
         UserDefaults.standard.removeObject(forKey: Keys.LineChartMode)
+        UserDefaults.standard.removeObject(forKey: Keys.ShowLineChartInstructions)
+        UserDefaults.standard.removeObject(forKey: Keys.ShowGeoInstructions)
     }
     
     // Check if UserDefaults.standard already contains the key.
@@ -76,6 +80,30 @@ extension UserDefaults {
     
     static func setLineChartMode(_ mode: LineChartDataSet.Mode) {
         UserDefaults.standard.set(mode.rawValue, forKey: Keys.LineChartMode)
+    }
+    
+    static func showLineChartInstructions() -> Bool {
+        if UserDefaults.containsKey(Keys.ShowLineChartInstructions) {
+            return UserDefaults.standard.bool(forKey: Keys.ShowLineChartInstructions)
+        } else {
+            return true    // Default to show instructions
+        }
+    }
+    
+    static func setShowLineChartInstruction(_ newValue: Bool) {
+        UserDefaults.standard.set(newValue, forKey: Keys.ShowLineChartInstructions)
+    }
+    
+    static func showGeoInstructions() -> Bool {
+        if UserDefaults.containsKey(Keys.ShowGeoInstructions) {
+            return UserDefaults.standard.bool(forKey: Keys.ShowGeoInstructions)
+        } else {
+            return true    // Default to show instructions
+        }
+    }
+    
+    static func setShowGeoInstructions(_ newValue: Bool) {
+        UserDefaults.standard.set(newValue, forKey: Keys.ShowGeoInstructions)
     }
     
     static func chartBackgroundColor() -> UIColor {

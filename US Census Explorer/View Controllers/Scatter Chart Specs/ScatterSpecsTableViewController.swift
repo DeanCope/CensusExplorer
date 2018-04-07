@@ -32,13 +32,7 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
     }
     
     private func setupUI() {
-     
-        /*
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: HeaderTableViewCell.Identifier) as! HeaderTableViewCell
-        headerCell.sectionName = viewModel.headerCellSectionName
-        tableView.tableHeaderView = headerCell
- 
- */
+        continueButton.isEnabled = false
     }
     
     private func bindViewModel() {
@@ -60,6 +54,12 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
             .drive(yearLabel.rx.text)
             .disposed(by: disposeBag)
         
+        viewModel.everythingValid
+            //.debug("EverytinbgValid", trimOutput: false)
+            .asDriver(onErrorJustReturn: false)
+            .drive(continueButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         // Outputs
         tableView.rx.itemSelected
             .map { [unowned self] indexPath in
@@ -72,7 +72,8 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
                 case "Year"?:
                     return ScatterSpecsCoordinator.ScatterSpecItem.year
                 default:
-                    return ScatterSpecsCoordinator.ScatterSpecItem.year  //???
+                    return ScatterSpecsCoordinator.ScatterSpecItem.none
+                    //return ScatterSpecsCoordinator.ScatterSpecItem.year
                 }
             }
             .bind(to: viewModel.selectItem)
@@ -175,10 +176,6 @@ class ScatterSpecsTableViewController: UITableViewController, StoryboardInitiali
  */
     
     @IBAction func unwindToScatterSpecs(segue:UIStoryboardSegue) {
-        
-    }
-
-    @IBAction func continueTouched(_ sender: Any) {
         
     }
 }

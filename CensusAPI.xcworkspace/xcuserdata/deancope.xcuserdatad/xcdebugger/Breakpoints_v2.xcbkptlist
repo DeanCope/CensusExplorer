@@ -840,22 +840,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/ScatterSpecsCoordinator.swift"
-            timestampString = "538673684.3286279"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "didChooseContinue()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CensusAPI/Data Sources/CensusDataSource.swift"
             timestampString = "543596345.402741"
             startingColumnNumber = "9223372036854775807"
@@ -936,28 +920,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/ScatterSpecsTableViewController.swift"
-            timestampString = "543596345.4034359"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "bindViewModel()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Geographies/GeosViewController.swift"
-            timestampString = "543871317.5796601"
+            timestampString = "544663757.300518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "bindViewModel()"
             landmarkType = "7">
          </BreakpointContent>
@@ -985,7 +953,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Line Chart/LineChartViewModel.swift"
-            timestampString = "544134979.721176"
+            timestampString = "544208691.764745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
@@ -1001,11 +969,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Settings/SettingsViewModel.swift"
-            timestampString = "544134979.7216049"
+            timestampString = "544812820.653176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1017,12 +985,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "US Census Explorer/View Controllers/Line Chart/LineChartViewModel.swift"
-            timestampString = "544134979.722025"
+            timestampString = "544208691.765311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "init(dataSource:chartSpecs:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "US Census Explorer/View Controllers/Scatter Chart Specs/ScatterSpecsTableViewController.swift"
+            timestampString = "544663757.301316"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "bindViewModel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

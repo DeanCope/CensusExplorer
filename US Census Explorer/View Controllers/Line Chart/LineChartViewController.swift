@@ -36,10 +36,9 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.refreshSettings()
         chartView.configure(withViewModel: viewModel)
-        
     }
+    
     private func setUpUI() {
         view.addSubview(settingsViewController.view)
         settingsViewController.view.layer.shadowOpacity = 0.8
@@ -47,7 +46,6 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
         settingsViewController.view.frame = CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: view.frame.height / 2)
         settingsViewController.didMove(toParentViewController: self)
     }
-    
     
     private func bindViewModel() {
         
@@ -61,14 +59,14 @@ class LineChartViewController: UIViewController, StoryboardInitializable {
             .disposed(by: disposeBag)
         
         viewModel.xAxisText
-            .drive(chartView.rx.xAxisLabel)
+            .drive(chartView.rx.xAxisText)
             .disposed(by: disposeBag)
         
         viewModel.needsDisplay
             .drive(chartView.rx.needsDisplay)
             .disposed(by: disposeBag)
         
-        settingsViewController.viewModel.didRequestClose
+        settingsViewController.viewModel.didRequestCloseObservable
             .subscribe(onNext: { [weak self] in
                 self?.toggleSettings(self as Any)
             })

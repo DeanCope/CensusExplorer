@@ -43,7 +43,7 @@ class SettingsViewController: UIViewController, StoryboardInitializable {
     
     private func bindViewModel() {
         closeButton.rx.tap
-            .bind(to: viewModel.requestClose)
+            .bind(to: viewModel.requestCloseObserver)
             .disposed(by: disposeBag)
     }
     

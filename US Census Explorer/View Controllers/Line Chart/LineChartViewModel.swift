@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 import Charts
-// This struct is responsible for retrieving line chart data from the model (CensusDataSource) and
+// This class is responsible for retrieving line chart data from the model (CensusDataSource) and
 // formatting it for easy consumption by the census line chart view.
 class LineChartViewModel {
     

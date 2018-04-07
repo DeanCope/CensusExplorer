@@ -25,6 +25,7 @@ class ScatterSpecsViewModel {
     let didSelectItem: Observable<ScatterSpecsCoordinator.ScatterSpecItem>
     let didRequestFactDetails: Observable<CensusFact?>
     let didChooseContinue: Observable<Void>
+    let everythingValid: Observable<Bool>
     
     // RXSwift drivers - Output to UI
     var factXString: Driver<String> {
@@ -51,7 +52,6 @@ class ScatterSpecsViewModel {
     private let _alertMessage = ReplaySubject<(String,String)>.create(bufferSize: 1)
     
     public func factAtIndexPath(_ indexPath: IndexPath) -> CensusFact? {
-        
         if indexPath.section == 1 {
             // X Axis
             return store.getChartSpecs(chartType: .scatter).factX.value
@@ -59,8 +59,6 @@ class ScatterSpecsViewModel {
             // Y Axis
             return store.getChartSpecs(chartType: .scatter).factY.value
         }
-        
-        //return factsDataSource.getFact(at: indexPath)
     }
     
     init(store: StoreType) {
@@ -80,6 +78,19 @@ class ScatterSpecsViewModel {
         self.requestFactDetails = _requestFactDetails.asObserver()
         self.didRequestFactDetails = _requestFactDetails.asObservable()
         
+        let factXChosen = store.getChartSpecs(chartType: .scatter).factX
+            .asObservable()
+            .map { $0 != nil }
+            .share(replay: 1)
+        
+        let factYChosen = store.getChartSpecs(chartType: .scatter).factY
+            .asObservable()
+            .map { $0 != nil }
+            .share(replay: 1)
+        
+       everythingValid = Observable.combineLatest(factXChosen, factYChosen) { $0 && $1 }
+            .share(replay: 1)
+        
         didRequestFactDetails
             .subscribe(onNext: { [weak self] fact in
                 guard let fact = fact else {
@@ -88,8 +99,6 @@ class ScatterSpecsViewModel {
                 self?._alertMessage.onNext((fact.factName ?? "Unknown", fact.factDescription ?? "Unknown"))
             })
             .disposed(by: disposeBag)
-        
-        //chartSpecs = ChartSpecs(chartType: .scatter, factX: nil, factY: nil, year: UserDefaults.defaultYear)
     }
     
 }

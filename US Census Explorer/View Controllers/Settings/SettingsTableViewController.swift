@@ -23,6 +23,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet private weak var cubicModeCell: LineChartModeTableViewCell!
     @IBOutlet private weak var steppedModeCell: LineChartModeTableViewCell!
     
+    @IBOutlet weak var showInstructionsSwitch: UISwitch!
     var viewModel: SettingsViewModel? {
         didSet {
             updateView()
@@ -38,7 +39,7 @@ class SettingsTableViewController: UITableViewController {
         
         guard let viewModel = viewModel else {return}
         // Inputs from ViewModel to UI
-        viewModel.alertMessage
+        viewModel.alertMessageObservable
             .subscribe(onNext: { [weak self] title, message in self?.alert(title: title, message: message) })
             .disposed(by: disposeBag)
         
@@ -46,13 +47,18 @@ class SettingsTableViewController: UITableViewController {
             .drive(chartLineWidthLabel.rx.text)
             .disposed(by: disposeBag)
         
+        
         // Outputs from UI to ViewModel
         chartLineWidthSlider.rx.value
-            .bind(to: viewModel.setChartLineWidth)
+            .bind(to: viewModel.chartLineWidthObserver)
             .disposed(by: disposeBag)
         
         showValuesSwitch.rx.isOn
-            .bind(to: viewModel.setChartShowValues)
+            .bind(to: viewModel.chartShowValuesObserver)
+            .disposed(by: disposeBag)
+        
+        showInstructionsSwitch.rx.isOn
+            .bind(to: viewModel.showInstructionsObserver)
             .disposed(by: disposeBag)
     }
     
@@ -62,6 +68,7 @@ class SettingsTableViewController: UITableViewController {
         // Set the values of the controls equal to the values from the ViewModel
         chartLineWidthSlider.value = viewModel.chartLineWidthFloat
         showValuesSwitch.setOn(viewModel.chartShowValues, animated: false)
+        showInstructionsSwitch.setOn(viewModel.showInstructions, animated: false)
         configureModeCells()
     }
  
@@ -77,7 +84,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? LineChartModeTableViewCell {
             if let mode = cell.viewModel?.mode {
-                viewModel?.setLineChartMode
+                viewModel?.lineChartModeObserver
                     .onNext(mode)
                 configureModeCells()
             }

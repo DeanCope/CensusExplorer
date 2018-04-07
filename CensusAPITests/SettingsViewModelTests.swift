@@ -7,13 +7,22 @@
 //
 
 import XCTest
+import RxSwift
+import RxCocoa
+import RxTest
+import RxBlocking
 @testable import CensusAPI
 
-class SettingsViewViewModelTests: XCTestCase {
+class SettingsViewModelTests: XCTestCase {
+    
+    var viewModel: SettingsViewModel!
+    var scheduler: ConcurrentDispatchQueueScheduler!
     
     override func setUp() {
         super.setUp()
         
+        viewModel = SettingsViewModel()
+        scheduler = ConcurrentDispatchQueueScheduler(qos: .default)
     }
     
     override func tearDown() {
@@ -27,17 +36,18 @@ class SettingsViewViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.chartLineWidthFloat, 3.14)
     }
     
+
     func testLineWidthString() {
-        let viewModel = SettingsViewModel()
-        UserDefaults.setChartLineWidth(3.13)
-        XCTAssertEqual(viewModel.chartLineWidthString, "3.1")
+        
+        let lineWidthStringObservable = viewModel.chartLineWidthStringDriver
+        .asObservable()
+        .subscribeOn(scheduler)
+        
+        viewModel.chartLineWidthObserver.onNext(3.13)
+
+        XCTAssertEqual(try! lineWidthStringObservable.toBlocking().first()!, "3.1")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+
     
 }

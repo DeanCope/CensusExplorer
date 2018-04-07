@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BB65EA3296CBDAAA3DD5F053AE6F8EEC"
+               BlueprintIdentifier = "992622F1997DA741625FE607651F98A9"
                BuildableName = "Pods_CensusAPI.framework"
                BlueprintName = "Pods-CensusAPI"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BB65EA3296CBDAAA3DD5F053AE6F8EEC"
+            BlueprintIdentifier = "992622F1997DA741625FE607651F98A9"
             BuildableName = "Pods_CensusAPI.framework"
             BlueprintName = "Pods-CensusAPI"
             ReferencedContainer = "container:Pods.xcodeproj">

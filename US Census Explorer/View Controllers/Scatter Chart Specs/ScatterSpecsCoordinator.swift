@@ -18,6 +18,7 @@ class ScatterSpecsCoordinator: Coordinator {
         case topicX
         case topicY
         case year
+        case none
     }
     
     lazy var viewController: ScatterSpecsTableViewController = {
@@ -70,6 +71,8 @@ class ScatterSpecsCoordinator: Coordinator {
                 self?.router.popModule(animated: true)
             }
             pushChild(coordinator: coordinator)
+        case .none:
+            break
         }
     }
 }

@@ -13,6 +13,13 @@ target 'CensusAPI' do
  pod 'Action', '~> 3.4'
  pod 'NSObject+Rx', '~> 4.1'
  pod 'Alamofire', '~> 4.5'
+ pod 'Instructions', '~> 1.1.0'
+ 
+ target 'CensusAPITests' do
+     inherit! :search_paths
+     pod 'RxTest', '~> 4.0'
+     pod 'RxBlocking', '~> 4.0'
+ end
 
 end
 

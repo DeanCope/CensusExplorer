@@ -11,18 +11,12 @@ import RxCocoa
 
 extension Reactive where Base: CensusLineChartView {
     
-    var noDataText: Binder<String> {
-        return Binder(self.base) { chartView, text in
-            chartView.noDataText = text
+    var xAxisText: Binder<String?> {
+        return Binder(self.base) { chartView, xAxisText in
+            chartView.xAxisText = xAxisText ?? ""
         }
     }
-    
-    var xAxisLabel: Binder<String?> {
-        return Binder(self.base) { chartView, xAxisLabel in
-            chartView.xAxisLabelText = xAxisLabel ?? ""
-        }
-    }
-    
+   
     var needsDisplay: Binder<Bool> {
         return Binder(self.base) { chartView, needsDisplay in
             chartView.setNeedsDisplay()

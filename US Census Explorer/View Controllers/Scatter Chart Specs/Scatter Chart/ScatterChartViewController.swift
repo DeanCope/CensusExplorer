@@ -14,7 +14,7 @@ import Photos
 // This class is responsible for coordinating the display of the scatter chart view.
 // It also handles the ability to save an image of the chart to the users photos
 
-class ScatterChartViewController: UIViewController, ChartViewDelegate, StoryboardInitializable {
+class ScatterChartViewController: UIViewController, StoryboardInitializable {
     
     let disposeBag = DisposeBag()
 
@@ -27,10 +27,29 @@ class ScatterChartViewController: UIViewController, ChartViewDelegate, Storyboar
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         chartView.configure(withViewModel: viewModel)
+    }
+    
+    private func bindViewModel() {
+        
+        // Inputs from ViewModel to UI
+        viewModel.noDataText
+            .drive(chartView.rx.noDataText)
+            .disposed(by: disposeBag)
+        
+        viewModel.titleText
+            .drive(chartView.titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.xAxisText
+            .drive(chartView.rx.xAxisText)
+            .disposed(by: disposeBag)
+        
     }
     
     private func errorMessage() {

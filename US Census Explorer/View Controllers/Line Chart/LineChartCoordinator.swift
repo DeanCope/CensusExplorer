@@ -33,6 +33,7 @@ class LineChartCoordinator: Coordinator {
         })
         .disposed(by: disposeBag)
         
+        // Add the "slide-up" settings VC to the LineChart VC
         let settingsVC =  SettingsViewController.initFromStoryboard()
         settingsVC.viewModel = SettingsViewModel()
         viewController.settingsViewController = settingsVC

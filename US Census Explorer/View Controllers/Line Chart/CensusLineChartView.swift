@@ -14,8 +14,6 @@ import RxSwift
 // 3. Handling of a dynamically positioned popup label that provides details about a data point that the user taps
 class CensusLineChartView: LineChartView {
     
-    let disposeBag = DisposeBag()
-    
     var popupLabel = InsetLabel()
     var viewModel: LineChartViewModel?
     
@@ -23,9 +21,9 @@ class CensusLineChartView: LineChartView {
     @IBOutlet private weak var xAxisLabel: UILabel!
     @IBOutlet private weak var yAxisLabelFrame: UIView!
     
-    public var xAxisLabelText = "" {
+    public var xAxisText = "" {
         didSet {
-            xAxisLabel.text = xAxisLabelText
+            xAxisLabel.text = xAxisText
         }
     }
     
@@ -91,20 +89,10 @@ extension CensusLineChartView: ChartViewDelegate {
         popupLabel.lineBreakMode = .byWordWrapping
         
         // Dynamically position the label
-        var xPosition = highlight.xPx
-        if xPosition > frame.maxX - 95 {
-            xPosition = frame.maxX - 95
-        }
-        if xPosition < frame.minX + 95 {
-            xPosition = frame.minX + 95
-        }
-        var yPosition = highlight.yPx
-        if yPosition > frame.maxY - 40 {
-            yPosition = frame.maxY - 40
-        }
-        if yPosition < frame.minY + 100 {
-            yPosition = frame.minY + 100
-        }
+        var xPosition = min(highlight.xPx, frame.maxX - 95)
+        xPosition = max(xPosition, frame.minX + 95)
+        var yPosition = min(highlight.yPx, frame.maxY - 40)
+        yPosition = max(yPosition, frame.minY + 40)
         
         let dotView = UIView(frame: CGRect(origin: CGPoint(x: xPosition, y: yPosition), size: CGSize(width: 1, height: 1)))
         addSubview(dotView)

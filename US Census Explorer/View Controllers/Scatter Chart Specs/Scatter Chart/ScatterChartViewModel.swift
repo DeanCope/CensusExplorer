@@ -16,7 +16,9 @@ struct ScatterChartViewModel {
     let disposeBag = DisposeBag()
     
     private let censusDataSource: CensusDataSource!
+    private let _noDataText: Variable<String>
     private let _titleText: Variable<String>
+    private let _xAxisText: Variable<String>
     
     // MARK: - Inputs
     let save: AnyObserver<Void>
@@ -25,7 +27,9 @@ struct ScatterChartViewModel {
     let didChooseSave: Observable<Void>
     
     //RXSwift Drivers
+    var noDataText: Driver<String> { return _noDataText.asDriver() }
     var titleText: Driver<String> { return _titleText.asDriver() }
+    var xAxisText: Driver<String> { return _xAxisText.asDriver() }
     
     var chartSpecs: ChartSpecs
     var chartData: ScatterChartData?
@@ -37,7 +41,9 @@ struct ScatterChartViewModel {
         self.censusDataSource = dataSource
         self.chartSpecs = chartSpecs
         
+        self._noDataText = Variable<String>("You need to provide data for the chart.")
         self._titleText = Variable<String>(chartSpecs.factY.value?.factDescription ?? "")
+        self._xAxisText = Variable<String>(chartSpecs.factX.value?.factName ?? "Unknown X axis name")
         
         let _save = PublishSubject<Void>()
         self.save = _save.asObserver()
@@ -87,25 +93,12 @@ struct ScatterChartViewModel {
         dataSet.drawValuesEnabled = UserDefaults.chartShowValues()
     }
     
-    var xAxisText: String {
-        get {
-            return chartSpecs.factX.value?.factName ?? "Unknown X axis name"
-        }
-    }
-    
     var yAxisText: String {
         get {
             return chartSpecs.factY.value?.factName ?? "Unknown Y axis name"
         }
     }
     
-    /*
-    var titleText: String {
-        get {
-            return chartSpecs.factY.value?.factDescription ?? ""
-        }
-    }
-    */
     var shouldDisplayLegend: Bool {
         get {
             if let count = chartData?.dataSetCount {

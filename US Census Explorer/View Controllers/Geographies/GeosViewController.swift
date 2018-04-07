@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Instructions
 
 // This class is responsible for displaying the grouped, multiple-select list of geographies (USA + States)
 // for the user to choose from.
@@ -27,11 +28,20 @@ class GeosViewController: UIViewController, UITableViewDelegate, StoryboardIniti
     @IBOutlet private weak var selectAllButton: UIButton!
     @IBOutlet private weak var deselectAllButton: UIButton!
     
+    var coachMarksController = CoachMarksController()
+    let introText = "Select one or more geographies."
+    let graphItText = "Tap 'Graph It!' to see the chart."
+    let nextButtonText = "Ok!"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
         
+        self.coachMarksController.dataSource = self
+        
+        self.coachMarksController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
+
         bindViewModel()
     }
     
@@ -42,12 +52,30 @@ class GeosViewController: UIViewController, UITableViewDelegate, StoryboardIniti
         self.navigationController?.navigationBar.tintAdjustmentMode = .automatic
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UserDefaults.showGeoInstructions() {
+            startInstructions()
+            UserDefaults.setShowGeoInstructions(false)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    func startInstructions() {
+        self.coachMarksController.start(on: self)
+    }
+    
     private func setupUI() {
         
         tableView.dataSource = viewModel.geosDataSource
         
         self.instructionsLabel.text = "Choose the whole country and/or one or more states."
-        
     }
     
     private func bindViewModel() {
@@ -109,4 +137,88 @@ class GeosViewController: UIViewController, UITableViewDelegate, StoryboardIniti
             .disposed(by: disposeBag)
     }
     
+}
+
+// MARK: - Protocol Conformance | CoachMarksControllerDataSource
+extension GeosViewController: CoachMarksControllerDataSource {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 2
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        
+        var coachMark : CoachMark
+        
+        switch(index) {
+        case 0:
+            coachMark = coachMarksController.helper.makeCoachMark(for: tableView)
+            coachMark.allowTouchInsideCutoutPath = true
+        case 1:
+            let view = graphItButton.value(forKey: "view") as! UIView
+            coachMark = coachMarksController.helper.makeCoachMark(for: view)
+            coachMark.allowTouchInsideCutoutPath = true
+        case 2:
+            let view = self.tabBarController?.tabBar.items?[1].value(forKey: "view") as? UIView
+            coachMark = coachMarksController.helper.makeCoachMark(for: view)
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
+        coachMark.gapBetweenCoachMarkAndCutoutPath = 6.0
+        
+        return coachMark
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+
+        var bodyView : CoachMarkBodyView
+        var arrowView : CoachMarkArrowView?
+        
+        
+        switch(index) {
+        case 0:
+            let coachMarkBodyView = CustomCoachMarkBodyView()
+            var coachMarkArrowView: TransparentCoachMarkArrowView? = nil
+            
+            coachMarkBodyView.hintLabel.text = self.introText
+            coachMarkBodyView.nextButton.setTitle(self.nextButtonText, for: UIControlState())
+            
+            if let arrowOrientation = coachMark.arrowOrientation {
+                coachMarkArrowView = TransparentCoachMarkArrowView(orientation: arrowOrientation)
+            }
+            
+            bodyView = coachMarkBodyView
+            arrowView = coachMarkArrowView
+        case 1:
+            let coachMarkBodyView = CustomCoachMarkBodyView()
+            var coachMarkArrowView: TransparentCoachMarkArrowView? = nil
+            
+            coachMarkBodyView.hintLabel.text = self.graphItText
+            coachMarkBodyView.nextButton.setTitle(self.nextButtonText, for: UIControlState())
+            
+            if let arrowOrientation = coachMark.arrowOrientation {
+                coachMarkArrowView = TransparentCoachMarkArrowView(orientation: arrowOrientation)
+            }
+            
+            bodyView = coachMarkBodyView
+            arrowView = coachMarkArrowView
+            /*
+             case 2:
+             coachViews.bodyView.hintLabel.text = scatterChartText
+             coachViews.bodyView.nextLabel.text = self.nextButtonText
+             case 3:
+             coachViews.bodyView.hintLabel.text = self.postsText
+             coachViews.bodyView.nextLabel.text = self.nextButtonText
+             case 4:
+             coachViews.bodyView.hintLabel.text = self.reputationText
+             coachViews.bodyView.nextLabel.text = self.nextButtonText
+             */
+        default:
+            let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+            
+            bodyView = coachViews.bodyView
+            arrowView = coachViews.arrowView
+        }
+        
+        return (bodyView: bodyView, arrowView: arrowView)
+    }
 }

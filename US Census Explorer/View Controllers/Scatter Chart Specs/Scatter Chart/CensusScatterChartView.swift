@@ -14,14 +14,18 @@ import RxSwift
 // 3. Handling of a dynamically positioned popup label that provides details about a data point that the user taps
 class CensusScatterChartView: ScatterChartView {
     
-    let disposeBag = DisposeBag()
-    
     var popupLabel = InsetLabel()
     var viewModel: ScatterChartViewModel?
     
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var xAxisLabel: UILabel!
     @IBOutlet private weak var yAxisLabelFrame: UIView!
+    
+    public var xAxisText = "" {
+        didSet {
+            xAxisLabel.text = xAxisText
+        }
+    }
     
     func configure(withViewModel viewModel: ScatterChartViewModel?) {
         guard let viewModel = viewModel else { return }
@@ -32,14 +36,10 @@ class CensusScatterChartView: ScatterChartView {
         if let chartData = viewModel.chartData {
             self.data = chartData
         }
-        noDataText = "You need to provide data for the chart."
-        //titleLabel.text = viewModel.titleText
-        viewModel.titleText
-            .drive(titleLabel.rx.text)
-            .disposed(by: disposeBag)
         
         chartDescription?.enabled = true
         chartDescription?.text = "Source: US Census Bureau"
+        
         if viewModel.shouldDisplayLegend {
             legend.enabled = true
             legend.drawInside = true
@@ -51,7 +51,7 @@ class CensusScatterChartView: ScatterChartView {
         xAxis.granularity = 1
         backgroundColor = viewModel.chartBackgroundColor
         animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
-        addXAxisLabel(viewModel.xAxisText)
+
         addYAxisLabel(viewModel.yAxisText)
     }
     
@@ -71,9 +71,6 @@ class CensusScatterChartView: ScatterChartView {
         yAxisLabel.centerYAnchor.constraint(equalTo: yAxisLabelFrame.centerYAnchor).isActive = true
     }
     
-    func addXAxisLabel(_ text: String) {
-        xAxisLabel.text = text
-    }
 }
 
 // MARK: - Chart View Delegate
